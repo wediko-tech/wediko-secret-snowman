@@ -1,4 +1,5 @@
 language: ruby
-ruby:
-- 2.2.0
-script: rspec
+rvm:
+  - 2.2.0
+notifications:
+  slack: cs4500-team8:zbNze7PM1dr45x7LikU71lYA
