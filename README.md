@@ -2,4 +2,4 @@
 
 An application that handles secret snowman and other wishlist-based events for the nonprofit Wediko
 
-Halfdan wrote this
+Halfdan did not write this
