@@ -1,1 +1,1 @@
-bundle install
+bin/bundle install
