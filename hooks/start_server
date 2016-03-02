@@ -1,2 +1,2 @@
 #!/bin/bash
-./bin/rails server &
+rails server
