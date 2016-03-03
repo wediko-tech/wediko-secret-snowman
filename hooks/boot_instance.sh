@@ -17,3 +17,14 @@ sudo usermod -a -G rvm root
 # 2.) Install dependency managers and node
 gem install bundler
 sudo apt-get install nodejs
+
+# 3.) Install the AWS CLI to allow automated deploys
+sudo apt-get update
+sudo apt-get install python-pip
+sudo apt-get install ruby2.0
+sudo pip install awscli
+cd /home/ubuntu
+aws s3 cp s3://aws-codedeploy-us-west-2/latest/install . --region us-west-2
+chmod 755 install
+sudo ./install auto
+sudo service codedeploy-agent start

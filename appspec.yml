@@ -3,3 +3,16 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu
+permissions:
+  - object: /home/ubuntu
+    owner: ubuntu
+    group: rvm
+hooks:
+  AfterInstall:
+    - location: hooks/install_dependencies
+      timeout: 300
+      runas: ubuntu
+  ApplicationStart:
+    - location: hooks/start_server
+      timeout: 300
+      runas: ubuntu
