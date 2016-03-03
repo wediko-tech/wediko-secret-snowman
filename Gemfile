@@ -45,6 +45,9 @@ end
 group :test do
   # [SJP] Run RSpec for tests
   gem 'rspec-rails'
+  # Use factory girl for mocking out models
+  # https://github.com/thoughtbot/factory_girl_rails
+  gem 'factory_girl_rails'
 end
 
 group :development do
