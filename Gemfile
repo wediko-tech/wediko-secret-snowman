@@ -33,6 +33,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use state machine to track a Reservation's state
+# https://github.com/state-machines/state_machines-activerecord
+gem 'state_machines-activerecord'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
