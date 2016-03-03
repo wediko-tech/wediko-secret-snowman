@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /apps/wediko-secret-snowman
+    destination: .
 hooks:
   AfterInstall:
     - location: hooks/install_dependencies
