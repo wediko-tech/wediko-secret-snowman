@@ -1,3 +1,4 @@
 #!/bin/bash
 cd /home/ubuntu
+rvm use ruby-2.2.0
 sudo rails server -e production -p 80 -b 0.0.0.0
