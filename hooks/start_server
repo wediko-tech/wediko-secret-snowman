@@ -1,2 +1,3 @@
 #!/bin/bash
-rails server
+cd /home/ubuntu
+sudo rails server -e production -p 80 -b 0.0.0.0
