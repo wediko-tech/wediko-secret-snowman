@@ -40,11 +40,11 @@ gem 'state_machines-activerecord'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # [SJP] Run RSpec for tests
+  gem 'rspec-rails'
 end
 
 group :test do
-  # [SJP] Run RSpec for tests
-  gem 'rspec-rails'
   # Use factory girl for mocking out models
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
