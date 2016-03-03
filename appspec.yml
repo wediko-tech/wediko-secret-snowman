@@ -3,12 +3,3 @@ os: linux
 files:
   - source: /
     destination: .
-hooks:
-  AfterInstall:
-    - location: hooks/install_dependencies
-      timeout: 600 # [SP] Ten minute timeout
-      runas: root
-  ApplicationStart:
-    - location: hooks/start_server
-      timeout: 300 # [SP] Five minute timeout
-      runas: root
