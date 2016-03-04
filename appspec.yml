@@ -6,7 +6,6 @@ files:
 permissions:
   - object: /home/ubuntu
     owner: ubuntu
-    group: rvm
 hooks:
   AfterInstall:
     - location: hooks/install_dependencies
