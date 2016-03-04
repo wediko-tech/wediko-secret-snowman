@@ -3,7 +3,7 @@
 #         whenever a new instance is provisioned. Updates to this are not
 #         automatically synced to AWS.
 # 1.) Install rbenv and set ruby version
-sudo apt-get -y install git gcc make
+sudo apt-get -y install git gcc make zlib1g-dev libsqlite3-dev
 git clone https://github.com/rbenv/rbenv.git /home/ubuntu/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/ubuntu/.bashrc
 echo "$(rbenv init -)" >> /home/ubuntu/.bashrc
