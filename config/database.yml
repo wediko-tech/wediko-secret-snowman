@@ -1,20 +1,28 @@
 # PostgreSQL
 default: &default
   adapter: postgresql
+  encoding: utf8
+  host: <%= ENV['WED_DB_HOST'] %>
+  database: <%= ENV['WED_DB_NAME'] %>
+  username: <%= ENV['WED_DB_USER'] %>
+  password: <%= ENV['WED_DB_PWD'] %>
+  port: 5432
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
-  database: wediko_id8_development
+
+
+staging:
+  <<: *default
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: wediko_id8_test
+  database: wedikopg_test
 
 production:
   <<: *default
-  database: wediko_id8_production
