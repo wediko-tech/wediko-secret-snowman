@@ -51,11 +51,13 @@ ActiveRecord::Schema.define(version: 20160303190417) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.integer  "role_id"
+    t.string   "name"
     t.string   "role_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end
