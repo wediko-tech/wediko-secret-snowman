@@ -14,38 +14,38 @@ describe Reservation do
   end
 
   it 'handles state change of unreserved to reserved correctly' do
-    @reservation.reserved
+    @reservation.reserve
     expect(@reservation.state).to eq('reserved')
   end
 
   it 'handles state change of reserved to shipped correctly' do
-    @reservation.reserved
-    @reservation.shipped
+    @reservation.reserve
+    @reservation.ship
     expect(@reservation.state).to eq('shipped')
   end
 
   it 'handles state change of shipped to received correctly' do
-    @reservation.reserved
-    @reservation.shipped
-    @reservation.received
+    @reservation.reserve
+    @reservation.ship
+    @reservation.receive
     expect(@reservation.state).to eq('received')
   end
 
   it 'handles cancellation state changes correctly' do
-    @reservation.reserved
+    @reservation.reserve
     @reservation.cancel
     expect(@reservation.state).to eq('unreserved')
 
-    @reservation.reserved
-    @reservation.shipped
+    @reservation.reserve
+    @reservation.ship
     @reservation.cancel
     expect(@reservation.state).to eq('reserved')
   end
 
   it 'restricts cancellation if gift has been received' do
-    @reservation.reserved
-    @reservation.shipped
-    @reservation.received
+    @reservation.reserve
+    @reservation.ship
+    @reservation.receive
     expect(@reservation.cancel).to be false
   end
 end

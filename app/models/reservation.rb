@@ -3,15 +3,15 @@ class Reservation < ActiveRecord::Base
   has_one :donor
 
   state_machine :initial => :unreserved do
-    event :reserved do
+    event :reserve do
       transition :unreserved => :reserved
     end
 
-    event :shipped do
+    event :ship do
       transition :reserved => :shipped
     end
 
-    event :received do
+    event :receive do
       transition :shipped => :received
     end
 
