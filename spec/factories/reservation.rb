@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :reservation do
-    delinquent 0
+    delinquent false
   end
 end
