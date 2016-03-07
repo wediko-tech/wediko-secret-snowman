@@ -1,4 +1,4 @@
 class Therapist < ActiveRecord::Base
-  has_many :users, as: :role
+  has_one :user, as: :role
   has_many :lists
 end
