@@ -23,6 +23,6 @@ describe List do
   end
 
   it 'properly associates with a request' do
-    expect(@list.request.last).to eq(@request)
+    expect(@list.requests.last).to eq(@request)
   end
 end
