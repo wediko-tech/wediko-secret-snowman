@@ -2,11 +2,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :request
   has_one :donor
 
-  state_machine :initial => :unreserved do
-    event :reserve do
-      transition :unreserved => :reserved
-    end
-
+  state_machine :initial => :reserved do
     event :ship do
       transition :reserved => :shipped
     end
@@ -16,7 +12,7 @@ class Reservation < ActiveRecord::Base
     end
 
     event :cancel do
-      transition :reserved => :unreserved, :shipped => :reserved
+      transition :shipped => :reserved
     end
   end
 end
