@@ -15,6 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
+logfile
 
 # Ignore all private keys to avoid us getting nuked
 *.pem
+
+# Ignore jetbrains config
+.idea/*
