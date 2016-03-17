@@ -39,6 +39,11 @@ gem 'dotenv-rails', '>= 2.0.1'
 # https://github.com/state-machines/state_machines-activerecord
 gem 'state_machines-activerecord'
 
+# Use Bootstrap as the application's front-end framework
+gem 'bootstrap-sass', '~> 3.3.6'
+# Use Slim template
+gem 'slim-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
