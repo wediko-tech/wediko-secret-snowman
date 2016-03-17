@@ -1,0 +1,1 @@
+DeployNotifier.notify_deploy(new_resource)
