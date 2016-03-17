@@ -4,3 +4,11 @@ rvm:
   - 2.2.0
 notifications:
   slack: cs4500-team8:zbNze7PM1dr45x7LikU71lYA
+  email:
+    recipients:
+      - kalbhor.a@husky.neu.edu
+      - harshs@ccs.neu.edu
+      - m.weintraub@northeastern.edu
+      - steve@steve-pletcher.com
+    on_success: change
+    on_failure: change
