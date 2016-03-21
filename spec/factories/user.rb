@@ -1,15 +1,15 @@
 FactoryGirl.define do
-  factory :therapist_user, class: "User" do
-    association :role, factory: :therapist
-  end
+  factory :user do
+    sequence(:email, 1){|i| "some_person_#{i}@email.biz"}
+    password "buttscarlton"
+    password_confirmation "buttscarlton"
 
-  factory :donor_user, class: "User" do
-    association :role, factory: :donor
-  end
+    factory :therapist_user, class: "User" do
+      association :role, factory: :therapist
+    end
 
-  factory :therapist do
-  end
-
-  factory :donor do
+    factory :donor_user, class: "User" do
+      association :role, factory: :donor
+    end
   end
 end
