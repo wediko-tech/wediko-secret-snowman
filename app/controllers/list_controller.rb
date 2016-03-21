@@ -13,7 +13,6 @@ class ListController < ApplicationController
 
   def show
     @list = List.find_by_id(params[:id])
-    # render status: @list ? :ok : :no_content
   end
 
   def create
