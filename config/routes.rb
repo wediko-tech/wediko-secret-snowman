@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     post '/logout' => 'devise/sessions#destroy'
   end
 
+  resources :list do
+
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

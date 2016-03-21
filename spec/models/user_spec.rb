@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe User do
 
-  let(:therapist) { FactoryGirl.create(:therapist_user) }
-  let(:donor) { FactoryGirl.create(:donor_user) }
+  let(:therapist) { FactoryGirl.build(:therapist_user) }
+  let(:donor) { FactoryGirl.build(:donor_user) }
 
   it 'has a valid factory' do
     expect(therapist).to be_valid

@@ -11,4 +11,9 @@ module AdminSpecHelper
     @user = FactoryGirl.create(:admin_user)
     login_as @user, scope: :user
   end
+
+  def login_as_therapist
+    @user = FactoryGirl.create(:therapist_user)
+    sign_in @user
+  end
 end

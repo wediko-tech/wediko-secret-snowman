@@ -1,0 +1,25 @@
+div.container-fluid
+  div.row
+    div.col-md-12
+      h1 List#index
+      p Find me in app/views/list/index.html.slim
+      - if @lists.any?
+        div.table-responsive
+          table.table
+            thead
+              th = "ID"
+              th = "Title"
+              th = "Description"
+              th = "Created At"
+              th = "Updated At"
+              th = "Test Actions"
+
+            - for list in @lists
+              tr
+                td.id = list.id
+                td.title = list.title
+                td.description = list.description
+                td.created_at = list.created_at
+                td.updated_at = list.updated_at
+                td
+                  = link_to "Show", list_path(list.id), action: "show", class: "btn btn-primary"
