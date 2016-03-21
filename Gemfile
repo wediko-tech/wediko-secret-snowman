@@ -48,6 +48,7 @@ group :development, :test do
   gem 'byebug'
   # [SJP] Run RSpec for tests
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 group :test do
