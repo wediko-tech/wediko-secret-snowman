@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'devise'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # The following line is provided for convenience purposes. It has the downside
@@ -38,6 +39,7 @@ ActiveRecord::Migration.maintain_test_schema!
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
