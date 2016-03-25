@@ -13,42 +13,19 @@ describe DeployNotifier do
       allow(DeployNotifier).to receive(:slack) { @dummy_client }
     end
 
-    context "when send messages config is disabled" do
-      around :each do |example|
-        temporarily_set_slack_config(false, example)
-      end
-
-      it "does not send messages" do
-        expect(@dummy_client).not_to receive(:ping)
-        DeployNotifier.notify_deploy(deploy_resource)
-      end
+    it "sends some kind of message" do
+      expect(@dummy_client).to receive(:ping)
+      DeployNotifier.notify_deploy(deploy_resource)
     end
 
-    context "when send messages config is enabled" do
-      around :each do |example|
-        temporarily_set_slack_config(true, example)
-      end
-
-      it "sends some kind of message" do
-        expect(@dummy_client).to receive(:ping)
-        DeployNotifier.notify_deploy(deploy_resource)
-      end
-
-      it "sends a message including the environment" do
-        expect(@dummy_client).to receive(:ping).with(/#{Rails.env}/i)
-        DeployNotifier.notify_deploy(deploy_resource)
-      end
-
-      it "sends a message including the revision" do
-        expect(@dummy_client).to receive(:ping).with(/#{@revision}/)
-        DeployNotifier.notify_deploy(deploy_resource)
-      end
+    it "sends a message including the environment" do
+      expect(@dummy_client).to receive(:ping).with(/#{Rails.env}/i)
+      DeployNotifier.notify_deploy(deploy_resource)
     end
-  end
 
-  def temporarily_set_slack_config(setting, example)
-    prev_config, Rails.configuration.slack_send_messages = [Rails.configuration.slack_send_messages, setting]
-    example.run
-    Rails.configuration.slack_send_messages = prev_config
+    it "sends a message including the revision" do
+      expect(@dummy_client).to receive(:ping).with(/#{@revision}/)
+      DeployNotifier.notify_deploy(deploy_resource)
+    end
   end
 end
