@@ -16,9 +16,14 @@
 !/log/.keep
 /tmp
 logfile
+.byebug_history
 
 # Ignore all private keys to avoid us getting nuked
 *.pem
 
 # Ignore jetbrains config
 .idea/*
+
+# Ignore precompiled assets
+public/assets
+public/assets/*

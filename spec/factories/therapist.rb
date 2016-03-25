@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :therapist do
-    association :user
+    user
   end
 end

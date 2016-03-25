@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'dotenv-rails', '>= 2.0.1'
 
-gem 'activeadmin', '1.0.0.pre1'
+gem 'activeadmin', '1.0.0.pre2'
 gem 'devise'
 
 # Use ActiveModel has_secure_password

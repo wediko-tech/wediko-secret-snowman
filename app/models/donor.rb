@@ -1,4 +1,4 @@
 class Donor < ActiveRecord::Base
-  has_one :user, as: :role
-  has_many :reservation
+  include Role
+  has_many :reservations
 end

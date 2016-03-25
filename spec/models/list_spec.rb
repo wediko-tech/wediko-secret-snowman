@@ -4,7 +4,7 @@ describe List do
   before(:each) do
     @therapist = FactoryGirl.create(:therapist_user)
     @list = FactoryGirl.create(:list, therapist: @therapist.role)
-    @request = FactoryGirl.create(:request, list: @list)
+    @gift_request = FactoryGirl.create(:gift_request, list: @list)
   end
 
   it 'has a valid factory' do
@@ -22,7 +22,17 @@ describe List do
     expect(@therapist.role.lists.length).to eq(2)
   end
 
-  it 'properly associates with a request' do
-    expect(@list.requests.last).to eq(@request)
+  it 'properly associates with a gift request' do
+    expect(@list.gift_requests.last).to eq(@gift_request)
+  end
+
+  it "should only show empty lists in its empty scope" do
+    empty_list = FactoryGirl.create(:list)
+    expect(List.empty).to match_array([empty_list])
+  end
+
+  it "should only show non-empty lists in its non-empty scope" do
+    empty_list = FactoryGirl.create(:list)
+    expect(List.non_empty).to match_array([@list])
   end
 end

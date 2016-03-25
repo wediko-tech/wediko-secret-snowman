@@ -263,6 +263,7 @@ ActiveAdmin.setup do |config|
 end
 
 ActiveAdmin::ResourceController.class_eval do
+  # don't bother with strong parameters protection in the admin
   def permitted_params
     params.permit!
   end
