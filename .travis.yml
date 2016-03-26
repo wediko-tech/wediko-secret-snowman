@@ -12,3 +12,8 @@ notifications:
       - steve@steve-pletcher.com
     on_success: change
     on_failure: change
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database wedikopg_travis;' -U postgres
+  - cp config/database.yml.travis config/database.yml
