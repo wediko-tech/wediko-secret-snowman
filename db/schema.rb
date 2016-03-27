@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 20160327200957) do
     t.integer  "gift_request_id"
     t.integer  "donor_id"
     t.string   "tracking_num"
-    t.boolean  "delinquent"
+    t.boolean  "delinquent",      default: false
     t.string   "state"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "therapists", force: :cascade do |t|
