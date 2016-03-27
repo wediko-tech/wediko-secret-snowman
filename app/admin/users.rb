@@ -107,5 +107,21 @@ ActiveAdmin.register User do
         user.role = Donor.create
       end
     end
+
+    def update
+      @user = User.find(params[:id])
+
+      if params[:user][:password].blank?
+        @user.update_without_password(permitted_params[:user])
+      else
+        @user.update(permitted_params[:user])
+      end
+
+      if @user.errors.blank?
+        redirect_to admin_user_path(@user), notice: "User updated successfully."
+      else
+        render :edit
+      end
+    end
   end
 end
