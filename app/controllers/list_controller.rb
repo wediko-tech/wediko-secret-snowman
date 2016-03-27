@@ -18,8 +18,11 @@ class ListController < ApplicationController
 
   def create
     @list = List.new(list_params.merge(therapist: current_user.role))
-    status = @list.save ? :ok : :bad_request
-    render json: {list: @list}, status: status
+    if @list.save
+      render json: {list: @list}, status: :ok
+    else
+      render json: {errors: @list.errors.full_messages}, status: :bad_request
+    end
   end
 
   def update
