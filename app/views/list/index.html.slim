@@ -1,25 +1,44 @@
-div.container-fluid
-  div.row
-    div.col-md-12
-      h1 List#index
-      p Find me in app/views/list/index.html.slim
-      - if @lists.any?
-        div.table-responsive
-          table.table
-            thead
-              th = "ID"
-              th = "Title"
-              th = "Description"
-              th = "Created At"
-              th = "Updated At"
-              th = "Test Actions"
-
-            - for list in @lists
-              tr
-                td.id = list.id
-                td.title = list.title
-                td.description = list.description
-                td.created_at = list.created_at
-                td.updated_at = list.updated_at
-                td
-                  = link_to "Show", list_path(list.id), action: "show", class: "btn btn-primary"
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    title
+      | Wishlists
+  body
+    .container-fluid
+      .row
+        .col-xs-12
+          .wishlist-header
+            | Wishlists
+          .wishlist-page
+            - if @lists.any?
+            .table-responsive
+              table#catalog-table.wishlist-table.table.table-hover
+                thead
+                  th
+                  th
+                  th
+                    | Title
+                  th
+                    | Description
+                  th
+                    | Created At
+                  th
+                    | Updated At
+                tbody
+                - for list in @lists
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td = link_to list.title, list_path(list.id)
+                    td = list.description
+                    td = list.created_at
+                    td = list.updated_at
+            .wishlist-remove
+              button.btn.btn-default[type="submit"]
+                | Remove Selected Wishlists
+            .wishlist-add
+              button.btn.btn-default[type="submit"]
+                | + Add New Wishlist

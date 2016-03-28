@@ -1,1 +1,132 @@
-h3 = "Hello this is the show page for List with id: #{@list.id} and title: #{@list.title}"
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    title
+      | Wishlist
+  body
+    .container-fluid
+      .row
+        .col-xs-12
+          .wishlist-header
+            | Wishlist
+          .wishlist-page
+            .table-responsive
+              table#catalog-table.wishlist-table.table.table-hover
+                thead
+                  tr
+                    th
+                    th
+                    th
+                      | Request
+                    th
+                      | Recipient
+                    th
+                      | Status
+                    th
+                      | Age
+                    th
+                      | Gender
+                    th
+                      | Description
+                tbody
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td.request-name
+                      a[href="#"]
+                        | Rubik's Cube Game
+                    td.request-recipient
+                      | Mark
+                    td.request-status
+                      | Posted
+                    td.request-age
+                      | 9
+                    td.request-gender
+                      | M
+                    td.request-description
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ... 
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td.request-name
+                      a[href="#"]
+                        | Jenga Classic Game
+                    td.request-recipient
+                      | Angela
+                    td.request-status
+                      | Reserved
+                    td.request-age
+                      | 12
+                    td.request-gender
+                      | F
+                    td.request-description
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ...
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td.request-name
+                      a[href="#"]
+                        | Mr. Sketch Assorted Scent Markers
+                    td.request-recipient
+                      | Daniel
+                    td.request-status
+                      | Purchased
+                    td.request-age
+                      | 6
+                    td.request-gender
+                      | M
+                    td.request-description
+                      | Lorem ipsum dolor sit amet, consectetur ...
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td.request-name
+                      a[href="#"]
+                        | Shopkins Season 4 Toy Figure
+                    td.request-recipient
+                      | Mary
+                    td.request-status
+                      | Fulfilled
+                    td.request-age
+                      | 7
+                    td.request-gender
+                      | F
+                    td.request-description
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed ...
+                  tr.request
+                    td.request-checkbox
+                      input[type="checkbox"]
+                    td.request-edit
+                      a[href="#"]
+                        | Edit
+                    td.request-name
+                      a[href="#"]
+                        | Nerf N-Strike Elite: Strongarm Blaster
+                    td.request-recipient
+                      | Bob
+                    td.request-status
+                      | Cancelled
+                    td.request-age
+                      | 11
+                    td.request-gender
+                      | M
+                    td.request-description
+                      | Lorem ipsum dolor sit ...
+            .wishlist-remove
+              button.btn.btn-default[type="submit"]
+                | Remove Selected Requests
+            .wishlist-add
+              button.btn.btn-default[type="submit"]
+                | + Add New Request
