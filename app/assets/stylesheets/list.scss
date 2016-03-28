@@ -72,12 +72,11 @@ body {
   button {
     font-weight: bold;
     float: right;
-    background: #e6e5e5;
-    border: 1px solid #6a6a6a;
     border-radius: 0;
   }
   button:hover {
     transition: all 400ms ease;
+    border: 1px solid #6a6a6a;
     color: #FFF;
     background: #3a87a8;
   }

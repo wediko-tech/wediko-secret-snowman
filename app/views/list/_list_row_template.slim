@@ -1,0 +1,10 @@
+tr.request
+  td.request-checkbox
+    input[type="checkbox"]
+  td.request-edit
+    a[href="#"]
+      | Edit
+  td = link_to list.title, list_path(list.id)
+  td = list.description
+  td = list.created_at
+  td = list.updated_at

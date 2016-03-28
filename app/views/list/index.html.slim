@@ -1,44 +1,30 @@
-html[lang="en"]
-  head
-    meta[charset="utf-8"]
-    title
-      | Wishlists
-  body
-    .container-fluid
-      .row
-        .col-xs-12
-          .wishlist-header
-            | Wishlists
-          .wishlist-page
-            - if @lists.any?
-            .table-responsive
-              table#catalog-table.wishlist-table.table.table-hover
-                thead
-                  th
-                  th
-                  th
-                    | Title
-                  th
-                    | Description
-                  th
-                    | Created At
-                  th
-                    | Updated At
-                tbody
-                - for list in @lists
-                  tr.request
-                    td.request-checkbox
-                      input[type="checkbox"]
-                    td.request-edit
-                      a[href="#"]
-                        | Edit
-                    td = link_to list.title, list_path(list.id)
-                    td = list.description
-                    td = list.created_at
-                    td = list.updated_at
-            .wishlist-remove
-              button.btn.btn-default[type="submit"]
-                | Remove Selected Wishlists
-            .wishlist-add
-              button.btn.btn-default[type="submit"]
-                | + Add New Wishlist
+.container-fluid
+  .row
+    .col-xs-12
+      .wishlist-header
+        | Wishlists
+      .wishlist-page
+        - if @lists.present?
+          .table-responsive
+            table#catalog-table.wishlist-table.table.table-hover
+              thead
+                th
+                th
+                th
+                  | Title
+                th
+                  | Description
+                th
+                  | Created At
+                th
+                  | Updated At
+              tbody
+                - @lists.each do |list|
+                  = render partial: 'list/list_row_template', locals: { list: list }
+
+        .wishlist-remove
+          button.btn.btn-danger[type="submit"]
+            | Remove Selected Wishlists
+        .wishlist-add
+          button.btn.btn-default[type="submit"]
+            | + Add New Wishlist

@@ -10,14 +10,25 @@ RSpec.describe ListController, type: :controller do
   
   describe "POST #create" do
     it "successfully creates a list" do
-      post :create, list: {title: "A whole new world", description: "Fantastic description", therapist: @user.role}
+      # Prior to post, there should only be one list in the db
+      expect(List.all.length).to eq(1)
+
+      new_list = {title: "A whole new world", description: "Fantastic description", therapist: @user.role}
+
+      post :create, list: new_list
 
       list = JSON.parse(response.body)['list']
 
       expect(response).to have_http_status(:success)
-      expect(list['title']).to eq("A whole new world")
-      expect(list['description']).to eq("Fantastic description")
-      expect(list['therapist_id']).to eq(@user.role.id)
+      expect(list['title']).to eq(new_list[:title])
+      expect(list['description']).to eq(new_list[:description])
+      expect(list['therapist_id']).to eq(new_list[:therapist].id)
+
+      # After the post, there should be two
+      expect(List.all.length).to eq(2)
+      expect(List.last.title).to eq(new_list[:title])
+      expect(List.last.description).to eq(new_list[:description])
+      expect(List.last.therapist.id).to eq(new_list[:therapist].id)
     end
   end
 
