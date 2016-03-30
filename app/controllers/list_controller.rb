@@ -4,7 +4,7 @@ class ListController < ApplicationController
   end
 
   def edit
-    @list = List.find_by_id(params[:id])
+    @list = List.find(params[:id])
   end
 
   def new
@@ -12,25 +12,28 @@ class ListController < ApplicationController
   end
 
   def show
-    @list = List.find_by_id(params[:id])
+    @list = List.find(params[:id])
+    @requests = @list.gift_requests
   end
 
   def create
     @list = List.new(list_params.merge(therapist: current_user.role))
     if @list.save
-      render json: {list: @list}, status: :ok
+      redirect_to action: "show", id: @list.id
     else
-      render json: {errors: @list.errors.full_messages}, status: :bad_request
+      flash[:error] = "A problem occurred while creating the wishlist. Please try again."
+      render :new
     end
   end
 
+
   def update
-    @list = List.find_by_id(params[:id])
+    @list = List.find(params[:id])
     render nothing: true, status: @list.update_attributes(list_params) ? :ok : :bad_request
   end
 
   def destroy
-    list = List.find_by_id(params[:id])
+    list = List.find(params[:id])
     list.destroy if list
     render nothing: true, status: list.destroyed? ? :no_content : :bad_request
   end

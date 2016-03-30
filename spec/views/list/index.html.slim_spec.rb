@@ -14,4 +14,15 @@ RSpec.describe 'list/index.html.slim', type: :view do
     expect(rendered).to have_text('Title')
     expect(rendered).to have_text('Description')
   end
+
+  it 'should render the empty message if there are no wishlists' do
+    login_as_therapist
+    @lists = [];
+
+    render template: 'list/index'
+    page = Capybara::Node::Simple.new(rendered)
+
+    expect(page.all('tbody').length).to eq(0)
+    expect(rendered).to have_text("No wishlists have been created yet!")
+  end
 end

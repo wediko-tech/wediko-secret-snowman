@@ -17,12 +17,11 @@ RSpec.describe ListController, type: :controller do
 
       post :create, list: new_list
 
-      list = JSON.parse(response.body)['list']
+      expect(response).to redirect_to(list_path(assigns(:list).id))
 
-      expect(response).to have_http_status(:success)
-      expect(list['title']).to eq(new_list[:title])
-      expect(list['description']).to eq(new_list[:description])
-      expect(list['therapist_id']).to eq(new_list[:therapist].id)
+      expect(assigns(:list)[:title]).to eq(new_list[:title])
+      expect(assigns(:list)[:description]).to eq(new_list[:description])
+      expect(assigns(:list)[:therapist_id]).to eq(new_list[:therapist].id)
 
       # After the post, there should be two
       expect(List.all.length).to eq(2)
@@ -53,15 +52,6 @@ RSpec.describe ListController, type: :controller do
       get :show, id: @list.id
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
-    end
-  end
-
-  describe "GET #edit" do
-    it "successfully renders the edit view with expected params" do
-      get :edit, id: @list.id
-
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:edit)
     end
   end
 

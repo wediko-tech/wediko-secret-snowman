@@ -2,28 +2,30 @@
   .row
     .col-xs-12
       .wishlist-header
-        | Wishlist
+        | Requests
       .wishlist-page
-        .table-responsive
-          table#catalog-table.wishlist-table.table.table-hover
-            thead
-              tr
-                th
-                th
-                th
-                  | Request
-                th
-                  | Recipient
-                th
-                  | Status
-                th
-                  | Age
-                th
-                  | Gender
-                th
-                  | Description
-            tbody
-              = render partial: 'list/request_row_template'
+        - if @requests.any?
+          .table-responsive
+            table#catalog-table.wishlist-table.table.table-hover
+              thead
+                tr
+                  th
+                  th
+                  th
+                    | Recipient
+                  th
+                    | Description
+                  th
+                    | Link
+                  th
+                    | Age
+                  th
+                    | Gender
+              tbody
+                = render partial: 'list/request_row_template', collection: @requests, as: :request
+        - else
+          h1 = "No requests have been created for this wishlist!"
+        
         .wishlist-remove
           button.btn.btn-danger[type="submit"]
             | Remove Selected Requests

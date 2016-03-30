@@ -4,7 +4,7 @@
       .wishlist-header
         | Wishlists
       .wishlist-page
-        - if @lists.present?
+        - if @lists.any?
           .table-responsive
             table#catalog-table.wishlist-table.table.table-hover
               thead
@@ -19,12 +19,13 @@
                 th
                   | Updated At
               tbody
-                - @lists.each do |list|
-                  = render partial: 'list/list_row_template', locals: { list: list }
+                = render partial: 'list/list_row_template', collection: @lists, as: :list
+        - else
+          h1 = "No wishlists have been created yet!"
 
         .wishlist-remove
           button.btn.btn-danger[type="submit"]
             | Remove Selected Wishlists
+
         .wishlist-add
-          button.btn.btn-default[type="submit"]
-            | + Add New Wishlist
+          = link_to "+ Add New Wishlist", new_list_path, class: "btn btn-default"
