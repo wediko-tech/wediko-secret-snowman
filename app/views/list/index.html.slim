@@ -3,29 +3,30 @@
     .col-xs-12
       .wishlist-header
         | Wishlists
-      .wishlist-page
-        - if @lists.any?
-          .table-responsive
-            table#catalog-table.wishlist-table.table.table-hover
-              thead
-                th
-                th
-                th
-                  | Title
-                th
-                  | Description
-                th
-                  | Created At
-                th
-                  | Updated At
-              tbody
-                = render partial: 'list/list_row_template', collection: @lists, as: :list
-        - else
-          h1 = "No wishlists have been created yet!"
+      = form_tag destroy_multiple_list_index_path, method: :delete  
+        .wishlist-page
+          - if @lists.any?
+            .table-responsive
+              table#catalog-table.wishlist-table.table.table-hover
+                thead
+                  tr
+                    th
+                    th
+                    th
+                      | Title
+                    th
+                      | Description
+                    th
+                      | Created At
+                    th
+                      | Updated At
+                tbody
+                  = render partial: 'list/list_row_template', collection: @lists, as: :list
+          - else
+            h1 = "No wishlists have been created yet!"
 
-        .wishlist-remove
-          button.btn.btn-danger[type="submit"]
-            | Remove Selected Wishlists
+          .wishlist-remove
+            = button_to "Remove Selected Wishlists", {method: :delete}, class: "btn btn-danger"
 
-        .wishlist-add
-          = link_to "+ Add New Wishlist", new_list_path, class: "btn btn-default"
+          .wishlist-add
+            = link_to "+ Add New Wishlist", new_list_path, class: "btn btn-default"

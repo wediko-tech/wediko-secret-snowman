@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
 
   resources :list do
-
+    collection do
+      delete 'destroy_multiple'
+    end
   end
 
   # Example of regular route:

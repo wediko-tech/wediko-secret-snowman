@@ -1,13 +1,15 @@
+- action = @list.new_record? ? "create" : "edit"
+- url = @list.new_record? ? list_index_path : list_path(@list.id)
 .container-fluid
   .row
     .col-xs-12
-      h1 = "Create Wishlist"
-      - if flash[:error]
+      h1 = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
+      - if @list.errors.any?
         .alert.alert-danger role="alert" 
           span.glyphicon.glyphicon-exclamation-sign aria-hidden="true" 
           span.sr-only Error:
-          | #{flash[:error]}
-      = form_for @list, url: {action: "create"}, html: {class: ""} do |f|
+          | #{@list.errors.full_messages}
+      = form_for @list, url: url, action: action, html: {class: ""} do |f|
         .form-group
           label for="title" Title
           = f.text_field :title, class: 'form-control'
@@ -15,4 +17,4 @@
           label for="description" Description
           = f.text_area :description, class: 'form-control'
         div.form-group
-          = f.submit "Create", class: 'btn btn-success'
+          = f.submit action.titleize, class: 'btn btn-success'

@@ -69,12 +69,12 @@ body {
 
 .wishlist-remove {
   position: relative;
-  button {
+  input {
     font-weight: bold;
     float: right;
     border-radius: 0;
   }
-  button:hover {
+  input:hover {
     transition: all 400ms ease;
     border: 1px solid #6a6a6a;
     color: #FFF;
@@ -83,13 +83,13 @@ body {
 }
 
 .wishlist-add {
-  button {
+  input {
     font-weight: bold;
     background: #e6e5e5;
     border: 1px solid #6a6a6a;
     border-radius: 0;
   }
-  button:hover {
+  input:hover {
     transition: all 400ms ease;
     color: #FFF;
     background: #3a87a8;

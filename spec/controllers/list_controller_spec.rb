@@ -29,6 +29,12 @@ RSpec.describe ListController, type: :controller do
       expect(List.last.description).to eq(new_list[:description])
       expect(List.last.therapist.id).to eq(new_list[:therapist].id)
     end
+
+    it "generates error on invalid creation of list" do
+      new_list = {therapist: @user.role}
+      post :create, list: new_list
+      expect(assigns(:list).errors.full_messages).to_not be_empty
+    end
   end
 
   describe "GET #index" do
@@ -43,7 +49,7 @@ RSpec.describe ListController, type: :controller do
     it "returns http success and renders template" do
       get :new
       expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+      expect(response).to render_template(:wishlist)
     end
   end
 
@@ -69,7 +75,7 @@ RSpec.describe ListController, type: :controller do
       put :update, id: @list.id, list: {title: "The Smith Family", description: "So many Smiths!"}
       @list.reload
 
-      expect(response).to have_http_status(:success)
+      expect(response).to redirect_to(list_index_path)
 
       # Test if params were sent through properly
       expect(assigns[:list].title).to eq("The Smith Family")
