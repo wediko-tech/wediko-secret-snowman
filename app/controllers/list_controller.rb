@@ -37,12 +37,6 @@ class ListController < ApplicationController
     end
   end
 
-  def destroy
-    list = List.find(params[:id])
-    list.destroy if list
-    render nothing: true, status: list.destroyed? ? :no_content : :bad_request
-  end
-
   def destroy_multiple
     if List.destroy(params[:list_ids])
       redirect_to action: "index"

@@ -61,11 +61,10 @@ RSpec.describe ListController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe "DELETE #destroy_multiple" do
     it "successfully destroys a list record" do
-      delete :destroy, {id: @list.id}
+      delete :destroy_multiple, {list_ids: [@list.id]}
 
-      expect(response).to have_http_status(:no_content)
       expect(List.all.length).to eq(0)
     end
   end
