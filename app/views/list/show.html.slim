@@ -27,8 +27,7 @@
           h1 = "No requests have been created for this wishlist!"
         
         .wishlist-remove
-          button.btn.btn-danger[type="submit"]
-            | Remove Selected Requests
+          = button_to "Remove Selected Requests", "javascript:;", class: "btn btn-danger"
+
         .wishlist-add
-          button.btn.btn-default[type="submit"]
-            | + Add New Request
+          = link_to "+ Add New Request", "javascript:;", class: "btn btn-default"
