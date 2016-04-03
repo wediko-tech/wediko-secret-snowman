@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,800);
+
+body {  
+  margin: 5% auto;
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  background: #2e84ae url('http://www.wediko.org/wp-content/themes/wediko/images/bg-blue.jpg');
+}
+
+.wishlist-page {
+  color: #3e3e3e;
+  margin: 0 10%;
+  padding: 5em;
+  background: #fdf6ef url('http://www.wediko.org/wp-content/themes/wediko/images/bg-cream.jpg');
+}
+
+.wishlist-header {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #e9cc7f;
+  margin: 0 10%;
+  padding: 1em 0;
+  text-align: center;
+  font-size: 2em;
+  &:before, &:after {
+    content: " ";
+    height: 1px;
+    background: #78acc2;
+    width: 35%;
+    display: block;
+    position: relative;
+    top: .65em;
+  }
+  &:before {
+    float: left;
+  }
+  &:after {
+    float: right;
+  }
+}
+
+.wishlist-table {
+  border: 1px solid #6a6a6a;
+  margin: 0 auto 2em;
+  background: #e6e5e5;
+  a {
+    color: inherit;
+  }
+  .request-edit {
+    font-weight: bold;
+  }
+  .request-checkbox {
+    border-radius: 0;
+  }
+  tbody tr td, thead tr th {
+    border-color: #6a6a6a;
+  }
+  thead th, .request-recipient, .request-status, .request-age, .request-gender {
+    text-align: center;
+  }
+  tbody tr {
+    &:hover {
+      transition: all 400ms ease;
+      color: #FFF;
+      background-color: #3a87a8;
+    }
+  }
+}
+
+.wishlist-remove {
+  position: relative;
+  input {
+    font-weight: bold;
+    float: right;
+    border-radius: 0;
+  }
+  input:hover {
+    transition: all 400ms ease;
+    border: 1px solid #6a6a6a;
+    color: #FFF;
+    background: #3a87a8;
+  }
+}
+
+.wishlist-add {
+  input {
+    font-weight: bold;
+    background: #e6e5e5;
+    border: 1px solid #6a6a6a;
+    border-radius: 0;
+  }
+  input:hover {
+    transition: all 400ms ease;
+    color: #FFF;
+    background: #3a87a8;
+  }
+}

@@ -1,0 +1,11 @@
+tr.request
+  td.request-checkbox
+    input[type="checkbox"]
+  td.request-edit
+    a[href="#"]
+      | Edit
+  td = request.recipient
+  td = request.description
+  td = link_to request.link, request.link
+  td = request.age
+  td = request.gender

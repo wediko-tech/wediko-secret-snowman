@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327200957) do
+ActiveRecord::Schema.define(version: 20160330184002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160327200957) do
     t.string   "link"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "gender"
+    t.integer  "age"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -62,10 +64,10 @@ ActiveRecord::Schema.define(version: 20160327200957) do
     t.integer  "gift_request_id"
     t.integer  "donor_id"
     t.string   "tracking_num"
-    t.boolean  "delinquent"
+    t.boolean  "delinquent",      default: false
     t.string   "state"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "therapists", force: :cascade do |t|
