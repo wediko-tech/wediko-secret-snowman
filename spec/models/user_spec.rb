@@ -5,6 +5,10 @@ describe User do
   let(:therapist) { FactoryGirl.create(:therapist_user) }
   let(:donor) { FactoryGirl.create(:donor_user) }
 
+  before :each do
+    Rails.configuration.action_mailer.perform_deliveries = true
+  end
+
   it 'has a valid factory' do
     expect(therapist).to be_valid
     expect(donor).to be_valid
@@ -18,5 +22,11 @@ describe User do
   it 'should have valid associations for donor role' do
     expect(donor.role_type).to eq("Donor")
     expect(donor.role.class.name).to eq("Donor")
+  end
+
+  it 'sends an email' do
+    #byebug
+    expect { donor.send_instructions }
+      .to change { ActionMailer::Base.deliveries.count }.by(1)
   end
 end

@@ -13,6 +13,7 @@ module WedikoSecretSnowman
     config.assets.enabled = true
 
     # [Steve] REMOVE THIS ONCE MAILER SET UP
+
     config.action_mailer.raise_delivery_errors = false
 
     # Version of your assets, change this if you want to expire all your assets
