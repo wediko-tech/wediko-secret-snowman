@@ -1,6 +1,6 @@
 class List < ActiveRecord::Base
   belongs_to :therapist
-  has_many :gift_requests
+  has_many :gift_requests, dependent: :destroy
 
   validates :title, presence: true
 

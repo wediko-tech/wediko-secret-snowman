@@ -1,6 +1,6 @@
 class GiftRequest < ActiveRecord::Base
   belongs_to :list
-  has_one :reservation
+  has_one :reservation, dependent: :destroy
 
   scope :reserved, -> { joins(:reservation) }
   scope :unreserved, -> { includes(:reservation).where(reservations: {id: nil}) }
