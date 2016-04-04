@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20160404161437) do
     t.datetime "updated_at",  null: false
     t.string   "gender"
     t.integer  "age"
+    t.string   "item_name"
+    t.string   "category"
   end
 
   create_table "lists", force: :cascade do |t|

@@ -42,5 +42,7 @@ module WedikoSecretSnowman
     config.slack_deploy_webhook_url = "https://hooks.slack.com/services/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"
     config.slack_channel = "#robots"
     config.slack_send_messages = true
+
+    config.amazon_associate_tag = "wdk"
   end
 end

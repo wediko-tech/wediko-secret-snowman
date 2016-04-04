@@ -28,6 +28,13 @@ gem 'dotenv-rails', '>= 2.0.1'
 gem 'activeadmin', '1.0.0.pre2'
 gem 'devise'
 
+# Amazon product API wrapper
+gem 'vacuum'
+gem 'sidekiq'
+
+# sinatra to support sidekiq web ui
+gem 'sinatra', require: nil
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
