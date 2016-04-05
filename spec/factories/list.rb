@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :list do
     therapist
+    event
     sequence(:description) { |n| "Description #{n}" }
     sequence(:title) { |n| "Title #{n}" }
 
