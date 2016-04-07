@@ -15,7 +15,7 @@ RSpec.describe RegistrationMailer do
         expect(mail.subject).to eql('Thank you for registering')
     end
     it 'renders correct body' do
-      expect(mail.body).to include("You have successfully signed up to example.com")
+      expect(mail.body).to include("to login with your password at")
     end
     it 'renders users name properly' do
       expect(mail.body.encoded).to include(user.name)
