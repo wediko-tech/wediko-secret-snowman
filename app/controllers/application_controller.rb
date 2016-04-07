@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(user)
-    user.administrator? ? admin_dashboard_path : root_path
+    user.administrator? ? admin_dashboard_path :
+    case user.role_type
+    when "Administrator"
+      admin_dashboard_path
+    when "Therapist"
+      wishlists_path
+    when "Donor"
+      not_implemented_path(target: "the gift request catalog")
+    else
+      root_path
+    end
   end
 end

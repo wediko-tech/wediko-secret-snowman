@@ -2,8 +2,8 @@ tr.request
   td.request-checkbox
     = check_box_tag("list_ids[]", list.id)
   td.request-edit
-    = link_to "Edit", edit_list_path(list.id)
-  td = link_to list.title, list_path(list.id)
+    = link_to "Edit", edit_wishlist_path(list.id)
+  td = link_to list.title, wishlist_path(list.id)
   td = list.description
   td = list.created_at
   td = list.updated_at

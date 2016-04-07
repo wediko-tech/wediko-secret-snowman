@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users
 
   ActiveAdmin.routes(self)
 
@@ -12,15 +12,18 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   devise_scope :user do
-    get '/login' => 'devise/sessions#new'
-    post '/logout' => 'devise/sessions#destroy'
+    get 'login' => 'devise/sessions#new'
+    post 'logout' => 'devise/sessions#destroy'
+    get 'sign_up' => 'devise/registrations#new'
   end
 
-  resources :list do
+  resources :wishlists, controller: 'lists' do
     collection do
       delete 'destroy_multiple'
     end
   end
+
+  get 'not_implemented' => 'not_implemented#index'
 
   # http://website.com/async/
   mount Sidekiq::Web => 'async'

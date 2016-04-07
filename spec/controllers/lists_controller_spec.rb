@@ -1,13 +1,13 @@
 require 'spec_helper'
 include AdminSpecHelper
 
-RSpec.describe ListController, type: :controller do
+RSpec.describe ListsController, type: :controller do
 
   before(:each) do
     login_as_therapist
     @list = FactoryGirl.create(:list, therapist: @user.role)
   end
-  
+
   describe "POST #create" do
     it "successfully creates a list" do
       # Prior to post, there should only be one list in the db
@@ -17,7 +17,7 @@ RSpec.describe ListController, type: :controller do
 
       post :create, list: new_list
 
-      expect(response).to redirect_to(list_path(assigns(:list).id))
+      expect(response).to redirect_to(wishlist_path(assigns(:list).id))
 
       expect(assigns(:list)[:title]).to eq(new_list[:title])
       expect(assigns(:list)[:description]).to eq(new_list[:description])
@@ -74,7 +74,7 @@ RSpec.describe ListController, type: :controller do
       put :update, id: @list.id, list: {title: "The Smith Family", description: "So many Smiths!"}
       @list.reload
 
-      expect(response).to redirect_to(list_index_path)
+      expect(response).to redirect_to(wishlists_path)
 
       # Test if params were sent through properly
       expect(assigns[:list].title).to eq("The Smith Family")

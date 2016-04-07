@@ -1,0 +1,21 @@
+div.container-fluid
+  div.login-header Login
+  div.login-page
+    == form_for(resource, as: resource_name, url: session_path(resource_name), class: 'login-form') do |f|
+      - if flash.alert.present?
+        div.alert.alert-danger = flash.alert
+      div.form-group
+        = f.label :email, "Email Address"
+        = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'example@mail.com'
+
+      div.form-group
+        = f.label :password
+        = f.password_field :password, autocomplete: "off", class: "form-control"
+
+      div.form-group
+        = f.check_box :remember_me
+        = f.label :remember_me
+
+      div.login-submit
+        = f.submit "Log in", class: "btn btn-default pull-left"
+    = link_to "Sign up", new_user_registration_path, class: "pull-right"

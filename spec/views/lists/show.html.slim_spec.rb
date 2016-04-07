@@ -1,14 +1,14 @@
 require 'spec_helper'
 include AdminSpecHelper
 
-RSpec.describe 'list/show.html.slim', type: :view do
+RSpec.describe 'lists/show.html.slim', type: :view do
 
   it 'should render all requests for a wishlist' do
     login_as_therapist
     @list = FactoryGirl.create(:list, :with_requests, therapist: @user.role)
     @requests = @list.gift_requests
 
-    render template: 'list/show'
+    render template: 'lists/show'
     page = Capybara::Node::Simple.new(rendered)
 
     expect(page.all('tbody tr.request').length).to eq(@requests.length)
@@ -24,7 +24,7 @@ RSpec.describe 'list/show.html.slim', type: :view do
     @list = FactoryGirl.create(:list, therapist: @user.role)
     @requests = @list.gift_requests
 
-    render template: 'list/show'
+    render template: 'lists/show'
     page = Capybara::Node::Simple.new(rendered)
 
     expect(page.all('tbody').length).to eq(0)

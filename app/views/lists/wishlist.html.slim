@@ -1,15 +1,15 @@
 - action = @list.new_record? ? "create" : "edit"
-- url = @list.new_record? ? list_index_path : list_path(@list.id)
+- url = @list.new_record? ? wishlists_path : wishlist_path(@list.id)
 .container-fluid
   .row
     .col-xs-12
-      h1 = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
+      h1.wishlist-header = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
       - if @list.errors.any?
-        .alert.alert-danger role="alert" 
-          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true" 
+        .alert.alert-danger role="alert"
+          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
           span.sr-only Error:
           | #{@list.errors.full_messages}
-      = form_for @list, url: url, action: action, html: {class: ""} do |f|
+      = form_for @list, url: url, action: action, html: {class: "wishlist-page"} do |f|
         .form-group
           label for="title" Title
           = f.text_field :title, class: 'form-control'
