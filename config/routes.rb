@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     member do
       get 'gift_requests/new'
       post 'gift_requests/new' => 'gift_requests#create'
+      # We define this route because we need the list id for the "back button" when editing a request
+      get 'gift_requests/:gift_request_id/edit' => 'gift_requests#edit', as: :gift_request_edit
     end
   end
 

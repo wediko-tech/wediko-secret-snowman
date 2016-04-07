@@ -35,6 +35,9 @@ gem 'sidekiq'
 # sinatra to support sidekiq web ui
 gem 'sinatra', require: nil
 
+# Pretty icon fonts
+gem 'font-awesome-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

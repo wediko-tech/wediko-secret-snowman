@@ -1,12 +1,12 @@
 class GiftRequestsController < ApplicationController
   def new
     @gift_request = GiftRequest.new
-    render "gift_request"
+    render "gift_request", locals: {list_id: params[:id]}
   end
 
   def edit
-    @gift_request = GiftRequest.find(params[:id])
-    render "gift_request"
+    @gift_request = GiftRequest.find(params[:gift_request_id])
+    render "gift_request", locals: {list_id: params[:id]}
   end
 
   def create
