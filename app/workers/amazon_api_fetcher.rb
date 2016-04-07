@@ -9,7 +9,7 @@ class AmazonApiFetcher
     result = AmazonProductApi.item_search(asin)
 
     request.update(
-      item_name: result["ItemAttributes"]["Title"],
+      name: result["ItemAttributes"]["Title"],
       category: result["ItemAttributes"]["ProductGroup"],
       link: URI.decode(result["DetailPageURL"])
     )
