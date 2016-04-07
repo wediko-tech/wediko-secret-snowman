@@ -1,7 +1,6 @@
 require "spec_helper"
-
-  RSpec.describe ThankYouMailer do
-    describe 'thank you' do
+RSpec.describe ThankYouMailer do
+  describe 'thank you' do
     let(:user) { FactoryGirl.create(:donor_user) }
     let(:mail) { ThankYouMailer.thank_you_email(user) }
 

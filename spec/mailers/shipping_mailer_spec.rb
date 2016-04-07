@@ -1,7 +1,6 @@
 require "spec_helper"
-
-  RSpec.describe ShippingMailer do
-    describe 'shipped' do
+RSpec.describe ShippingMailer do
+  describe 'shipped' do
     let(:user) { FactoryGirl.create(:donor_user) }
     let(:mail) { ShippingMailer.gift_shipped_email(user) }
 

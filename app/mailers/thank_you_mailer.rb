@@ -1,7 +1,7 @@
 class ThankYouMailer < ApplicationMailer
   def thank_you_email(user)
     @user = user
-    @url  = 'http://example.com/login'
+    @url  = login_url
     mail(to: @user.email, subject: 'Thank you for your generosity!')
   end
 end

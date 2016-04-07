@@ -15,6 +15,8 @@ module WedikoSecretSnowman
     # [Steve] REMOVE THIS ONCE MAILER SET UP
 
     config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.default_url_options = { host: 'http://wediko.steve-pletcher.com' }
+
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

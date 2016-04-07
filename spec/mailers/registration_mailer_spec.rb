@@ -1,7 +1,6 @@
 require "spec_helper"
-
-  RSpec.describe RegistrationMailer do
-    describe 'notified registration' do
+RSpec.describe RegistrationMailer do
+  describe 'notified registration' do
     let(:user) { FactoryGirl.create(:donor_user) }
     let(:mail) { RegistrationMailer.registration_email(user) }
 
@@ -9,7 +8,7 @@ require "spec_helper"
     it 'renders the sender' do
       expect(ApplicationMailer.default[:from]).to eql((mail.from)[0])
     end
-      it 'addresses to proper recipient' do
+    it 'addresses to proper recipient' do
       expect((mail.to)[0]).to eql(user.email)
     end
     it 'renders correct subject' do

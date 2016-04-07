@@ -19,8 +19,7 @@ RSpec.describe LateReservationMailer do
     end
     #Test an element of the body and make sur it is correct
     it 'renders correct body' do
-      expect(mail.body).to include("Please hurry to purhase the gift, as the holidays are almost
-      on us!")
+      expect(mail.body).to include("Please hurry to purhase the gift, as the holidays are almost on us!")
     end
   end
 end
