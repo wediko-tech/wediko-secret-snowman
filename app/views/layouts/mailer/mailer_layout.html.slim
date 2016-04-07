@@ -4,24 +4,12 @@ html
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
 
   body
-    h1 Markup examples
-
-    #content
-      p This example shows you how a basic Slim file looks like.
+      p test line
 
       == yield
 
-      - unless items.empty?
-        table
-          - items.each do |item|
-            tr
-              td.name = item.name
-              td.price = item.price
-      - else
-        p
-         | No items found.  Please add some inventory.
-           Thank you!
 
-    div id="footer"
-      = render 'footer'
-      | Copyright © #{year} #{author}
+  div id="footer"
+    p
+      | www.Wediko.org, Wediko Children's Services. All Rights Reserved.
+
