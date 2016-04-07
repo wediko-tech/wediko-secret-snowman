@@ -8,8 +8,8 @@
         .alert.alert-danger role="alert"
           span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
           span.sr-only Error:
-          | #{@list.errors.full_messages}
-      = form_for @list, url: url, action: action, html: {class: "wishlist-page"} do |f|
+          |  #{@list.errors.full_messages.join(", ")}
+      = form_for @list, url: url, action: action, html: {class: ""} do |f|
         .form-group
           label for="title" Title
           = f.text_field :title, class: 'form-control'

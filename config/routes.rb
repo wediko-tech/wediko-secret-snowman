@@ -21,6 +21,17 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_multiple'
     end
+
+    member do
+      get 'gift_requests/new'
+      post 'gift_requests/new' => 'gift_requests#create'
+    end
+  end
+
+  resources :gift_requests do
+    collection do
+      delete 'destroy_multiple'
+    end
   end
 
   get 'not_implemented' => 'not_implemented#index'

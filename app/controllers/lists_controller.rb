@@ -15,7 +15,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @requests = @list.gift_requests
+    @gift_requests = @list.gift_requests
   end
 
   def create
@@ -23,7 +23,7 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to action: "show", id: @list.id
     else
-      redirect_to action: "new"
+      render "wishlist"
     end
   end
 
