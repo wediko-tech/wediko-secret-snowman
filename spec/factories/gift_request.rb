@@ -4,6 +4,9 @@ FactoryGirl.define do
     sequence(:recipient) { |n| "Recipient #{n}" }
     sequence(:description) { |n| "Description #{n}" }
     sequence(:link) { |n| "http://fakelink#{n}" }
+    sequence(:age, 5)
+    gender "Male"
+
 
     factory :reserved_gift_request do
       # [Steve] Just calling "reservation" here creates an extra orphaned gift request for some reason

@@ -7,6 +7,9 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'devise'
+
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # The following line is provided for convenience purposes. It has the downside
@@ -40,6 +43,7 @@ ActiveRecord::Migration.maintain_test_schema!
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -72,6 +76,12 @@ RSpec.configure do |config|
 
   config.before(:each) do
     ActionMailer::Base.deliveries = []
+  end
+
+  config.around(:each, inline_jobs: true) do |example|
+    Sidekiq::Testing.inline! do
+      example.run
+    end
   end
 
   # The settings below are suggested to provide a good initial experience

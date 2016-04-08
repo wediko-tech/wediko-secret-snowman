@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
 
@@ -14,6 +16,14 @@ Rails.application.routes.draw do
     post '/logout' => 'devise/sessions#destroy'
   end
 
+  resources :list do
+    collection do
+      delete 'destroy_multiple'
+    end
+  end
+
+  # http://website.com/async/
+  mount Sidekiq::Web => 'async'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
