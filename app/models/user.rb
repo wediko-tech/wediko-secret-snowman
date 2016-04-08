@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   scope :therapists, -> { where(role_type: "Therapist") }
   scope :donors, -> { where(role_type: "Donor") }
   scope :admins, -> { where(role_type: "Administrator") }
+
+  def send_instructions
+    PurchaseOrDonateMailer.please_give_email(self).deliver_now
+  end
 end

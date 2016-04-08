@@ -19,4 +19,10 @@ describe User do
     expect(donor.role_type).to eq("Donor")
     expect(donor.role.class.name).to eq("Donor")
   end
+
+  it 'sends an email' do
+    #byebug
+    expect { donor.send_instructions }
+      .to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 end
