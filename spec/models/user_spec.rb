@@ -5,10 +5,6 @@ describe User do
   let(:therapist) { FactoryGirl.create(:therapist_user) }
   let(:donor) { FactoryGirl.create(:donor_user) }
 
-  before :each do
-    Rails.configuration.action_mailer.perform_deliveries = true
-  end
-
   it 'has a valid factory' do
     expect(therapist).to be_valid
     expect(donor).to be_valid
