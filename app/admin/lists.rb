@@ -32,6 +32,9 @@ ActiveAdmin.register List, as: "Wishlist" do
     column :title do |l|
       link_to l.title, admin_wishlist_path(l)
     end
+    column :event do |l|
+      link_to l.event.title, admin_event_path(l.event)
+    end
     column :description do |l|
       l.description.truncate(50, ommission: "...")
     end
@@ -47,6 +50,9 @@ ActiveAdmin.register List, as: "Wishlist" do
     attributes_table do
       row :therapist do |l|
         link_to l.therapist.name, admin_user_path(l.therapist.user)
+      end
+      row :event do |l|
+        link_to l.event.title, admin_event_path(l.event)
       end
       row :title
       row :description
@@ -78,6 +84,7 @@ ActiveAdmin.register List, as: "Wishlist" do
 
     f.inputs "Association" do
       f.input :therapist
+      f.input :event, collection: Event.active
     end
 
     f.actions
