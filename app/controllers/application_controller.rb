@@ -16,4 +16,8 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
+  def admin_access_denied(user)
+    redirect_to root_path, alert: "You are not authorized to access that page."
+  end
 end
