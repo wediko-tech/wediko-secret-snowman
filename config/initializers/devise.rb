@@ -209,7 +209,7 @@ Devise.setup do |config|
   # Turn scoped views on. Before rendering "sessions/new", it will first check for
   # "users/sessions/new". It's turned off by default because it's slower if you
   # are using only default views.
-  # config.scoped_views = false
+  config.scoped_views = true
 
   # Configure the default scope given to Warden. By default it's the first
   # devise role declared in your routes (usually :user).
@@ -260,4 +260,31 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+end
+
+Devise::RegistrationsController.class_eval do
+  after_action :set_up_user_role, only: :create
+
+  private
+
+  def set_up_user_role
+    if @user.try(:valid?)
+      case params[:user][:role_type]
+      when "Therapist"
+        @user.role = Therapist.create
+      when "Donor"
+        @user.role = Donor.create
+      end
+
+      @user.save
+    end
+  end
+
+  def sign_up_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_type)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_type, :current_password)
+  end
 end

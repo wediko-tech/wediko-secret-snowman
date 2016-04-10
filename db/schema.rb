@@ -75,15 +75,6 @@ ActiveRecord::Schema.define(version: 20160404161437) do
 
   add_index "lists", ["events_id"], name: "index_lists_on_events_id", using: :btree
 
-  create_table "requests", force: :cascade do |t|
-    t.integer  "list_id"
-    t.string   "recipient"
-    t.text     "description"
-    t.string   "link"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.integer  "gift_request_id"
     t.integer  "donor_id"

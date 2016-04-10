@@ -3,7 +3,7 @@
     .col-xs-12
       .wishlist-header
         | Wishlists
-      = form_tag destroy_multiple_list_index_path, method: :delete  
+      = form_tag destroy_multiple_wishlists_path, method: :delete
         .wishlist-page
           - if @lists.any?
             .table-responsive
@@ -21,7 +21,7 @@
                     th
                       | Updated At
                 tbody
-                  = render partial: 'list/list_row_template', collection: @lists, as: :list
+                  = render partial: 'lists/list_row_template', collection: @lists, as: :list
           - else
             h1 = "No wishlists have been created yet!"
 
@@ -29,4 +29,4 @@
             = button_to "Remove Selected Wishlists", {method: :delete}, class: "btn btn-danger"
 
           .wishlist-add
-            = link_to "+ Add New Wishlist", new_list_path, class: "btn btn-default"
+            = link_to "+ Add New Wishlist", new_wishlist_path, class: "btn btn-default"

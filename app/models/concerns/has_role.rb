@@ -6,7 +6,7 @@ module HasRole
     def role_predicates(*roles)
       roles.each do |role|
         define_method("#{role}?") do
-          self.role_type == role.capitalize
+          self.role_id.present? && self.role_type == role.capitalize
         end
       end
     end
