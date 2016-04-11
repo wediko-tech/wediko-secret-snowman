@@ -1,7 +1,9 @@
 class GiftRequestsController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :require_owned_gift_request!, only: [:edit, :update]
+
   def new
     @gift_request = GiftRequest.new
-    p params
     render "gift_request", locals: {list_id: params[:id]}
   end
 
@@ -36,7 +38,18 @@ class GiftRequestsController < ApplicationController
   end
 
   private
-    def gift_request_params
-      params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
+
+  def gift_request_params
+    params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
+  end
+
+  def require_owned_gift_request!
+    if params[:action] == 'edit'
+      gift_id = params[:gift_request_id]
+    else
+      gift_id = params[:id]
     end
+
+    current_user.role.lists.map{|list| list.gift_requests.map{|gr| gr.id}}.flatten.include?(gift_id)
+  end
 end

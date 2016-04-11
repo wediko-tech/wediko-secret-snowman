@@ -1,6 +1,9 @@
 class ListsController < ApplicationController
+  before_filter :authenticate_user!
+  before_action :require_owned_wishlist!, only: [:edit, :show, :update]
+
   def index
-    @lists = List.all
+    @lists = current_user.role.lists
   end
 
   def edit
@@ -47,5 +50,9 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:id, :therapist_id, :title, :description)
+  end
+
+  def require_owned_wishlist!
+    current_user.role.lists.map{|list| list.id}.include?(params[:id])
   end
 end
