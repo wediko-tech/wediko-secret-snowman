@@ -41,6 +41,12 @@ gem 'sinatra', require: nil
 # Pretty icon fonts
 gem 'font-awesome-rails'
 
+# Pagination
+gem 'kaminari'
+
+# Decorators
+gem 'draper'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

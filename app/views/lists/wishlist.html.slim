@@ -1,21 +1,20 @@
 - action = @list.new_record? ? "create" : "edit"
 - url = @list.new_record? ? event_wishlists_path : wishlist_path(@list.id)
-.container-fluid.footer-pad
-  .row
-    .col-xs-12
-      h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
-      .form-page
-        - if @list.errors.any?
-          .alert.alert-danger role="alert"
-            span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
-            span.sr-only Error:
-            |  #{@list.errors.full_messages.join(", ")}
-        = form_for @list, url: url, action: action, html: {class: ""} do |f|
-          .form-group
-            label for="title" Title
-            = f.text_field :title, class: 'form-control'
-          div.form-group
-            label for="description" Description
-            = f.text_area :description, class: 'form-control'
-          div.form-group
-            = f.submit action.titleize, class: 'btn btn-success'
+.row
+  .col-xs-12
+    h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
+    .form-page
+      - if @list.errors.any?
+        .alert.alert-danger role="alert"
+          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
+          span.sr-only Error:
+          |  #{@list.errors.full_messages.join(", ")}
+      = form_for @list, url: url, action: action, html: {class: ""} do |f|
+        .form-group
+          label for="title" Title
+          = f.text_field :title, class: 'form-control'
+        div.form-group
+          label for="description" Description
+          = f.text_area :description, class: 'form-control'
+        div.form-group
+          = f.submit action.titleize, class: 'btn btn-success'

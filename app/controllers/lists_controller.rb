@@ -6,21 +6,27 @@ class ListsController < ApplicationController
   before_action :require_owned_wishlist!, only: [:edit, :show, :update]
 
   def index
+    @back_route = events_path
+
     @lists = current_user.role.lists
   end
 
   def edit
+    @back_route = wishlist_path(params[:id])
+
     @list = List.find(params[:id])
     render "wishlist"
   end
 
   def new
+    @back_route = event_path(params[:event_id])
     @list = List.new
     render "wishlist"
   end
 
   def show
     @list = List.find(params[:id])
+    @back_route = event_path(@list.event_id)
     @gift_requests = @list.gift_requests
   end
 

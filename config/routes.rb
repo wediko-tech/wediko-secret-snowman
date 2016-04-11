@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   resources :events, only: [:index, :show] do
     resources :wishlists, controller: 'lists', only: [:new, :create]
+
+    member do
+      get 'catalog' => 'gift_requests#catalog'
+    end
   end
 
   resources :wishlists, controller: 'lists', except: [:new, :create] do

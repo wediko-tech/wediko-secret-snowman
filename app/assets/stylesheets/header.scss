@@ -6,7 +6,7 @@ nav {
   background: #fdf6ef url(image_path('bg-cream.jpg'));
   .navbar-brand {
     font-weight: 800;
-    background-image: url(image_path('logo.png')); 
+    background-image: url(image_path('logo.png'));
     background-repeat: no-repeat;
     height: 90px;
     width: 150px;
@@ -15,7 +15,6 @@ nav {
   .navbar-nav {
     margin-top: 1em;
     position: relative;
-    float: right;
     li {
       padding-right: 2em;
     }

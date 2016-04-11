@@ -1,5 +1,6 @@
 require 'spec_helper'
 include AdminSpecHelper
+include LoginHelper
 
 RSpec.describe ListsController, type: :controller do
 
@@ -14,27 +15,22 @@ RSpec.describe ListsController, type: :controller do
       # Prior to post, there should only be one list in the db
       expect(List.all.length).to eq(1)
 
-      new_list = {title: "A whole new world", description: "Fantastic description", therapist: @user.role}
+      new_list_params = {title: "A whole new world", description: "Fantastic description", therapist: @user.role}
 
-      post :create, event_id: @event.id, list: new_list
+      post :create, event_id: @event.id, list: new_list_params
+      new_list = List.find_by(title: "A whole new world")
 
-      expect(response).to redirect_to(wishlist_path(assigns(:list).id))
+      expect(response).to redirect_to(wishlist_path(new_list.id))
 
-      expect(assigns(:list)[:title]).to eq(new_list[:title])
-      expect(assigns(:list)[:description]).to eq(new_list[:description])
-      expect(assigns(:list)[:therapist_id]).to eq(new_list[:therapist].id)
-
-      # After the post, there should be two
-      expect(List.all.length).to eq(2)
-      expect(List.last.title).to eq(new_list[:title])
-      expect(List.last.description).to eq(new_list[:description])
-      expect(List.last.therapist.id).to eq(new_list[:therapist].id)
+      expect(new_list[:title]).to eq(new_list_params[:title])
+      expect(new_list[:description]).to eq(new_list_params[:description])
+      expect(new_list[:therapist_id]).to eq(new_list_params[:therapist].id)
     end
 
     it "generates error on invalid creation of list" do
       new_list = {therapist: @user.role}
       post :create, event_id: @event.id, list: new_list
-      expect(assigns(:list).errors.full_messages).to_not be_empty
+      expect(assigns(:list).errors.full_messages).not_to be_empty
     end
 
     it "restricts non therapists from doing a create action" do

@@ -1,0 +1,4 @@
+= link_to catalog_event_path(event), class: 'block' do
+  h1.event-title= event.abbreviation
+  span= event.title
+  p.event-dates= "#{event.start_date.to_date} - #{event.end_date.to_date}"

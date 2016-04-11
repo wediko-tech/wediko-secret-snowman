@@ -1,0 +1,9 @@
+tr.request
+  td.request-checkbox
+    input type="checkbox"
+  td.request-reserve
+    = link_to "Reserve", not_implemented_path(target: 'reserving a request')
+  td.request-name= gift_request.name
+  td.request-age= gift_request.age
+  td.request-gender= gift_request.gender
+  td.request-description= gift_request.description
