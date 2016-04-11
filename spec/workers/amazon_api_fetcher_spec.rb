@@ -59,7 +59,7 @@ describe AmazonApiFetcher, inline_jobs: true do
 
       query_params_hash = Rack::Utils.parse_nested_query(URI.parse(@gift_request.link).query)
       expect(query_params_hash['tag']).to eq "wdk"
-      expect(@gift_request.item_name).to include "iPod Touch"
+      expect(@gift_request.name).to include "iPod Touch"
       expect(@gift_request.category).to eq "CE"
 
       allow(AmazonProductApi).to receive(:item_search).and_call_original

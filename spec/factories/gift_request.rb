@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :gift_request do
     list
+    sequence(:name) { |n| "Pretty Toy #{n}" }
     sequence(:recipient) { |n| "Recipient #{n}" }
     sequence(:description) { |n| "Description #{n}" }
     sequence(:link) { |n| "http://fakelink#{n}" }
