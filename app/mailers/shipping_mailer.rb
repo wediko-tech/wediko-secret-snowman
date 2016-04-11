@@ -1,7 +1,9 @@
 class ShippingMailer < ApplicationMailer
+  #this class is to notify Wediko that a donor has filled out the gift shipped
+  #form and has successfully bought a gift
   def gift_shipped_email(user)
     @user = user
     @url  = login_url
-    mail(to: @user.email, subject: 'Your gift is on its way!')
+    mail(to: @user.email, subject: 'Our donor has bought the gift and it is on its way')
   end
 end

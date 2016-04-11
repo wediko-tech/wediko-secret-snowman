@@ -26,4 +26,12 @@ class List < ActiveRecord::Base
     } do |parent|
       parent.table[:id]
   end
+
+  after_create :send_creation_email
+
+  private
+
+  def send_creation_email
+    WishlistMailer.wish_list_creation_email(donor.user).deliver_now
+  end
 end

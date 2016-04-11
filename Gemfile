@@ -31,6 +31,7 @@ gem 'devise'
 # Amazon product API wrapper
 gem 'vacuum'
 gem 'sidekiq'
+gem 'sidetiq'
 
 # AWS SDK for mailers etc
 gem 'aws-sdk-rails'

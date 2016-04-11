@@ -13,6 +13,14 @@ class User < ActiveRecord::Base
   scope :donors, -> { where(role_type: "Donor") }
   scope :admins, -> { where(role_type: "Administrator") }
 
+after_create :send_email
+
+  private
+
+  def send_registered_email
+    RegistrationMailer.registration_email(self).deliver_now
+  end
+
   def send_instructions
     PurchaseOrDonateMailer.please_give_email(self).deliver_now
   end

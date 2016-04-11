@@ -15,7 +15,13 @@ class Reservation < ActiveRecord::Base
       validates :shipment_method, presence: true
       validates :tracking_number, presence: true
     end
-
+    after_transition any => :shipped do |reservation|
+      WishListMailer.item_purchased_email(reservation.donor)
+      ShippingMailer.gift_shipped_email()#send to Wediko
+    end
+    after_transition any => :received do |reservation|
+      ThankYouMailer.thank_you_email(reservation.donor)
+    end
     event :ship do
       transition :reserved => :shipped
     end
