@@ -1,8 +1,8 @@
 - action = @gift_request.new_record? ? "create" : "edit"
-- url = @gift_request.new_record? ? gift_requests_new_list_path : gift_request_path(@gift_request.id)
+- url = @gift_request.new_record? ? gift_requests_new_wishlist_path : gift_request_path(@gift_request.id)
 .container-fluid
   div.wediko-back
-    a[href="#{list_path(list_id)}"]
+    a[href="#{wishlist_path(list_id)}"]
       i.fa.fa-arrow-left.fa-3x
   .row
     .col-xs-12

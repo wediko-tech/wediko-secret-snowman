@@ -1,6 +1,6 @@
 .container-fluid
   div.wediko-back
-    a[href="#{list_index_path}"]
+    a[href="#{wishlists_path}"]
       i.fa.fa-arrow-left.fa-3x
   .row
     .col-xs-12
@@ -31,4 +31,4 @@
             = button_to "Remove Selected Requests", {controller: 'gift_requests', method: :delete}, class: "btn btn-danger"
 
           .wishlist-add
-            = link_to "+ Add New Request", gift_requests_new_list_path(@list.id), class: "btn btn-default"
+            = link_to "+ Add New Request", gift_requests_new_wishlist_path(@list.id), class: "btn btn-default"

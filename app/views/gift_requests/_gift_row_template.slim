@@ -2,7 +2,7 @@ tr.request
   td.request-checkbox
     = check_box_tag("gift_request_ids[]", gift_request.id)
   td.request-edit
-    = link_to "Edit", gift_request_edit_list_path(@list.id, gift_request.id)
+    = link_to "Edit", gift_request_edit_wishlist_path(@list.id, gift_request.id)
   td = gift_request.name
   td = gift_request.link
   td = gift_request.recipient
