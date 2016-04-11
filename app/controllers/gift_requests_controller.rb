@@ -1,6 +1,7 @@
 class GiftRequestsController < ApplicationController
   def new
     @gift_request = GiftRequest.new
+    p params
     render "gift_request", locals: {list_id: params[:id]}
   end
 

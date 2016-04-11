@@ -63,6 +63,13 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       expect(GiftRequest.all.length).to eq(@gift_requests.length - 1)
     end
+
+    it "successfully destroys multiple gift request records" do
+      request.env["HTTP_REFERER"] = "/list/#{@list.id}"
+      delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
+
+      expect(GiftRequest.all.length).to eq(0)
+    end
   end
 
   describe "PUT #update" do
