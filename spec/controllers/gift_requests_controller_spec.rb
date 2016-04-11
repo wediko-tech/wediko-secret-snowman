@@ -21,7 +21,7 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       post :create, gift_request: new_gift_request, id: @list.id
 
-      expect(response).to redirect_to(list_path(@list.id))
+      expect(response).to redirect_to(wishlist_path(@list.id))
 
       expect(assigns(:gift_request)[:name]).to eq(new_gift_request[:name])
       expect(assigns(:gift_request)[:recipient]).to eq(new_gift_request[:recipient])
@@ -58,14 +58,14 @@ RSpec.describe GiftRequestsController, type: :controller do
 
   describe "DELETE #destroy_multiple" do
     it "successfully destroys a gift request record" do
-      request.env["HTTP_REFERER"] = "/list/#{@list.id}"
+      request.env["HTTP_REFERER"] = "/wishlists/#{@list.id}"
       delete :destroy_multiple, {gift_request_ids: [@gift_requests[0].id]}
 
       expect(GiftRequest.all.length).to eq(@gift_requests.length - 1)
     end
 
     it "successfully destroys multiple gift request records" do
-      request.env["HTTP_REFERER"] = "/list/#{@list.id}"
+      request.env["HTTP_REFERER"] = "/wishlists/#{@list.id}"
       delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
 
       expect(GiftRequest.all.length).to eq(0)
@@ -79,7 +79,7 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       @gift_requests.first.reload
 
-      expect(response).to redirect_to(list_path(@list.id))
+      expect(response).to redirect_to(wishlist_path(@list.id))
 
       # Test if params were sent through properly
       expect(assigns[:gift_request].name).to eq(updated_gift_request[:name])

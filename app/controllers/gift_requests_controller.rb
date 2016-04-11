@@ -14,7 +14,7 @@ class GiftRequestsController < ApplicationController
     # params[:id] is the list id this gift request corresponds to
     @gift_request = GiftRequest.new(gift_request_params.merge(list_id: params[:id]))
     if @gift_request.save
-      redirect_to list_path(params[:id])
+      redirect_to wishlist_path(params[:id])
     else
       render "gift_request"
     end
@@ -23,7 +23,7 @@ class GiftRequestsController < ApplicationController
   def update
     @gift_request = GiftRequest.find(params[:id])
     if @gift_request.update_attributes(gift_request_params)
-      redirect_to list_path(@gift_request.list.id)
+      redirect_to wishlist_path(@gift_request.list.id)
     else
       redirect_to action: "edit", id: @gift_request.id
     end
