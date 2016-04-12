@@ -1,5 +1,8 @@
 class ListsController < ApplicationController
   before_filter :authenticate_user!
+  before_action only: [:index, :new, :edit, :show, :create, :update, :destroy_multiple] do
+    head :forbidden if !current_user.therapist?
+  end
   before_action :require_owned_wishlist!, only: [:edit, :show, :update]
 
   def index
@@ -53,6 +56,6 @@ class ListsController < ApplicationController
   end
 
   def require_owned_wishlist!
-    current_user.role.lists.map{|list| list.id}.include?(params[:id])
+    current_user.role.lists.pluck(:id).include?(params[:id])
   end
 end

@@ -1,5 +1,8 @@
 class GiftRequestsController < ApplicationController
   before_filter :authenticate_user!
+  before_action only: [:new, :edit, :create, :update, :destroy_multiple] do
+    head :forbidden if !current_user.therapist?
+  end
   before_action :require_owned_gift_request!, only: [:edit, :update]
 
   def new
@@ -44,12 +47,7 @@ class GiftRequestsController < ApplicationController
   end
 
   def require_owned_gift_request!
-    if params[:action] == 'edit'
-      gift_id = params[:gift_request_id]
-    else
-      gift_id = params[:id]
-    end
-
-    current_user.role.lists.map{|list| list.gift_requests.map{|gr| gr.id}}.flatten.include?(gift_id)
+    gift_id = params[:action] == 'edit' ? params[:gift_request_id] : params[:id]
+    current_user.role.gift_requests.pluck(:id).include?(gift_id)
   end
 end
