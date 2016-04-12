@@ -55,6 +55,13 @@ GEM
     arel (6.0.3)
     autoprefixer-rails (6.3.3.1)
       execjs
+    aws-sdk-core (2.2.34)
+      jmespath (~> 1.0)
+    aws-sdk-rails (1.0.1)
+      aws-sdk-resources (~> 2)
+      railties (>= 3)
+    aws-sdk-resources (2.2.34)
+      aws-sdk-core (= 2.2.34)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -142,6 +149,8 @@ GEM
       multi_json (~> 1.2)
     jeff (1.5.1)
       excon (>= 0.22.1)
+    jmespath (1.2.4)
+      json_pure (>= 1.8.1)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -149,6 +158,7 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    json_pure (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -307,6 +317,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin (= 1.0.0.pre2)
+  aws-sdk-rails
   bootstrap-sass (~> 3.3.6)
   byebug
   capybara

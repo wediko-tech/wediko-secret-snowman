@@ -32,6 +32,9 @@ gem 'devise'
 gem 'vacuum'
 gem 'sidekiq'
 
+# AWS SDK for mailers etc
+gem 'aws-sdk-rails'
+
 # sinatra to support sidekiq web ui
 gem 'sinatra', require: nil
 
