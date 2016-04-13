@@ -1,6 +1,6 @@
 .container-fluid
   div.wediko-back
-    a[href="#{wishlists_path}"]
+    = link_to event_path(@list.event) do
       i.fa.fa-arrow-left.fa-3x
   .row
     .col-xs-12

@@ -1,8 +1,14 @@
 .container-fluid
+  div.wediko-back
+    = link_to events_path do
+      i.fa.fa-arrow-left.fa-3x
   .row
     .col-xs-12
       .wishlist-header
-        | Wishlists
+        - if @event.present?
+          = @event.title
+        - else
+          | My Wishlists
       = form_tag destroy_multiple_wishlists_path, method: :delete
         .wishlist-page
           - if @lists.any?
@@ -12,6 +18,9 @@
                   tr
                     th
                     th
+                    - unless @event.present?
+                      th
+                        | Event
                     th
                       | Title
                     th
@@ -27,6 +36,6 @@
 
           .wishlist-remove
             = button_to "Remove Selected Wishlists", {method: :delete}, class: "btn btn-danger"
-
-          .wishlist-add
-            = link_to "+ Add New Wishlist", new_wishlist_path, class: "btn btn-default"
+          - if @event.present?
+            .wishlist-add
+              = link_to "+ Add New Wishlist", new_event_wishlist_path(params[:id]), class: "btn btn-default"

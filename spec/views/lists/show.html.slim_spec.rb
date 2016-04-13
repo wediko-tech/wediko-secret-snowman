@@ -12,7 +12,7 @@ RSpec.describe 'lists/show.html.slim', type: :view do
     page = Capybara::Node::Simple.new(rendered)
 
     expect(page.all('tbody tr.request').length).to eq(@gift_requests.length)
-    expect(rendered).to have_text('fakelink')
+    expect(rendered).to have_link('Link', href: @gift_requests.first.link)
     expect(rendered).to have_text('Description')
     expect(rendered).to have_text('Recipient')
     expect(rendered).to have_text('Gender')

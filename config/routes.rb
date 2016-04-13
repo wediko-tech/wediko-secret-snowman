@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'events#index'
 
   devise_scope :user do
     get 'login' => 'devise/sessions#new'
@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     get 'sign_up' => 'devise/registrations#new'
   end
 
-  resources :wishlists, controller: 'lists' do
+  resources :events, only: [:index, :show] do
+    resources :wishlists, controller: 'lists', only: [:new, :create]
+  end
+
+  resources :wishlists, controller: 'lists', except: [:new, :create] do
     collection do
       delete 'destroy_multiple'
     end
@@ -25,6 +29,7 @@ Rails.application.routes.draw do
     member do
       get 'gift_requests/new'
       post 'gift_requests/new' => 'gift_requests#create'
+      # [SJP] Go back and fix this when we have time - list ID can be grabbed directly from the gift req
       # We define this route because we need the list id for the "back button" when editing a request
       get 'gift_requests/:gift_request_id/edit' => 'gift_requests#edit', as: :gift_request_edit
     end

@@ -5,7 +5,8 @@ RSpec.describe ListsController, type: :controller do
 
   before(:each) do
     login_as_therapist
-    @list = FactoryGirl.create(:list, therapist: @user.role)
+    @event = FactoryGirl.create(:event)
+    @list = FactoryGirl.create(:list, therapist: @user.role, event: @event)
   end
 
   describe "POST #create" do
@@ -15,7 +16,7 @@ RSpec.describe ListsController, type: :controller do
 
       new_list = {title: "A whole new world", description: "Fantastic description", therapist: @user.role}
 
-      post :create, list: new_list
+      post :create, event_id: @event.id, list: new_list
 
       expect(response).to redirect_to(wishlist_path(assigns(:list).id))
 
@@ -32,13 +33,13 @@ RSpec.describe ListsController, type: :controller do
 
     it "generates error on invalid creation of list" do
       new_list = {therapist: @user.role}
-      post :create, list: new_list
+      post :create, event_id: @event.id, list: new_list
       expect(assigns(:list).errors.full_messages).to_not be_empty
     end
 
     it "restricts non therapists from doing a create action" do
       login_as_admin
-      post :create, list: {title: "Nope"}
+      post :create, event_id: @event.id, list: {title: "Nope"}
       expect(response).to redirect_to(root_path)
       expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
@@ -60,14 +61,14 @@ RSpec.describe ListsController, type: :controller do
 
   describe "GET #new" do
     it "returns http success and renders template" do
-      get :new
+      get :new, event_id: @event.id
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:wishlist)
     end
 
     it "restricts non therapists from doing a new action" do
       login_as_admin
-      get :new
+      get :new, event_id: @event.id
       expect(response).to redirect_to(root_path)
     end
   end

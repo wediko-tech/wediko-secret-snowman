@@ -1,0 +1,5 @@
+tr.event
+  td = link_to event.name, event_path(event)
+  td = event.description.truncate(50, ommission: "...")
+  td = event.created_at
+  td = event.updated_at
