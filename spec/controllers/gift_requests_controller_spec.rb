@@ -52,7 +52,7 @@ RSpec.describe GiftRequestsController, type: :controller do
       login_as_admin
 
       post :create, gift_request: {}, id: @list.id
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(assigns[:gift_request]).to be_nil
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe GiftRequestsController, type: :controller do
     it "restricts non therapists from doing a new action" do
       login_as_admin
       get :new
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -91,7 +91,7 @@ RSpec.describe GiftRequestsController, type: :controller do
       
       delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
       
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(GiftRequest.all.length).to eq(@gift_requests.length)
     end
   end
@@ -118,7 +118,7 @@ RSpec.describe GiftRequestsController, type: :controller do
       login_as_admin
       put :update, id: @gift_requests.first.id, gift_request: {}
       
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(assigns[:gift_request]).to be_nil
     end
   end

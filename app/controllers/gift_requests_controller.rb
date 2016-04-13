@@ -1,7 +1,7 @@
 class GiftRequestsController < ApplicationController
-  before_filter :authenticate_user!
-  before_action only: [:new, :edit, :create, :update, :destroy_multiple] do
-    head :forbidden if !current_user.therapist?
+  before_action :authenticate_user!
+  before_action do
+    redirect_to root_path unless current_user.therapist?
   end
   before_action :require_owned_gift_request!, only: [:edit, :update]
 

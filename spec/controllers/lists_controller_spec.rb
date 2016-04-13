@@ -39,7 +39,7 @@ RSpec.describe ListsController, type: :controller do
     it "restricts non therapists from doing a create action" do
       login_as_admin
       post :create, list: {}
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(List.all.length).to eq(1)
     end
   end
@@ -54,7 +54,7 @@ RSpec.describe ListsController, type: :controller do
     it "restricts non therapists from doing a new action" do
       login_as_admin
       get :index
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -68,7 +68,7 @@ RSpec.describe ListsController, type: :controller do
     it "restricts non therapists from doing a new action" do
       login_as_admin
       get :new
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe ListsController, type: :controller do
     it "restricts non therapists from doing a show action" do
       login_as_admin
       get :show, id: @list.id
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe ListsController, type: :controller do
 
       delete :destroy_multiple, {list_ids: [@list.id]}
 
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(List.all.length).to eq(1)
     end
   end
@@ -124,7 +124,7 @@ RSpec.describe ListsController, type: :controller do
 
       put :update, id: @list.id, list: {}
 
-      expect(response.status).to eq(403)
+      expect(response).to redirect_to(root_path)
       expect(assigns[:list]).to be_nil
       expect(@list).to eq(@list)
     end
