@@ -40,7 +40,7 @@ RSpec.describe ListsController, type: :controller do
       login_as_admin
       post :create, list: {title: "Nope"}
       expect(response).to redirect_to(root_path)
-      expect(List.where(title: "Nope")).to match_array([])
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
   end
 

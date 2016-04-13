@@ -53,7 +53,7 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       post :create, gift_request: {name: "Nope"}, id: @list.id
       expect(response).to redirect_to(root_path)
-      expect(GiftRequest.where(name: "Nope")).to match_array([])
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
   end
 
@@ -119,7 +119,7 @@ RSpec.describe GiftRequestsController, type: :controller do
       put :update, id: @gift_requests.first.id, gift_request: {name: "Nope"}
       
       expect(response).to redirect_to(root_path)
-      expect(GiftRequest.where(name: "Nope")).to match_array([])
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
   end
 end
