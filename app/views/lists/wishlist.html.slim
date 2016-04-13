@@ -1,6 +1,6 @@
 - action = @list.new_record? ? "create" : "edit"
 - url = @list.new_record? ? event_wishlists_path : wishlist_path(@list.id)
-.container-fluid
+.container-fluid.footer-pad
   .row
     .col-xs-12
       h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"

@@ -1,7 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,700,800);
 
-body {  
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
   margin: 5% auto;
+  margin-top: 8.5em;
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
   background: #2e84ae url('http://www.wediko.org/wp-content/themes/wediko/images/bg-blue.jpg');
 }
@@ -70,6 +76,7 @@ body {
   position: relative;
   input {
     font-weight: bold;
+    background: #ff531a;
     float: right;
     border-radius: 0;
   }
@@ -103,4 +110,8 @@ body {
 .wediko-back a:hover {
   color: #d9534f;
   text-decoration: none;
+}
+
+.footer-pad {
+  padding-bottom: 5.5em; 
 }

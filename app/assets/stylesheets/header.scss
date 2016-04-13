@@ -1,0 +1,45 @@
+nav {
+  font-size: 1.25em;
+  padding: 0.5em 1.5em 0;
+  position: fixed;
+  font-weight: bold;
+  background: #fdf6ef url('http://www.wediko.org/wp-content/themes/wediko/images/bg-cream.jpg');
+  .navbar-brand {
+    font-weight: 800;
+    background-image: url('http://www.wediko.org/wp-content/uploads/2016/01/logo.png'); 
+    background-repeat: no-repeat;
+    height: 90px;
+    width: 150px;
+    background-size: 150px;
+  }
+  .navbar-nav {
+    margin-top: 1em;
+    position: relative;
+    float: right;
+    li {
+      padding-right: 2em;
+    }
+  }
+  .navbar-login {
+    margin-top: 1em;
+    position: relative;
+    float: right;
+    input {
+      font-size: 1em;
+      font-weight: bold;
+      color: #FFF;
+      background: #ff531a;
+      border-radius: 0;
+      &:hover {
+        color: #FFF;
+        background: #ff4000;
+      }
+    }
+    input:hover {
+      transition: all 400ms ease;
+      border: 1px solid #6a6a6a;
+      color: #FFF;
+      background: #3a87a8;
+    }
+  }
+}
