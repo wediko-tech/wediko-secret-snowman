@@ -7,6 +7,7 @@ class List < ActiveRecord::Base
 
   scope :empty, -> { includes(:gift_requests).where(gift_requests: {id: nil}) }
   scope :non_empty, -> { joins(:gift_requests) }
+  scope :owned_by, ->(therapist) { where(therapist_id: therapist.id) }
 
   alias_attribute :name, :title
 end

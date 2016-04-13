@@ -1,6 +1,8 @@
 class AmazonApiFetcher
   include Sidekiq::Worker
 
+  sidekiq_options queue: :seconds
+
   def perform(request_id)
     request = GiftRequest.find(request_id)
 

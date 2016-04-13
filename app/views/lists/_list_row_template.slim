@@ -3,6 +3,8 @@ tr.request
     = check_box_tag("list_ids[]", list.id)
   td.request-edit
     = link_to "Edit", edit_wishlist_path(list.id)
+  - unless @event.present?
+    td = link_to list.event.title, event_path(list.event)
   td = link_to list.title, wishlist_path(list.id)
   td = list.description
   td = list.created_at

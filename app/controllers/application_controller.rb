@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     when "Administrator"
       admin_dashboard_path
     when "Therapist"
-      wishlists_path
+      root_path
     when "Donor"
       not_implemented_path(target: "the gift request catalog")
     else

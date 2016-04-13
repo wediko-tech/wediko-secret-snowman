@@ -25,7 +25,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(list_params.merge(therapist: current_user.role))
+    @list = List.new(list_params.merge(therapist: current_user.role, event: Event.find(params[:event_id])))
     if @list.save
       redirect_to action: "show", id: @list.id
     else
