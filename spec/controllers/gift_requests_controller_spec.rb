@@ -51,9 +51,9 @@ RSpec.describe GiftRequestsController, type: :controller do
     it "restricts non therapists from doing a create action" do
       login_as_admin
 
-      post :create, gift_request: {}, id: @list.id
+      post :create, gift_request: {name: "Nope"}, id: @list.id
       expect(response).to redirect_to(root_path)
-      expect(assigns[:gift_request]).to be_nil
+      expect(GiftRequest.where(name: "Nope")).to match_array([])
     end
   end
 
@@ -116,10 +116,10 @@ RSpec.describe GiftRequestsController, type: :controller do
 
     it "restricts non therapists from doing an update action" do
       login_as_admin
-      put :update, id: @gift_requests.first.id, gift_request: {}
+      put :update, id: @gift_requests.first.id, gift_request: {name: "Nope"}
       
       expect(response).to redirect_to(root_path)
-      expect(assigns[:gift_request]).to be_nil
+      expect(GiftRequest.where(name: "Nope")).to match_array([])
     end
   end
 end

@@ -47,7 +47,7 @@ class GiftRequestsController < ApplicationController
   end
 
   def require_owned_gift_request!
-    gift_id = params[:action] == 'edit' ? params[:gift_request_id] : params[:id]
-    current_user.role.gift_requests.pluck(:id).include?(gift_id)
+    gift_id = params[:action] == 'edit' ? params[:gift_request_id].to_i : params[:id].to_i
+    redirect_to root_path unless current_user.role.gift_requests.pluck(:id).include?(gift_id)
   end
 end

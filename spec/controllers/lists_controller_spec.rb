@@ -38,9 +38,9 @@ RSpec.describe ListsController, type: :controller do
 
     it "restricts non therapists from doing a create action" do
       login_as_admin
-      post :create, list: {}
+      post :create, list: {title: "Nope"}
       expect(response).to redirect_to(root_path)
-      expect(List.all.length).to eq(1)
+      expect(List.where(title: "Nope")).to match_array([])
     end
   end
 
@@ -51,7 +51,7 @@ RSpec.describe ListsController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    it "restricts non therapists from doing a new action" do
+    it "restricts non therapists from doing an index action" do
       login_as_admin
       get :index
       expect(response).to redirect_to(root_path)
