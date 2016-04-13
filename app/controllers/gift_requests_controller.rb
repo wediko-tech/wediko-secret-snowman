@@ -1,7 +1,12 @@
 class GiftRequestsController < ApplicationController
+  before_action :authenticate_user!
+  before_action do
+    redirect_to root_path unless current_user.therapist?
+  end
+  before_action :require_owned_gift_request!, only: [:edit, :update]
+
   def new
     @gift_request = GiftRequest.new
-    p params
     render "gift_request", locals: {list_id: params[:id]}
   end
 
@@ -36,7 +41,13 @@ class GiftRequestsController < ApplicationController
   end
 
   private
-    def gift_request_params
-      params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
-    end
+
+  def gift_request_params
+    params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
+  end
+
+  def require_owned_gift_request!
+    gift_id = params[:action] == 'edit' ? params[:gift_request_id].to_i : params[:id].to_i
+    redirect_to root_path unless current_user.role.gift_requests.pluck(:id).include?(gift_id)
+  end
 end

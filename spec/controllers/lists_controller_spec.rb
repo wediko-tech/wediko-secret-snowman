@@ -35,6 +35,13 @@ RSpec.describe ListsController, type: :controller do
       post :create, list: new_list
       expect(assigns(:list).errors.full_messages).to_not be_empty
     end
+
+    it "restricts non therapists from doing a create action" do
+      login_as_admin
+      post :create, list: {title: "Nope"}
+      expect(response).to redirect_to(root_path)
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
+    end
   end
 
   describe "GET #index" do
@@ -42,6 +49,12 @@ RSpec.describe ListsController, type: :controller do
       get :index
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:index)
+    end
+
+    it "restricts non therapists from doing an index action" do
+      login_as_admin
+      get :index
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -51,6 +64,12 @@ RSpec.describe ListsController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:wishlist)
     end
+
+    it "restricts non therapists from doing a new action" do
+      login_as_admin
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
   end
 
   describe "GET #show" do
@@ -59,6 +78,12 @@ RSpec.describe ListsController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
     end
+
+    it "restricts non therapists from doing a show action" do
+      login_as_admin
+      get :show, id: @list.id
+      expect(response).to redirect_to(root_path)
+    end
   end
 
   describe "DELETE #destroy_multiple" do
@@ -66,6 +91,15 @@ RSpec.describe ListsController, type: :controller do
       delete :destroy_multiple, {list_ids: [@list.id]}
 
       expect(List.all.length).to eq(0)
+    end
+
+    it "restricts non therapists from doing a delete action" do
+      login_as_admin
+
+      delete :destroy_multiple, {list_ids: [@list.id]}
+
+      expect(response).to redirect_to(root_path)
+      expect(List.all.length).to eq(1)
     end
   end
 
@@ -83,6 +117,16 @@ RSpec.describe ListsController, type: :controller do
       # Test if ActiveRecord was updated successfully
       expect(@list.title).to eq("The Smith Family")
       expect(@list.description).to eq("So many Smiths!")
+    end
+
+    it "restricts non therapists from doing an update action" do
+      login_as_admin
+
+      put :update, id: @list.id, list: {}
+
+      expect(response).to redirect_to(root_path)
+      expect(assigns[:list]).to be_nil
+      expect(@list).to eq(@list)
     end
   end
 end

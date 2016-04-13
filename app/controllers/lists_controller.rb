@@ -1,6 +1,12 @@
 class ListsController < ApplicationController
+  before_action :authenticate_user!
+  before_action do
+    redirect_to root_path unless current_user.therapist?
+  end
+  before_action :require_owned_wishlist!, only: [:edit, :show, :update]
+
   def index
-    @lists = List.all
+    @lists = current_user.role.lists
   end
 
   def edit
@@ -47,5 +53,9 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:id, :therapist_id, :title, :description)
+  end
+
+  def require_owned_wishlist!
+    redirect_to root_path unless current_user.role.lists.pluck(:id).include?(params[:id].to_i)
   end
 end

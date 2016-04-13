@@ -46,6 +46,15 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       expect(assigns(:gift_request).errors.full_messages).to_not be_empty
     end
+
+
+    it "restricts non therapists from doing a create action" do
+      login_as_admin
+
+      post :create, gift_request: {name: "Nope"}, id: @list.id
+      expect(response).to redirect_to(root_path)
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
+    end
   end
 
   describe "GET #new" do
@@ -53,6 +62,12 @@ RSpec.describe GiftRequestsController, type: :controller do
       get :new
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:gift_request)
+    end
+
+    it "restricts non therapists from doing a new action" do
+      login_as_admin
+      get :new
+      expect(response).to redirect_to(root_path)
     end
   end
 
@@ -69,6 +84,15 @@ RSpec.describe GiftRequestsController, type: :controller do
       delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
 
       expect(GiftRequest.all.length).to eq(0)
+    end
+
+    it "restricts non therapists from doing a delete action" do
+      login_as_admin
+      
+      delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
+      
+      expect(response).to redirect_to(root_path)
+      expect(GiftRequest.all.length).to eq(@gift_requests.length)
     end
   end
 
@@ -88,6 +112,14 @@ RSpec.describe GiftRequestsController, type: :controller do
       # Test if ActiveRecord was updated successfully
       expect(@gift_requests.first.name).to eq(updated_gift_request[:name])
       expect(@gift_requests.first.description).to eq(updated_gift_request[:description])
+    end
+
+    it "restricts non therapists from doing an update action" do
+      login_as_admin
+      put :update, id: @gift_requests.first.id, gift_request: {name: "Nope"}
+      
+      expect(response).to redirect_to(root_path)
+      expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
   end
 end
