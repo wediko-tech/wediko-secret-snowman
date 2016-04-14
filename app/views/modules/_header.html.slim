@@ -1,9 +1,9 @@
 - if current_user
   .container-fluid
     nav.navbar.navbar-default.navbar-fixed-top
-      a.navbar-brand href="http://www.wediko.org" 
+      a.navbar-brand href="#{root_path}"
       .navbar-login
         = button_to "Logout", logout_path, class: "btn btn-danger pull-right"
       ul.nav.navbar-nav
         li
-          = link_to "Home", root_path
+          = link_to "Wediko", 'http://www.wediko.org'

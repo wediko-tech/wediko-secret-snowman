@@ -9,14 +9,14 @@ body {
   margin: 5% auto;
   margin-top: 8.5em;
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
-  background: #2e84ae url('http://www.wediko.org/wp-content/themes/wediko/images/bg-blue.jpg');
+  background: #2e84ae url(image_path('bg-blue.jpg'));
 }
 
 .wishlist-page {
   color: #3e3e3e;
   margin: 0 10%;
   padding: 5em;
-  background: #fdf6ef url('http://www.wediko.org/wp-content/themes/wediko/images/bg-cream.jpg');
+  background: #fdf6ef url(image_path('bg-cream.jpg'));
 }
 
 .wishlist-header {
