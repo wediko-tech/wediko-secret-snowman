@@ -2,7 +2,7 @@
 
 body {
   margin: 5% auto;
-  background: #2e84ae url('http://www.wediko.org/wp-content/themes/wediko/images/bg-blue.jpg');
+  background: #2e84ae url(image_path('bg-blue.jpg'));
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
 }
 
@@ -10,7 +10,7 @@ body {
   color: #3e3e3e;
   margin: 0 25%;
   padding: 5em;
-  background: #fdf6ef url('http://www.wediko.org/wp-content/themes/wediko/images/bg-cream.jpg');
+  background: #fdf6ef url(image_path('bg-cream.jpg'));
 }
 
 .login-header {
@@ -23,7 +23,6 @@ body {
   text-align: center;
   font-size: 2em;
   &:before, &:after {
-    content: " ";
     height: 1px;
     background: #78acc2;
     width: 35%;

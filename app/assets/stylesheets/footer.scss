@@ -1,0 +1,41 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #6e6a62 url(image_path('bg-footer.jpg'));
+  .footer-nav {
+    margin: 0 1em;
+  }
+  .footer-menu {
+    font-size: 1.25em;
+    padding: 15px 0;
+    li {
+      float: left;
+    }
+    a {
+      color: #FFF;
+      text-decoration: none;
+      &:hover {
+        transition: all 400ms ease;
+        color: #CCC;
+        background: none;
+      }
+    }
+  }
+  
+  .footer-social {
+    li {
+      float: left;
+    }
+    a {
+      font-size: 3em;
+      color: #FFF;
+      text-decoration: none;
+      &:hover {
+        transition: all 400ms ease;
+        color: #CCC;
+        background: none;
+      }
+    }
+  }
+}

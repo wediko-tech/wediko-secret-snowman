@@ -1,6 +1,6 @@
 - action = @gift_request.new_record? ? "create" : "edit"
 - url = @gift_request.new_record? ? gift_requests_new_wishlist_path : gift_request_path(@gift_request.id)
-.container-fluid
+.container-fluid.footer-pad
   div.wediko-back
     a[href="#{wishlist_path(list_id)}"]
       i.fa.fa-arrow-left.fa-3x
