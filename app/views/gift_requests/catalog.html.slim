@@ -1,0 +1,26 @@
+div.wishlist-header= "Requests for #{@event.title}"
+div.wishlist-page
+  - if @gift_requests.any?
+    = form_tag not_implemented_path(target: "mass reserve page") do
+      table#wishlist-table.wishlist-table.table.table-hover
+        thead
+          tr
+            th
+            th
+            th
+              a href="#"
+                | Request
+                i.fa.fa-sort
+            th
+              a href="#"
+                | Age
+                i.fa.fa-sort
+            th Gender
+            th Description
+        tbody
+          = render partial: 'catalog_row', collection: @gift_requests, as: :gift_request
+      = paginate @gift_requests
+    div.catalog-reserve
+      button.btn.btn-default type="submit" Reserve Selected Requests
+  - else
+    h3 This event has no gift requests yet. Check back later!

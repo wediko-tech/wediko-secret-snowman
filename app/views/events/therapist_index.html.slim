@@ -1,0 +1,22 @@
+.row
+  .col-xs-12
+    .wishlist-header
+      | Active Events
+    .wishlist-page
+      - if @events.any?
+        .table-responsive
+          table#catalog-table.wishlist-table.table.table-hover
+            thead
+              tr
+                th
+                  | Title
+                th
+                  | Description
+                th
+                  | Created At
+                th
+                  | Updated At
+            tbody
+              = render partial: 'events/event_row', collection: @events, as: :event
+      - else
+        h1 = "No events exist!"

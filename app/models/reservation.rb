@@ -4,6 +4,7 @@ class Reservation < ActiveRecord::Base
 
   scope :unreceived, -> { without_state(:received) }
   scope :received, -> { with_state(:received) }
+  scope :reserved, -> { with_state(:reserved) }
 
   state_machine :initial => :reserved do
     event :ship do

@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_many :lists, dependent: :destroy
+  has_many :gift_requests, through: :lists
 
   validates :title, presence: true
   validate :start_date_before_end_date?

@@ -1,13 +1,16 @@
 doctype html
 html
-head
-  title WedikoSecretSnowman
-  = stylesheet_link_tag    'application', request[:controller], media: 'all', 'data-turbolinks-track' => true
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
-  = csrf_meta_tags
+  head
+    title Wediko Gift Exchange
+    = stylesheet_link_tag    'application', request[:controller], media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
 
-body
-= render 'modules/header'
-= render 'modules/footer'
-= yield
+  body
+    = render 'modules/header'
+    - if @back_route.present?
+      = render partial: 'modules/back_button'
+    div.container-fluid.footer-pad
+      = yield
+    = render 'modules/footer'
 

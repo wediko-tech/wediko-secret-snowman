@@ -1,21 +1,23 @@
 require 'spec_helper'
 include AdminSpecHelper
+include LoginHelper
 
 RSpec.describe GiftRequestsController, type: :controller do
 
   before(:each) do
     login_as_therapist
-    @list = FactoryGirl.create(:list, therapist: @user.role)
+    @event = FactoryGirl.create(:event)
+    @list = FactoryGirl.create(:list, event: @event, therapist: @user.role)
     @gift_requests = FactoryGirl.create_list(:gift_request, 3, list_id: @list.id)
   end
-  
+
   describe "POST #create" do
     it "successfully creates a gift request for a list" do
       new_gift_request = {
-        name: "Monopoly", 
-        recipient: "Jenny", 
-        description: "Jenny loves board games", 
-        gender: "F", 
+        name: "Monopoly",
+        recipient: "Jenny",
+        description: "Jenny loves board games",
+        gender: "F",
         age: 8
       }
 
@@ -59,14 +61,14 @@ RSpec.describe GiftRequestsController, type: :controller do
 
   describe "GET #new" do
     it "returns http success and renders template" do
-      get :new
+      get :new, id: @event.id
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:gift_request)
     end
 
     it "restricts non therapists from doing a new action" do
       login_as_admin
-      get :new
+      get :new, id: @event.id
       expect(response).to redirect_to(root_path)
     end
   end
@@ -88,9 +90,9 @@ RSpec.describe GiftRequestsController, type: :controller do
 
     it "restricts non therapists from doing a delete action" do
       login_as_admin
-      
+
       delete :destroy_multiple, {gift_request_ids: @gift_requests.map { |gr| gr.id }}
-      
+
       expect(response).to redirect_to(root_path)
       expect(GiftRequest.all.length).to eq(@gift_requests.length)
     end
@@ -117,7 +119,7 @@ RSpec.describe GiftRequestsController, type: :controller do
     it "restricts non therapists from doing an update action" do
       login_as_admin
       put :update, id: @gift_requests.first.id, gift_request: {name: "Nope"}
-      
+
       expect(response).to redirect_to(root_path)
       expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end

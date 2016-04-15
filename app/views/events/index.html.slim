@@ -1,23 +1,9 @@
-.container-fluid.footer-pad
-  .row
-    .col-xs-12
-      .wishlist-header
-        | Events
-      .wishlist-page
-        - if @events.any?
-          .table-responsive
-            table#catalog-table.wishlist-table.table.table-hover
-              thead
-                tr
-                  th
-                    | Title
-                  th
-                    | Description
-                  th
-                    | Created At
-                  th
-                    | Updated At
-              tbody
-                = render partial: 'events/event_row', collection: @events, as: :event
-        - else
-          h1 = "No events exist!"
+.row
+  .col-xs-12
+    .wishlist-header Wediko Gift Exchange
+    .wishlist-page
+      - if @events.any?
+        .event-list
+          = render partial: "event_block", collection: @events, as: :event
+      - else
+        h2 There are no active events currently. Try back later!

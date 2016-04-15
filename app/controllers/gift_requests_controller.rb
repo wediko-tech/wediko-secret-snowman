@@ -1,17 +1,19 @@
 class GiftRequestsController < ApplicationController
-  before_action :authenticate_user!
-  before_action do
-    redirect_to root_path unless current_user.therapist?
-  end
+  before_action :authenticate_user!, except: :catalog
+  before_action :require_therapist, except: :catalog
   before_action :require_owned_gift_request!, only: [:edit, :update]
+  before_action :find_gift_request, only: [:edit, :update]
 
   def new
+    @back_route = wishlist_path(params[:id])
+
     @gift_request = GiftRequest.new
     render "gift_request", locals: {list_id: params[:id]}
   end
 
   def edit
-    @gift_request = GiftRequest.find(params[:gift_request_id])
+    @back_route = wishlist_path(params[:id])
+
     render "gift_request", locals: {list_id: params[:id]}
   end
 
@@ -26,7 +28,6 @@ class GiftRequestsController < ApplicationController
   end
 
   def update
-    @gift_request = GiftRequest.find(params[:id])
     if @gift_request.update_attributes(gift_request_params)
       redirect_to wishlist_path(@gift_request.list.id)
     else
@@ -40,14 +41,35 @@ class GiftRequestsController < ApplicationController
     end
   end
 
+  def catalog
+    @back_route = events_path
+
+    @event = Event.find(params[:id])
+    @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc).page(params[:page] || 1)
+  end
+
   private
 
   def gift_request_params
     params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
   end
 
+  def require_therapist
+    if current_user
+      unless current_user.try(:therapist?)
+        redirect_to root_path, alert: "You are not authorized to access that page."
+      end
+    else
+      redirect_to login_path, alert: "You are not authorized to access that page."
+    end
+  end
+
   def require_owned_gift_request!
     gift_id = params[:action] == 'edit' ? params[:gift_request_id].to_i : params[:id].to_i
     redirect_to root_path unless current_user.role.gift_requests.pluck(:id).include?(gift_id)
+  end
+
+  def find_gift_request
+    @gift_request = GiftRequest.find(params[:gift_request_id] || params[:id])
   end
 end

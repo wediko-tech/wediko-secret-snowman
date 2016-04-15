@@ -6,8 +6,9 @@ html {
 }
 
 body {
-  margin: 5% auto;
-  margin-top: 8.5em;
+  padding-left: auto;
+  padding-right: auto;
+  padding-top: 8.5em;
   font-family: 'Raleway', Arial, Helvetica, sans-serif;
   background: #2e84ae url(image_path('bg-blue.jpg'));
 }
@@ -102,16 +103,19 @@ body {
   }
 }
 
-.wediko-back a:link, .wediko-back a:visited, .wediko-back a:active {
-  color: #e9cc7f;
-  text-decoration: none;
-}
+.wediko-back {
+  float: left;
+  margin: 10px;
 
-.wediko-back a:hover {
-  color: #d9534f;
-  text-decoration: none;
+  a {
+    color: #e9cc7f;
+    text-decoration: none;
+    &:hover {
+      color: #d9534f;
+    }
+  }
 }
 
 .footer-pad {
-  padding-bottom: 5.5em; 
+  padding-bottom: 5.5em;
 }

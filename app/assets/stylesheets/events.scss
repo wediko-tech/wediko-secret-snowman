@@ -1,0 +1,25 @@
+.block {
+  background-color: #fff;
+  color: #000;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  width: 20%;
+  height: 150px;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+
+  .event-title {
+    font-weight: bolder;
+  }
+
+  &:hover {
+    background-color: #ddd;
+    text-decoration: none;
+  }
+}
+.event-list {
+  overflow: auto;
+  text-align: center;
+}

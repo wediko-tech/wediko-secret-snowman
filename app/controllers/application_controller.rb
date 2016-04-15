@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
     case user.role_type
     when "Administrator"
       admin_dashboard_path
-    when "Therapist"
-      root_path
-    when "Donor"
-      not_implemented_path(target: "the gift request catalog")
     else
       root_path
     end
