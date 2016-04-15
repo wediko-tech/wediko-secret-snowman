@@ -11,6 +11,10 @@ describe List do
   it 'has a valid factory' do
     expect(@list).to be_valid
   end
+  it 'sends an email on creation' do
+    last_email = ActionMailer::Base.deliveries.last
+    expect(last_email.subject).to include("Congratulations for creating a wishlist!")
+  end
 
   it 'should be properly associated with a therapist' do
     expect(@list.therapist).to eq(@therapist.role)
@@ -48,4 +52,5 @@ describe List do
     empty_list = FactoryGirl.create(:list)
     expect(List.non_empty).to match_array([@list])
   end
+
 end

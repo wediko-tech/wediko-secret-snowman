@@ -46,4 +46,5 @@ describe Reservation do
       expect(@shipped_reservation.cancel).to be false
     end
   end
+
 end
