@@ -7,27 +7,18 @@ class ReservationsController < ApplicationController
     render "reservation", locals: {list_id: params[:id]}
   end
 
-  # aka "create" method
-  def reserve
-    @reservation = Reservation.new(reservation_params)
-    @reservation.reserve
-    if @reservation.save
-      redirect_to  #TODO: somewhere? #wishlist_path(params[:id])
-    else
-      render "reservation"
-    end
-  end
-
   # aka "update" method (there's two)
   def ship
     @reservation = Reservation.find(params[:id])
 
     if @reservation.donor_id == current_user.id || current_user.administrator?
       @reservation.ship
-      redirect_to #TODO wherever?
+      @reservation.save
+      # TODO obviously not
+      redirect_to login_path
     else
       # TODO
-      render status: :unauthorized
+      redirect_to root_path, alert: "You are not authorized to access that page."
     end
   end
 
@@ -38,32 +29,26 @@ class ReservationsController < ApplicationController
     # not sure if only admins should be able to mark something received?
     if current_user.administrator?
       @reservation.receive
-      redirect_to #TODO wherever?
+      # TODO obviously not
+      redirect_to login_path
     else
       # TODO
-      render status: :unauthorized
+      redirect_to root_path, alert: "You are not authorized to access that page."
     end
   end
 
 
-  def delete
+  def destroy
     @reservation = Reservation.find(params[:id])
 
     if @reservation.donor_id == current_user.id || current_user.administrator?
       @reservation.cancel
-      redirect_to #TODO wherever?
+      # TODO obviously not
+      redirect_to login_path
     else
       # TODO
-      render status: :unauthorized
+      redirect_to root_path, alert: "You are not authorized to access that page."
     end
-  end
-
-
-
-  private
-
-  def reservation_params
-    params.require(:reservation).permit(:gift_request_id, :donor_id)
   end
 
 end

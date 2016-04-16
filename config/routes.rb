@@ -43,6 +43,18 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_multiple'
     end
+
+    member do
+      post 'reserve'
+    end
+  end
+
+  # TODO
+  resources :reservations, only: [:destroy] do
+    member do
+      post 'ship'
+      post 'receive'
+    end
   end
 
   get 'not_implemented' => 'not_implemented#index'
