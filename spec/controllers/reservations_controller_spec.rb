@@ -22,8 +22,8 @@ RSpec.describe ReservationsController, type: :controller do
 
       expect(response).to redirect_to login_path
 
-      # commenting out failing tests, woo
-      # expect(@reservation.state).to eq('shipped')
+      @reservation.reload
+      expect(@reservation.state).to eq('shipped')
     end
   end
 
@@ -41,8 +41,8 @@ RSpec.describe ReservationsController, type: :controller do
 
       expect(response).to redirect_to login_path
 
-      # commenting out failing tests, woo
-      # expect(@reservation.state).to eq('received')
+      @reservation.reload
+      expect(@reservation.state).to eq('received')
     end
 
     it "returns unauthorized unless user is admin" do
