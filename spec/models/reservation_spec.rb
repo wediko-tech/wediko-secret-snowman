@@ -14,9 +14,17 @@ describe Reservation do
   end
 
   it 'handles state change of reserved to shipped correctly' do
+<<<<<<< HEAD
     @reservation.update_attributes(shipment_method: "aaa", tracking_number: "bbb")
     @reservation.ship!
     expect(@reservation).to be_shipped
+=======
+    @reservation.ship
+    expect(@reservation.state).to eq('shipped')
+    #mailer tests here
+    last_email = ActionMailer::Base.deliveries.last
+    expect(last_email.subject).to include('You have purchased an item you reserved')
+>>>>>>> incremental save, trouble shooting specs
   end
 
   it "restricts shipping if required attributes are missing" do

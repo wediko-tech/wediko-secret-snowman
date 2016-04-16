@@ -16,8 +16,8 @@ class Reservation < ActiveRecord::Base
       validates :tracking_number, presence: true
     end
     after_transition any => :shipped do |reservation|
-      :send_registered_email
-      :send_ship_confirmation_email
+      :send_purchased_email
+      #:send_ship_confirmation_email
     end
     after_transition any => :received do |reservation|
       #ThankYouMailer.thank_you_email(reservation.donor)
