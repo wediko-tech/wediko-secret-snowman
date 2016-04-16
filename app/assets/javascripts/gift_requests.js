@@ -1,7 +1,6 @@
-$(document).ready(function() {
+$(function() {
 
   if ($('#gift_request_link').val()) {
-    console.log($('#gift_request_link').val());
     fetchAmazonItemName();
   }
 
@@ -14,7 +13,7 @@ $(document).ready(function() {
     amazonInfo.html('');
 
     $.ajax({
-      url: '/fetch_amazon_info',
+      url: '/gift_requests/fetch_amazon_info',
       type: 'GET',
       contentType: "application/json; charset=utf-8",
       data: {'link': $('#gift_request_link').val()},
@@ -34,7 +33,7 @@ $(document).ready(function() {
           amazonInfo.addClass('hide');
         }
       },
-      error: function() {
+      error: function(error) {
         var info = $('<div />', {
                       "class": 'alert alert-danger',
                       text: "Could not obtain item information from Amazon!"

@@ -18,6 +18,8 @@ class GiftRequestsController < ApplicationController
   end
 
   def create
+    @back_route = wishlist_path(params[:id])
+
     # params[:id] is the list id this gift request corresponds to
     @gift_request = GiftRequest.new(gift_request_params.merge(list_id: params[:id]))
     if @gift_request.save
@@ -28,6 +30,8 @@ class GiftRequestsController < ApplicationController
   end
 
   def update
+    @back_route = wishlist_path(params[:id])
+    
     if @gift_request.update_attributes(gift_request_params)
       redirect_to wishlist_path(@gift_request.list.id)
     else
@@ -60,7 +64,7 @@ class GiftRequestsController < ApplicationController
         associate_tag: Rails.configuration.amazon_associate_tag
       }
     else
-      render nothing: true
+      render nothing: true, status: 404
     end
   end
 

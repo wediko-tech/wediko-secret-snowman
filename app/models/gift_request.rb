@@ -2,8 +2,6 @@ class GiftRequest < ActiveRecord::Base
   belongs_to :list
   has_one :reservation, dependent: :destroy
 
-  # after_save :update_product_api_info
-
   scope :reserved, -> { joins(:reservation) }
   scope :unreserved, -> { includes(:reservation).where(reservations: {id: nil}) }
 

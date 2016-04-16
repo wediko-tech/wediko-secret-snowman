@@ -42,11 +42,11 @@ Rails.application.routes.draw do
   resources :gift_requests do
     collection do
       delete 'destroy_multiple'
+      get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
     end
   end
 
   get 'not_implemented' => 'not_implemented#index'
-  get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
 
   # http://website.com/async/
   mount Sidekiq::Web => 'async'
