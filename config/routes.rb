@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   get 'not_implemented' => 'not_implemented#index'
+  get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
 
   # http://website.com/async/
   mount Sidekiq::Web => 'async'

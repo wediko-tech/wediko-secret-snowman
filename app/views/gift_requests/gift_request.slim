@@ -1,12 +1,16 @@
 - action = @gift_request.new_record? ? "create" : "edit"
 - url = @gift_request.new_record? ? gift_requests_new_wishlist_path : gift_request_path(@gift_request.id)
+
+div.wediko-back
+  a[href="#{wishlist_path(list_id)}"]
+    i.fa.fa-arrow-left.fa-3x
 .row
   .col-xs-12
     h1.form-header = @gift_request.new_record? ? "Create Request" : "Edit Request"
     .form-page
       - if @gift_request.errors.any?
-        .alert.alert-danger role="alert"
-          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
+        .alert.alert-danger role="alert" 
+          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true" 
           span.sr-only Error:
           |  #{@gift_request.errors.full_messages.join(", ")}
       = form_for @gift_request, url: url, action: action, html: {class: ""} do |f|
@@ -22,6 +26,7 @@
         .form-group
           label for="link" Link
           = f.text_field :link, class: 'form-control'
+          #amazon-info
         .form-group
           label for="gender" Gender
           = f.select(:gender, options_for_select({ Male: "M", Female: "F" }, "F"), {}, {class: 'form-control'})
