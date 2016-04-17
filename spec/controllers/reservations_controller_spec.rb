@@ -1,5 +1,4 @@
 require 'spec_helper'
-include AdminSpecHelper
 include LoginHelper
 
 RSpec.describe ReservationsController, type: :controller do
@@ -20,7 +19,7 @@ RSpec.describe ReservationsController, type: :controller do
 
       post :ship, id: @reservation.id
 
-      expect(response).to redirect_to login_path
+      expect(response.status).to eq(200)
 
       @reservation.reload
       expect(@reservation.state).to eq('shipped')
@@ -30,7 +29,7 @@ RSpec.describe ReservationsController, type: :controller do
 
   describe "POST #receive" do
     it "moves a reservation from reserved to shipped" do
-      login_as_admin
+
 
       expect(@reservation.state).to eq('reserved')
 
@@ -39,24 +38,23 @@ RSpec.describe ReservationsController, type: :controller do
 
       post :receive, id: @reservation.id
 
-      expect(response).to redirect_to login_path
+      expect(response.status).to eq(200)
 
       @reservation.reload
       expect(@reservation.state).to eq('received')
     end
+  end
 
-    it "returns unauthorized unless user is admin" do
+  describe "DELETE #destroy" do
+    it "deletes a reservation" do
 
-      expect(@reservation.state).to eq('reserved')
+      request.env["HTTP_REFERER"] = '/catalog'
 
-      @reservation.ship
-      expect(@reservation.state).to eq('shipped')
+      delete :destroy, id: @reservation.id
 
-      post :receive, id: @reservation.id
+      expect(response.status).to redirect_to '/catalog'
+      expect(Reservation.all.length).to eq(0)
 
-      expect(response).to redirect_to root_path
-
-      expect(@reservation.state).to eq('shipped')
     end
   end
 
