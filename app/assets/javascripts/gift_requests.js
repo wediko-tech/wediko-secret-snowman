@@ -13,9 +13,8 @@ $(function() {
     amazonInfo.html('');
 
     $.ajax({
-      url: '/gift_requests/fetch_amazon_info',
+      url: '/gift_requests/fetch_amazon_info.json',
       type: 'GET',
-      contentType: "application/json; charset=utf-8",
       data: {'link': $('#gift_request_link').val()},
       success: function(response) {
         // Clear any old information displayed
