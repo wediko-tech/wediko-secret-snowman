@@ -48,6 +48,22 @@ class GiftRequestsController < ApplicationController
     @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc).page(params[:page] || 1)
   end
 
+  def fetch_amazon_info
+    valid_amazon_link = AmazonProductApi.amazon_link?(params[:link])
+    if valid_amazon_link
+      asin = AmazonProductApi.asin_from_url(params[:link])
+      item_info = AmazonProductApi.item_search(asin)["ItemAttributes"]
+      render json: {
+        valid_amazon_link: valid_amazon_link,
+        item_info: item_info,
+        asin: asin,
+        associate_tag: Rails.configuration.amazon_associate_tag
+      }
+    else
+      render nothing: true, status: 404
+    end
+  end
+
   private
 
   def gift_request_params

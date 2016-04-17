@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :gift_requests do
     collection do
       delete 'destroy_multiple'
+      get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
     end
   end
 
