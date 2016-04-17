@@ -45,7 +45,18 @@ class GiftRequestsController < ApplicationController
     @back_route = events_path
 
     @event = Event.find(params[:id])
-    @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc).page(params[:page] || 1)
+    @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc)
+    if params[:gender] && ["M", "F"].include?(params[:gender])
+      @gift_requests = @gift_requests.where(gender: params[:gender])
+    end
+
+    if params.slice(:min_age, :max_age).any?
+      @gift_requests = @gift_requests.where("age BETWEEN ? AND ?",
+        params[:min_age].present? ? params[:min_age] : 0,
+        params[:max_age].present? ? params[:max_age] : 200)
+    end
+
+    @gift_requests = @gift_requests.page(params[:page] || 1)
   end
 
   def fetch_amazon_info
@@ -65,6 +76,11 @@ class GiftRequestsController < ApplicationController
   end
 
   private
+
+  def search_filters?
+    params.slice(:gender, :min_age, :max_age).any?
+  end
+  helper_method :search_filters?
 
   def gift_request_params
     params.require(:gift_request).permit(:id, :name, :recipient, :description, :link, :gender, :age)
