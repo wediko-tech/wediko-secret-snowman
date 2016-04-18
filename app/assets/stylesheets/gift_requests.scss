@@ -1,0 +1,18 @@
+.filter-box {
+  background-color: #eee;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1em;
+}
+.filter-block {
+  display: inline-block;
+  margin: 10px 20px;
+  input {
+    margin: 10px;
+  }
+
+  .age-field {
+    width: 5em;
+  }
+}

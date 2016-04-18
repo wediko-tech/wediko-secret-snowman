@@ -1,5 +1,23 @@
 div.wishlist-header= "Requests for #{@event.title}"
 div.wishlist-page
+  - if @gift_requests.any? || search_filters?
+    .filter-box
+      h4.strong Filters
+      = form_tag catalog_event_path(id: @event.id), method: :get do
+        .filter-block.gender-filters
+          h5.strong Gender
+          = radio_button_tag :gender, "M", params[:gender] == "M"
+          = label_tag :gender_male, "Male"
+          = radio_button_tag :gender, "F", params[:gender] == "F"
+          = label_tag :gender_female, "Female"
+          = radio_button_tag :gender, "any", ["M", "F"].exclude?(params[:gender])
+          = label_tag :gender_any, "Any"
+        .filter-block.age-filters
+          h5 Age
+          = number_field_tag :min_age, params[:min_age], class: "age-field", placeholder: 1
+          span to
+          = number_field_tag :max_age, params[:max_age], class: "age-field", placeholder: 100
+        = submit_tag "Filter"
   - if @gift_requests.any?
     = form_tag not_implemented_path(target: "mass reserve page") do
       table#wishlist-table.wishlist-table.table.table-hover
@@ -23,4 +41,8 @@ div.wishlist-page
     div.catalog-reserve
       button.btn.btn-default type="submit" Reserve Selected Requests
   - else
-    h3 This event has no gift requests yet. Check back later!
+    h3
+      - if search_filters?
+        | No requests matched your search.
+      - else
+        | This event has no gift requests yet. Check back later!
