@@ -1,6 +1,7 @@
 class GiftRequestsController < ApplicationController
   before_action :authenticate_user!, except: :catalog
-  before_action :require_therapist, except: :catalog
+  before_action :require_therapist, except: [:catalog, :reserve]
+  before_action :require_donor, only: :reserve
   before_action :require_owned_gift_request!, only: [:edit, :update]
   before_action :find_gift_request, only: [:edit, :update]
 
@@ -75,6 +76,17 @@ class GiftRequestsController < ApplicationController
     end
   end
 
+  def reserve
+    @gift_request = GiftRequest.find(params[:id])
+    reservation = Reservation.new(gift_request_id: params[:id], donor_id: current_user.role.id)
+    if reservation.save
+      redirect_to catalog_event_path(id: @gift_request.list.event_id), alert: "Your reservation has been saved!"
+    else
+      redirect_to catalog_event_path(id: @gift_request.list.event_id), alert: "There was an error reserving that gift."
+    end
+  end
+
+
   private
 
   def search_filters?
@@ -89,6 +101,16 @@ class GiftRequestsController < ApplicationController
   def require_therapist
     if current_user
       unless current_user.try(:therapist?)
+        redirect_to root_path, alert: "You are not authorized to access that page."
+      end
+    else
+      redirect_to login_path, alert: "You are not authorized to access that page."
+    end
+  end
+
+  def require_donor
+    if current_user
+      unless current_user.try(:donor?)
         redirect_to root_path, alert: "You are not authorized to access that page."
       end
     else

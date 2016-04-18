@@ -124,4 +124,21 @@ RSpec.describe GiftRequestsController, type: :controller do
       expect(GiftRequest.find_by(name: "Nope")).to be_nil
     end
   end
+
+  describe "POST #reserve" do
+    it "successfully creates a reservation for a gift request" do
+      login_as_donor
+
+      post :reserve, id: @gift_requests[0].id
+
+      expect(response).to redirect_to(catalog_event_path(@gift_requests[0].list.event_id))
+
+
+      expect(Reservation.all.length).to eq(1)
+      expect(Reservation.last.state).to eq('reserved')
+      expect(Reservation.last.donor_id).to eq(@user.role.id)
+      expect(Reservation.last.gift_request_id).to eq(@gift_requests[0].id)
+    end
+  end
+
 end

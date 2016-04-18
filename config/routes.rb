@@ -44,6 +44,16 @@ Rails.application.routes.draw do
       delete 'destroy_multiple'
       get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
     end
+
+    member do
+      post 'reserve'
+    end
+  end
+
+  resources :reservations, only: [:destroy] do
+    member do
+      post 'ship'
+    end
   end
 
   get 'not_implemented' => 'not_implemented#index'
