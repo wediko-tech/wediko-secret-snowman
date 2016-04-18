@@ -49,11 +49,9 @@ Rails.application.routes.draw do
     end
   end
 
-  # TODO
   resources :reservations, only: [:destroy] do
     member do
       post 'ship'
-      post 'receive'
     end
   end
 
