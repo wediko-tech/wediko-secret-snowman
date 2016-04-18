@@ -2,15 +2,15 @@ div.wishlist-header= "Requests for #{@event.title}"
 div.wishlist-page
   - if @gift_requests.any? || search_filters?
     .filter-box
-      h4 Filters
+      h4.strong Filters
       = form_tag catalog_event_path(id: @event.id), method: :get do
         .filter-block.gender-filters
-          h5 Gender
+          h5.strong Gender
           = radio_button_tag :gender, "M", params[:gender] == "M"
           = label_tag :gender_male, "Male"
           = radio_button_tag :gender, "F", params[:gender] == "F"
           = label_tag :gender_female, "Female"
-          = radio_button_tag :gender, "any", !["M", "F"].include?(params[:gender])
+          = radio_button_tag :gender, "any", ["M", "F"].exclude?(params[:gender])
           = label_tag :gender_any, "Any"
         .filter-block.age-filters
           h5 Age

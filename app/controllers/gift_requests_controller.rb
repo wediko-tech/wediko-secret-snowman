@@ -46,14 +46,14 @@ class GiftRequestsController < ApplicationController
 
     @event = Event.find(params[:id])
     @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc)
-    if params[:gender] && ["M", "F"].include?(params[:gender])
+    if ["M", "F"].include?(params[:gender])
       @gift_requests = @gift_requests.where(gender: params[:gender])
     end
 
     if params.slice(:min_age, :max_age).any?
       @gift_requests = @gift_requests.where("age BETWEEN ? AND ?",
-        params[:min_age].present? ? params[:min_age] : 0,
-        params[:max_age].present? ? params[:max_age] : 200)
+        params[:min_age].presence || 0,
+        params[:max_age].presence || 200)
     end
 
     @gift_requests = @gift_requests.page(params[:page] || 1)

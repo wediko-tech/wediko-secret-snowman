@@ -4,21 +4,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 1em;
-
-  h4, h5 {
-    font-weight: bold;
-  }
 }
 .filter-block {
   display: inline-block;
   margin: 10px 20px;
   input {
     margin: 10px;
-  }
-
-  input[type="range"] {
-    display: inline;
-    width: auto;
   }
 
   .age-field {
