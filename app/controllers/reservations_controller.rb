@@ -12,9 +12,8 @@ class ReservationsController < ApplicationController
       else
         render status: 500, json: { errors: @reservation.errors.full_messages }
       end
-
     else
-      redirect_to root_path, alert: "You are not authorized to access that page."
+      render status: 403
     end
   end
 
@@ -24,13 +23,13 @@ class ReservationsController < ApplicationController
 
     if @reservation.state == 'received'
       redirect_to :back, alert: "This gift has been marked as received and can't be cancelled."
-    end
-
-    if @reservation.donor_id == current_user.id
-      @reservation.destroy!
-      redirect_to :back
     else
-      redirect_to root_path, alert: "You are not authorized to access that page."
+      if @reservation.donor_id == current_user.id
+        @reservation.destroy!
+        redirect_to :back
+      else
+        redirect_to root_path, alert: "You are not authorized to access that page."
+      end
     end
   end
 

@@ -32,6 +32,14 @@ RSpec.describe ReservationsController, type: :controller do
 
       expect(response.status).to eq(500)
     end
+
+    it "should only be accessible to donors" do
+      login_as_therapist
+
+      post :ship, id: @reservation.id
+
+      expect(response).to redirect_to root_path
+    end
   end
 
 
@@ -42,10 +50,24 @@ RSpec.describe ReservationsController, type: :controller do
 
       delete :destroy, id: @reservation.id
 
-      expect(response.status).to redirect_to '/catalog'
+      expect(response).to redirect_to '/catalog'
       expect(Reservation.all.length).to eq(0)
 
     end
+
+    it "should not delete received reservations" do
+      @reservation.ship
+      @reservation.receive
+
+      expect(@reservation.state).to eq('received')
+
+      request.env["HTTP_REFERER"] = '/catalog'
+
+      delete :destroy, id: @reservation.id
+
+      expect(response).to redirect_to '/catalog'
+    end
+
   end
 
 
