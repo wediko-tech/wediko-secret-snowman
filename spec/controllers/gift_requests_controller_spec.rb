@@ -136,7 +136,7 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       expect(Reservation.all.length).to eq(1)
       expect(Reservation.last.state).to eq('reserved')
-      expect(Reservation.last.donor_id).to eq(@user.id)
+      expect(Reservation.last.donor_id).to eq(@user.role.id)
       expect(Reservation.last.gift_request_id).to eq(@gift_requests[0].id)
     end
   end
