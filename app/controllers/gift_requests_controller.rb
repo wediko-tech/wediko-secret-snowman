@@ -53,9 +53,9 @@ class GiftRequestsController < ApplicationController
     @gift_request = GiftRequest.find(params[:id])
     reservation = Reservation.new(gift_request_id: params[:id], donor_id: current_user.id)
     if reservation.save
-      redirect_to wishlist_path(@gift_request.list.id)
+      redirect_to catalog_event_path(id: @gift_request.list.event_id), alert: "Your reservation has been saved!"
     else
-      render "gift_request"
+      redirect_to catalog_event_path(id: @gift_request.list.event_id)
     end
   end
 

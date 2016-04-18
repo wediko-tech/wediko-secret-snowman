@@ -7,27 +7,24 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
 
     if @reservation.donor_id == current_user.id
-      @reservation.ship!
-      render json: @reservation
-    else
-      redirect_to root_path, alert: "You are not authorized to access that page."
-    end
-  end
+      if @reservation.ship
+        render json: @reservation
+      else
+        render status: 500, json: { errors: @reservation.errors.full_messages }
+      end
 
-  # TODO - should donors be able to mark their own gifts as received?
-  def receive
-    @reservation = Reservation.find(params[:id])
-
-    if @reservation.donor_id == current_user.id
-      @reservation.receive!
-      render json: @reservation
     else
       redirect_to root_path, alert: "You are not authorized to access that page."
     end
   end
 
   def destroy
+
     @reservation = Reservation.find(params[:id])
+
+    if @reservation.state == 'received'
+      redirect_to :back, alert: "This gift has been marked as received and can't be cancelled."
+    end
 
     if @reservation.donor_id == current_user.id
       @reservation.destroy!

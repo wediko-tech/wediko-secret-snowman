@@ -24,26 +24,16 @@ RSpec.describe ReservationsController, type: :controller do
       @reservation.reload
       expect(@reservation.state).to eq('shipped')
     end
-  end
 
-
-  describe "POST #receive" do
-    it "moves a reservation from reserved to shipped" do
-
-
-      expect(@reservation.state).to eq('reserved')
-
+    it "renders errors on unsuccessful shipping" do
       @reservation.ship
-      expect(@reservation.state).to eq('shipped')
 
-      post :receive, id: @reservation.id
+      post :ship, id: @reservation.id
 
-      expect(response.status).to eq(200)
-
-      @reservation.reload
-      expect(@reservation.state).to eq('received')
+      expect(response.status).to eq(500)
     end
   end
+
 
   describe "DELETE #destroy" do
     it "deletes a reservation" do

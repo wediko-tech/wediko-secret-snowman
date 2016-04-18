@@ -131,7 +131,7 @@ RSpec.describe GiftRequestsController, type: :controller do
 
       post :reserve, id: @gift_requests[0].id
 
-      expect(response).to redirect_to(wishlist_path(@gift_requests[0].list.id))
+      expect(response).to redirect_to(catalog_event_path(@gift_requests[0].list.event_id))
 
 
       expect(Reservation.all.length).to eq(1)
