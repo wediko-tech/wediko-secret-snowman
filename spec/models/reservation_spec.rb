@@ -14,22 +14,16 @@ describe Reservation do
   end
 
   it 'handles state change of reserved to shipped correctly' do
-<<<<<<< HEAD
     @reservation.update_attributes(shipment_method: "aaa", tracking_number: "bbb")
     @reservation.ship!
     expect(@reservation).to be_shipped
-=======
-    @reservation.ship
-    expect(@reservation.state).to eq('shipped')
     #mailer tests here
     last_email = ActionMailer::Base.deliveries.last
     expect(last_email.subject).to include('You have purchased an item you reserved')
->>>>>>> incremental save, trouble shooting specs
   end
 
   it "restricts shipping if required attributes are missing" do
     @reservation.ship
-
     expect(@reservation).to be_reserved
     expect(@reservation.errors).not_to be_empty
   end
@@ -42,6 +36,8 @@ describe Reservation do
     it 'handles state change of shipped to received correctly' do
       @shipped_reservation.receive!
       expect(@shipped_reservation.state).to eq('received')
+      ast_email = ActionMailer::Base.deliveries.last
+      expect(last_email.subject).to include('Thank you for your generosity!')
     end
 
     it 'handles cancellation state change correctly' do

@@ -16,11 +16,11 @@ class Reservation < ActiveRecord::Base
       validates :tracking_number, presence: true
     end
     after_transition any => :shipped do |reservation|
-      :send_purchased_email
-      #:send_ship_confirmation_email
+      reservation.send_purchased_email
+      #send_ship_confirmation_email
     end
     after_transition any => :received do |reservation|
-      #ThankYouMailer.thank_you_email(reservation.donor)
+      reservation.thank_email_later
     end
     event :ship do
       transition :reserved => :shipped
@@ -47,12 +47,14 @@ class Reservation < ActiveRecord::Base
     self.delinquent ? :delinquent : self.state
   end
 
-  private
-    def send_purchased_email(reservation)
-       WishListMailer.item_purchased_email(reservation.donor).deliver_now
-    end
-    def send_ship_confirmation_email(reservation)
-       ShippingMailer.gift_shipped_email("snowman@wediko.org").deliver_now#send to Wediko
-    end
+  def send_purchased_email
+     WishlistMailer.item_purchased_email(self.donor.user).deliver_now
+  end
+  def send_ship_confirmation_email(reservation)
+     ShippingMailer.gift_shipped_email(Rails.configuration.x.wediko_notification_address).deliver_now
+  end
+  def thank_email_later
+    ThankYouMailer.thank_you_email(self.donor.user).deliver_now
+  end
 
 end
