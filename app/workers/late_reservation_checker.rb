@@ -5,7 +5,7 @@ class LateReservationChecker
   recurrence { daily }
 
   def perform
-    late_reservations = Reservation.reserved.joins(gift_request: {list: :event}).where("events.end_date < ?", Date.current + 7.days)
+    late_reservations = Reservation.reserved.joins(gift_request: {list: :event}).where("events.end_date < ? OR delinquent IS TRUE", Date.current + 7.days)
     delinquent_donors = Hash.new{0}
     #for each loop, going through all reservations looking for common donors
     late_reservations.each do |reservation|
@@ -13,7 +13,6 @@ class LateReservationChecker
 
     end
     delinquent_donors.each do |donor, delinquencies|
-
       #insert how many gifts they forgot to send
       #If you have time, add recipient and what the gift was
       LateReservationMailer.forgot_to_buy_gift_email(donor.user).deliver_now
