@@ -15,6 +15,7 @@ class GiftRequestsController < ApplicationController
 
   def edit
     @back_route = wishlist_path(params[:id])
+    @list_name = List.find(params[:id]).name
     
     render "gift_request"
   end

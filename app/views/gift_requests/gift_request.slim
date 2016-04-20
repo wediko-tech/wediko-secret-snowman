@@ -15,7 +15,7 @@
       = form_for @gift_request, url: url, action: action, html: {class: ""} do |f|
         .form-group
           label Wishlist
-          input.form-control disabled="disabled" type="text" value="#{@list_name.presence || @gift_request.list.name}"
+          input.form-control disabled="disabled" type="text" value="#{@list_name}"
         .form-group
           label for="name" Item Name
           = f.text_field :name, class: 'form-control'
