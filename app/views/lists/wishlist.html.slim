@@ -2,14 +2,17 @@
 - url = @list.new_record? ? event_wishlists_path : wishlist_path(@list.id)
 .row
   .col-xs-12
-    h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit Wishlist"
+    h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit #{@list.name.titleize}"
     .form-page
       - if @list.errors.any?
         .alert.alert-danger role="alert"
           span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
           span.sr-only Error:
-          |  #{@list.errors.full_messages.join(", ")}
+          = render partial: 'modules/error', locals: {errors: @gift_request.errors.full_messages}
       = form_for @list, url: url, action: action, html: {class: ""} do |f|
+        .form-group
+          label Event
+          input.form-control disabled="disabled" type="text" value="#{@list.event.name}"
         .form-group
           label for="title" Title
           = f.text_field :title, class: 'form-control'

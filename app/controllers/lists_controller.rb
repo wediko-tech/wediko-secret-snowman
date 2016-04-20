@@ -13,14 +13,15 @@ class ListsController < ApplicationController
 
   def edit
     @back_route = wishlist_path(params[:id])
-
     @list = List.find(params[:id])
+    
     render "wishlist"
   end
 
   def new
     @back_route = event_path(params[:event_id])
     @list = List.new
+
     render "wishlist"
   end
 

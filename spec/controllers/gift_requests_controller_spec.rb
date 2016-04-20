@@ -61,14 +61,14 @@ RSpec.describe GiftRequestsController, type: :controller do
 
   describe "GET #new" do
     it "returns http success and renders template" do
-      get :new, id: @event.id
+      get :new, id: @list.id
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:gift_request)
     end
 
     it "restricts non therapists from doing a new action" do
       login_as_admin
-      get :new, id: @event.id
+      get :new, id: @list.id
       expect(response).to redirect_to(root_path)
     end
   end

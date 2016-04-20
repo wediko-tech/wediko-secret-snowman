@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   # GET /events/1
   def show
+    @back_route = events_path
     @event = Event.find(params[:id])
     @lists = @event.lists.owned_by(current_user.role)
     render 'lists/index'

@@ -1,4 +1,5 @@
 - action = @gift_request.new_record? ? "create" : "edit"
+- action_name = @gift_request.new_record? ? "Create" : "Update"
 - url = @gift_request.new_record? ? gift_requests_new_wishlist_path : gift_request_path(@gift_request.id)
 
 .row
@@ -7,18 +8,26 @@
     .form-page
       - if @gift_request.errors.any?
         .alert.alert-danger role="alert" 
-          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true" 
           span.sr-only Error:
-          |  #{@gift_request.errors.full_messages.join(", ")}
+          = render partial: 'modules/error', locals: {errors: @gift_request.errors.full_messages}
+
+
       = form_for @gift_request, url: url, action: action, html: {class: ""} do |f|
         .form-group
-          label for="name" Name
+          label Wishlist
+          input.form-control disabled="disabled" type="text" value="#{@list_name}"
+        .form-group
+          label for="name" Item Name
           = f.text_field :name, class: 'form-control'
         .form-group
           label for="recipient" Recipient
+          br/
+          small = " First name only"
           = f.text_field :recipient, class: 'form-control'
         .form-group
           label for="description" Description
+          br/
+          small = "What is the item? What does it mean to the recipient? No personal information!"
           = f.text_area :description, class: 'form-control'
         .form-group
           label for="link" Link
@@ -26,9 +35,9 @@
           #amazon-info
         .form-group
           label for="gender" Gender
-          = f.select(:gender, options_for_select({ Male: "M", Female: "F" }, "F"), {}, {class: 'form-control'})
+          = f.select(:gender, options_for_select({ Male: "M", Female: "F" }, @gift_request.gender.presence || "F"), {}, {class: 'form-control'})
         .form-group
           label for="age" Age
           = f.number_field :age, class: 'form-control'
         .form-group
-          = f.submit action.titleize, class: 'btn btn-success'
+          = f.submit action_name, class: 'btn btn-success'

@@ -5,6 +5,9 @@
         = @event.title
       - else
         | My Wishlists
+    - if @event.present?
+      h4.text-center.form-description.center-block
+        = @event.description
     = form_tag destroy_multiple_wishlists_path, method: :delete
       .wishlist-page
         - if @lists.any?
@@ -31,7 +34,7 @@
           h1 = "No wishlists have been created yet!"
 
         .wishlist-remove
-          = button_to "Remove Selected Wishlists", {method: :delete}, class: "btn btn-danger"
+          = button_to "Remove Selected Wishlists", {method: :delete}, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete the selected wishlist(s)?" }
         - if @event.present?
           .wishlist-add
             = link_to "+ Add New Wishlist", new_event_wishlist_path(params[:id]), class: "btn btn-default"

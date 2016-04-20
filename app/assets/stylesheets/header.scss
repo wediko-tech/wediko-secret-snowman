@@ -23,18 +23,17 @@ nav {
     margin-top: 1em;
     position: relative;
     float: right;
-    input {
+    a, input {
       font-size: 1em;
       font-weight: bold;
       color: #FFF;
-      background: #ff531a;
       border-radius: 0;
       &:hover {
         color: #FFF;
         background: #ff4000;
       }
     }
-    input:hover {
+    a:hover, input:hover {
       transition: all 400ms ease;
       border: 1px solid #6a6a6a;
       color: #FFF;

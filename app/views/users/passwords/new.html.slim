@@ -1,0 +1,12 @@
+div.wishlist-header Password Reset
+div.wishlist-page
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    = devise_error_messages!
+    .form-group
+      = f.label :email
+      br/
+      = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'example@mail.com'
+    .form-group
+      .actions
+        = f.submit "Reset Password", class: "btn btn-warning"
+  = render "users/shared/links"

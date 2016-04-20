@@ -26,7 +26,7 @@ body {
   font-weight: 800;
   color: #e9cc7f;
   margin: 0 10%;
-  padding: 1em 0;
+  padding: 0.5em 0;
   text-align: center;
   font-size: 2em;
   &:before, &:after {
@@ -47,7 +47,7 @@ body {
 
 .wishlist-table {
   border: 1px solid #6a6a6a;
-  margin: 0 auto 2em;
+  margin: 1.5em auto 2em;
   background: #e6e5e5;
   a {
     color: inherit;
@@ -117,5 +117,5 @@ body {
 }
 
 .footer-pad {
-  padding-bottom: 5.5em;
+  padding-bottom: 11.5em;
 }
