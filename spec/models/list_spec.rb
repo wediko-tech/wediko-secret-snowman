@@ -12,6 +12,7 @@ describe List do
     expect(@list).to be_valid
   end
   it 'sends an email on creation' do
+    @list_email_test = FactoryGirl.create(:list, therapist: @therapist.role, event: @event)
     last_email = ActionMailer::Base.deliveries.last
     expect(last_email.subject).to include("Congratulations for creating a wishlist!")
   end

@@ -17,7 +17,6 @@ class Reservation < ActiveRecord::Base
     end
     after_transition any => :shipped do |reservation|
       reservation.send_purchased_email
-      #send_ship_confirmation_email
     end
     after_transition any => :received do |reservation|
       reservation.thank_email_later
@@ -51,7 +50,7 @@ class Reservation < ActiveRecord::Base
      WishlistMailer.item_purchased_email(self.donor.user).deliver_now
   end
   def send_ship_confirmation_email(reservation)
-     ShippingMailer.gift_shipped_email(Rails.configuration.x.wediko_notification_address).deliver_now
+     ShippingMailer.gift_shipped_email(Rails.configuration.wediko_notification_address).deliver_now
   end
   def thank_email_later
     ThankYouMailer.thank_you_email(self.donor.user).deliver_now
