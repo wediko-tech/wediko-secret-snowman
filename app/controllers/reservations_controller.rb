@@ -1,35 +1,41 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_donor
+  before_action :find_reservation, only: [:mark_shipped, :ship, :cancel, :destroy]
+  before_action :require_owned_reservation, only: [:ship, :cancel, :destroy]
 
+  def index
+    @reservations = current_user.role.reservations.notable.decorate
+  end
 
+  def mark_shipped
+  end
+
+  # this moves the reservation from reserved to shipped
   def ship
-    @reservation = Reservation.find(params[:id])
-
-    if @reservation.donor_id == current_user.id
-      if @reservation.ship
-        render json: @reservation
-      else
-        render status: 500, json: { errors: @reservation.errors.full_messages }
-      end
+    if @reservation.update(ship_params) && @reservation.ship
+      redirect_to reservations_path, notice: "Reservation shipped."
     else
-      render status: 403
+      render :mark_shipped, alert: @reservation.errors
+    end
+  end
+
+  # this moves the reservation from shipped to reserved
+  def cancel
+    if @reservation.can_cancel?
+      @reservation.cancel!
+      redirect_to reservations_path, notice: "Shipment cancelled."
+    else
+      redirect_to reservations_path, alert: "That gift is marked as #{@reservation.state} and cannot have its shipment cancelled."
     end
   end
 
   def destroy
-
-    @reservation = Reservation.find(params[:id])
-
     if @reservation.state == 'received'
-      redirect_to :back, alert: "This gift has been marked as received and can't be cancelled."
+      redirect_to reservations_path, alert: "This gift has been marked as received and can't be cancelled."
     else
-      if @reservation.donor_id == current_user.id
-        @reservation.destroy!
-        redirect_to :back
-      else
-        redirect_to root_path, alert: "You are not authorized to access that page."
-      end
+      @reservation.destroy!
+      redirect_to reservations_path, notice: "Reservation cancelled."
     end
   end
 
@@ -46,4 +52,17 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def require_owned_reservation
+    unless @reservation.donor_id == current_user.role.id
+      redirect_to root_path, alert: "You are not authorized to access that page."
+    end
+  end
+
+  def ship_params
+    params.require(:reservation).permit(:tracking_number, :shipment_method)
+  end
+
+  def find_reservation
+    @reservation = Reservation.find(params[:id])
+  end
 end

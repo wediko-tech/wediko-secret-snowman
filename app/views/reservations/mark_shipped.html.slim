@@ -1,0 +1,18 @@
+.row
+  .col-xs-12
+    h1.form-header = "Mark #{@reservation.gift_request.name.titleize} Shipped"
+    .form-page
+      - if @reservation.errors.any?
+        .alert.alert-danger role="alert"
+          span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
+          span.sr-only Error:
+          |  #{@reservation.errors.full_messages.join(", ")}
+      = form_for @reservation, url: ship_reservation_path(@reservation.id) do |f|
+        .form-group
+          = f.label :shipment_method, "Shipment Method"
+          = f.text_field :shipment_method, class: 'form-control', placeholder: "FedEx, UPS, USPS, etc."
+        .form-group
+          = f.label :tracking_number, "Tracking Number"
+          = f.text_field :tracking_number, class: 'form-control'
+        .form-group
+          = f.submit "Mark Shipped", class: 'btn btn-success'

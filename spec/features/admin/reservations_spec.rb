@@ -20,7 +20,7 @@ describe 'admin reservations page' do
 
     context "shipped reservation" do
       before :each do
-        @reservation.ship!
+        @reservation = FactoryGirl.create(:shipped_reservation)
 
         visit admin_reservation_path(@reservation)
       end

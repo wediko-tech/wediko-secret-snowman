@@ -2,7 +2,7 @@ tr.request
   td.request-checkbox
     input type="checkbox"
   td.request-reserve
-    = link_to "Reserve", not_implemented_path(target: 'reserving a request')
+    = link_to "Reserve", reserve_gift_request_path(gift_request.id), method: :post
   td.request-name= gift_request.name
   td.request-age= gift_request.age
   td.request-gender= gift_request.gender

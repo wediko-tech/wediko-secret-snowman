@@ -9,7 +9,7 @@ ActiveAdmin.register Reservation do
   # A list of fields by which the user can filter on the index page
   filter :state, as: :select
   filter :delinquent
-  filter :tracking_num, label: "Tracking Number"
+  filter :tracking_number
 
   member_action :mark_received, method: :patch do
     if reservation = Reservation.find_by(id: params[:id])
@@ -45,10 +45,10 @@ ActiveAdmin.register Reservation do
       status_tag r.status
     end
     column :tracking_number do |r|
-      if r.reserved? || r.tracking_num.blank?
+      if r.reserved? || r.tracking_number.blank?
         "[None]"
       else
-        r.tracking_num
+        r.tracking_number
       end
     end
   end
@@ -67,10 +67,10 @@ ActiveAdmin.register Reservation do
         status_tag r.status
       end
       row :tracking_number do |r|
-        if r.reserved? || r.tracking_num.blank?
+        if r.reserved? || r.tracking_number.blank?
           "[None]"
         else
-          r.tracking_num
+          r.tracking_number
         end
       end
     end

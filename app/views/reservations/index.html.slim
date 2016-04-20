@@ -1,0 +1,24 @@
+.row
+  .col-xs-12
+    .wishlist-header
+      | My Reservations
+    .wishlist-page
+      - if @reservations.any?
+        .table-responsive
+          table#catalog-table.wishlist-table.table.table-hover
+            thead
+              tr
+                th
+                th
+                th
+                  | Gift
+                th
+                  | Description
+                th
+                  | Status
+            tbody
+              = render partial: 'reservations/row', collection: @reservations, as: :reservation
+      - else
+        h3 = "You have no reserved gifts."
+        = link_to events_path do
+          | Click here to find a gift to order.

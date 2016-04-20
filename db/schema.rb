@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417183716) do
+ActiveRecord::Schema.define(version: 20160420205814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20160417183716) do
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -78,11 +78,12 @@ ActiveRecord::Schema.define(version: 20160417183716) do
   create_table "reservations", force: :cascade do |t|
     t.integer  "gift_request_id"
     t.integer  "donor_id"
-    t.string   "tracking_num"
+    t.string   "tracking_number"
     t.boolean  "delinquent",      default: false
     t.string   "state"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "shipment_method"
   end
 
   create_table "therapists", force: :cascade do |t|
