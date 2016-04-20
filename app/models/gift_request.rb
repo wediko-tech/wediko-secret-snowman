@@ -5,7 +5,8 @@ class GiftRequest < ActiveRecord::Base
   scope :reserved, -> { joins(:reservation) }
   scope :unreserved, -> { includes(:reservation).where(reservations: {id: nil}) }
 
-  validates :description, presence: true
+  validates :name, presence: true
+  validates :age, presence: true
   validates :recipient, presence: true
 
   def status

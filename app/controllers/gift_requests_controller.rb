@@ -7,20 +7,24 @@ class GiftRequestsController < ApplicationController
 
   def new
     @back_route = wishlist_path(params[:id])
-
     @gift_request = GiftRequest.new
-    render "gift_request", locals: {list_id: params[:id]}
+    @list_name = List.find(params[:id]).name
+
+    render "gift_request"
   end
 
   def edit
     @back_route = wishlist_path(params[:id])
-
-    render "gift_request", locals: {list_id: params[:id]}
+    @list_name = List.find(params[:id]).name
+    
+    render "gift_request"
   end
 
   def create
     # params[:id] is the list id this gift request corresponds to
     @gift_request = GiftRequest.new(gift_request_params.merge(list_id: params[:id]))
+    @list_name = List.find(params[:id]).name
+
     if @gift_request.save
       redirect_to wishlist_path(params[:id])
     else

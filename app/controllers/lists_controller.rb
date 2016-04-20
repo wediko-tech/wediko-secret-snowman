@@ -20,6 +20,7 @@ class ListsController < ApplicationController
 
   def new
     @back_route = event_path(params[:event_id])
+    @event = Event.find(params[:event_id])
     @list = List.new
     render "wishlist"
   end
