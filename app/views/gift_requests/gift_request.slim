@@ -5,8 +5,6 @@
 .row
   .col-xs-12
     h1.form-header = @gift_request.new_record? ? "Create Request" : "Edit Request"
-    h4.text-center.form-description.center-block
-      = @list_name.presence || @gift_request.list.name
     .form-page
       - if @gift_request.errors.any?
         .alert.alert-danger role="alert" 
@@ -15,6 +13,9 @@
 
 
       = form_for @gift_request, url: url, action: action, html: {class: ""} do |f|
+        .form-group
+          label Wishlist
+          input.form-control disabled="disabled" type="text" value="#{@list_name.presence || @gift_request.list.name}"
         .form-group
           label for="name" Item Name
           = f.text_field :name, class: 'form-control'

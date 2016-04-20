@@ -3,8 +3,6 @@
 .row
   .col-xs-12
     h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit #{@list.name.titleize}"
-    h4.text-center.form-description.center-block
-      = @list.event.name
     .form-page
       - if @list.errors.any?
         .alert.alert-danger role="alert"
@@ -12,6 +10,9 @@
           span.sr-only Error:
           = render partial: 'modules/error', locals: {errors: @gift_request.errors.full_messages}
       = form_for @list, url: url, action: action, html: {class: ""} do |f|
+        .form-group
+          label Event
+          input.form-control disabled="disabled" type="text" value="#{@list.event.name}"
         .form-group
           label for="title" Title
           = f.text_field :title, class: 'form-control'
