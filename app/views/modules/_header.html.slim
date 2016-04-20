@@ -4,7 +4,12 @@ nav.navbar.navbar-default.navbar-fixed-top
     li
       = link_to "Main Site", 'http://www.wediko.org'
   .navbar-login
-    - if current_user
-      = button_to "Logout", logout_path, class: "btn btn-danger pull-right"
-    - else
-      = link_to "Log in", login_path, class: "btn btn-warning pull-right"
+    .button-set.pull-right
+      - if current_user
+        - if current_user.donor?
+          = link_to "My Reservations", reservations_path, class: "btn btn-default"
+        - if current_user.therapist?
+          = link_to "My Wishlists", wishlists_path, class: "btn btn-default"
+        = button_to "Log out", logout_path, form_class: "form-btn", class: "btn btn-danger"
+      - else
+        = link_to "Log in", login_path, class: "btn btn-warning"

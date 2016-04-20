@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Reservation do
   before(:each) do
-    @reservation = FactoryGirl.build(:reservation)
+    @reservation = FactoryGirl.create(:reservation)
   end
 
   it 'has a valid factory' do
@@ -10,29 +10,40 @@ describe Reservation do
   end
 
   it 'defaults to a state of reserved' do
-    expect(@reservation.state).to eq('reserved')
+    expect(@reservation).to be_reserved
   end
 
   it 'handles state change of reserved to shipped correctly' do
-    @reservation.ship
-    expect(@reservation.state).to eq('shipped')
+    @reservation.update_attributes(shipment_method: "aaa", tracking_number: "bbb")
+    @reservation.ship!
+    expect(@reservation).to be_shipped
   end
 
-  it 'handles state change of shipped to received correctly' do
+  it "restricts shipping if required attributes are missing" do
     @reservation.ship
-    @reservation.receive
-    expect(@reservation.state).to eq('received')
+
+    expect(@reservation).to be_reserved
+    expect(@reservation.errors).not_to be_empty
   end
 
-  it 'handles cancellation state change correctly' do
-    @reservation.ship
-    @reservation.cancel
-    expect(@reservation.state).to eq('reserved')
-  end
+  context "shipped" do
+    before :each do
+      @shipped_reservation = FactoryGirl.create(:shipped_reservation)
+    end
 
-  it 'restricts cancellation if gift has been received' do
-    @reservation.ship
-    @reservation.receive
-    expect(@reservation.cancel).to be false
+    it 'handles state change of shipped to received correctly' do
+      @shipped_reservation.receive!
+      expect(@shipped_reservation.state).to eq('received')
+    end
+
+    it 'handles cancellation state change correctly' do
+      @shipped_reservation.cancel
+      expect(@shipped_reservation.state).to eq('reserved')
+    end
+
+    it 'restricts cancellation if gift has been received' do
+      @shipped_reservation.receive
+      expect(@shipped_reservation.cancel).to be false
+    end
   end
 end

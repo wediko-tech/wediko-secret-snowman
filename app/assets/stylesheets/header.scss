@@ -22,7 +22,7 @@ nav {
   .navbar-login {
     margin-top: 1em;
     position: relative;
-    float: right;
+
     a, input {
       font-size: 1em;
       font-weight: bold;
@@ -36,7 +36,6 @@ nav {
     a:hover, input:hover {
       transition: all 400ms ease;
       border: 1px solid #6a6a6a;
-      color: #FFF;
       background: #3a87a8;
     }
   }

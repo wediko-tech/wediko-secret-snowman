@@ -58,10 +58,10 @@ body {
   .request-checkbox {
     border-radius: 0;
   }
-  tbody tr td, thead tr th {
+  tbody td, thead th {
     border-color: #6a6a6a;
   }
-  thead th, .request-recipient, .request-status, .request-age, .request-gender {
+  thead th, tbody td, .request-recipient, .request-status, .request-age, .request-gender {
     text-align: center;
   }
   tbody tr {
@@ -118,4 +118,20 @@ body {
 
 .footer-pad {
   padding-bottom: 11.5em;
+}
+
+.form-btn {
+  display: inline-block;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.alert {
+  width: 25%;
+  min-width: 250px;
+  max-width: 95%;
+  margin: 0 auto;
+  text-align: center;
 }

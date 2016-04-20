@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_multiple'
       get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
+      put 'reserve_multiple'
     end
 
     member do
@@ -50,9 +51,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reservations, only: [:destroy] do
+  resources :reservations, only: [:destroy, :index] do
     member do
-      post 'ship'
+      get 'mark_shipped'
+      patch 'ship'
+      patch 'cancel'
     end
   end
 
