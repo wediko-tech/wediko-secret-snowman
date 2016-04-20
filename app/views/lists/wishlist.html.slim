@@ -2,9 +2,9 @@
 - url = @list.new_record? ? event_wishlists_path : wishlist_path(@list.id)
 .row
   .col-xs-12
-    h1.form-header = @list.new_record? ? "Create Wishlist" : @list.name
+    h1.form-header = @list.new_record? ? "Create Wishlist" : "Edit #{@list.name.titleize}"
     h4.text-center.form-description.center-block
-      = @event.name
+      = @list.event.name
     .form-page
       - if @list.errors.any?
         .alert.alert-danger role="alert"

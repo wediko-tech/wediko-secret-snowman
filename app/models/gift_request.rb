@@ -7,6 +7,7 @@ class GiftRequest < ActiveRecord::Base
 
   validates :name, presence: true
   validates :age, presence: true
+  validates :gender, presence: true
   validates :recipient, presence: true
 
   def status

@@ -1,4 +1,6 @@
-div.wishlist-header= "Requests for #{@event.title}"
+div.wishlist-header = "Requests for #{@event.title}"
+h4.text-center.form-description.center-block
+  = @event.description
 div.wishlist-page
   - if @gift_requests.any? || search_filters?
     .filter-box

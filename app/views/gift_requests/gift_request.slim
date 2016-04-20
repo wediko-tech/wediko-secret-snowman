@@ -1,12 +1,12 @@
 - action = @gift_request.new_record? ? "create" : "edit"
-- action_name = action == "create" ? "Create" : "Update"
+- action_name = @gift_request.new_record? ? "Create" : "Update"
 - url = @gift_request.new_record? ? gift_requests_new_wishlist_path : gift_request_path(@gift_request.id)
 
 .row
   .col-xs-12
     h1.form-header = @gift_request.new_record? ? "Create Request" : "Edit Request"
     h4.text-center.form-description.center-block
-      = @list_name
+      = @list_name.presence || @gift_request.list.name
     .form-page
       - if @gift_request.errors.any?
         .alert.alert-danger role="alert" 
