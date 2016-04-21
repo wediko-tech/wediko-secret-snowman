@@ -25,9 +25,11 @@ div.wishlist-page
       = f.label :role_type, "I am a..."
       br /
       = f.radio_button :role_type, "Therapist"
+      | &nbsp;
       = f.label :role_type_therapist, "Therapist (submit gift requests)"
       br /
       = f.radio_button :role_type, "Donor"
+      | &nbsp;
       = f.label :role_type_donor, "Donor (order gifts, make donations)"
 
     div.wishlist-submit

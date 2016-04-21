@@ -1,14 +1,21 @@
 $(function() {
 
   if ($('#gift_request_link').val()) {
-    fetchAmazonItemName();
+    fetchAmazonInfo();
   }
 
   $('#gift_request_link').on('input', function(e) {
-    fetchAmazonItemName();
+    fetchAmazonInfo();
   });
 
-  function fetchAmazonItemName() {
+  function fillForm(name, link) {
+    $('#fill-form').click(function() {
+      $('#gift_request_name').val(name);
+      $('#gift_request_link').val(link);
+    });
+  }
+
+  function fetchAmazonInfo() {
     var amazonInfo = $('#amazon-info');
     amazonInfo.html('');
 
@@ -19,14 +26,16 @@ $(function() {
       success: function(response) {
         // Clear any old information displayed
         if (response) {
-          var amazonLink = 'http://www.amazon.com/dp/' + response.asin + '?tag=' + response.associate_tag;
-          var link = "<p><a href='" + amazonLink + "'>" + amazonLink + "</a></p>";
-          var name = "<p><strong>" + response.item_info.Title + "</strong></p>";
+          var amazonLink = response.link;
+          var link = "<p><a href='" + amazonLink + "'>View Item</a></p>";
+          var populateFormBtn = "<p><a id='fill-form' class='btn btn-primary'>Use This Data</a></p>";
+          var name = "<p><strong>" + response.name + "</strong></p>";
           var info = $('<div />', {
                         "class": 'alert alert-success'
-                      }).html(name + link);
+                      }).html(name + link + populateFormBtn);
           amazonInfo.append(info);
           amazonInfo.removeClass('hide');
+          fillForm(response.name, response.link);
         }
         else {
           amazonInfo.addClass('hide');

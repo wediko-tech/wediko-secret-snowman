@@ -4,6 +4,9 @@ nav {
   position: fixed;
   font-weight: bold;
   background: #fdf6ef url(image_path('bg-cream.jpg'));
+  -webkit-box-shadow: 0 5px 5px -5px #8F8A7F;
+  -moz-box-shadow: 0 5px 5px -5px #8F8A7F;
+  box-shadow: 0 5px 5px -5px #8F8A7F;
   .navbar-brand {
     font-weight: 800;
     background-image: url(image_path('logo.png'));
@@ -14,6 +17,7 @@ nav {
   }
   .navbar-nav {
     margin-top: 1em;
+    padding-left: 1em;
     position: relative;
     li {
       padding-right: 2em;
@@ -22,7 +26,7 @@ nav {
   .navbar-login {
     margin-top: 1em;
     position: relative;
-
+    float: right;
     a, input {
       font-size: 1em;
       font-weight: bold;
@@ -36,6 +40,7 @@ nav {
     a:hover, input:hover {
       transition: all 400ms ease;
       border: 1px solid #6a6a6a;
+      color: #FFF;
       background: #3a87a8;
     }
   }

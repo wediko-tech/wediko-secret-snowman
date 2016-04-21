@@ -7,5 +7,5 @@ tr.request
     td = link_to list.event.title, event_path(list.event)
   td = link_to list.title, wishlist_path(list.id)
   td = list.description
-  td = list.created_at
-  td = list.updated_at
+  td = list.created_at.strftime("%m-%d-%Y %I:%M %p")
+  td = list.updated_at.strftime("%m-%d-%Y %I:%M %p")
