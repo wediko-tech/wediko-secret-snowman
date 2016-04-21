@@ -19,6 +19,7 @@ ActiveAdmin.register User do
     # View, edit, delete, depending on which actions are enabled
     actions
     column :email
+    column :phone_number
     column :name
     column :role_type
     column :created_at
@@ -36,6 +37,7 @@ ActiveAdmin.register User do
     attributes_table do
       row :name
       row :email
+      row :phone_number
       row :role_type
       row :created_at
     end

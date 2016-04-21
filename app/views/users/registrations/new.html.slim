@@ -5,13 +5,16 @@ div.wishlist-page
       .alert.alert-danger role="alert"
         span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
         span.sr-only Error:
-        = render partial: 'modules/error', locals: {errors: @gift_request.errors.full_messages}
+        = render partial: 'modules/error', locals: {errors: resource.errors.full_messages}
     div.form-group
       = f.label :name
       = f.text_field :name, autofocus: true, class: 'form-control'
     div.form-group
       = f.label :email, "Enter your email address"
       = f.email_field :email, class: 'form-control', placeholder: 'example@mail.com'
+    div.form-group
+      = f.label :phone_number, "Enter your phone number"
+      = f.telephone_field :phone_number, class: 'form-control', placeholder: '555-867-5309'
 
     div.form-group
       = f.label :password, "Create a password"
