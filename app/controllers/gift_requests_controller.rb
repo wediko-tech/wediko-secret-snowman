@@ -68,12 +68,13 @@ class GiftRequestsController < ApplicationController
     valid_amazon_link = AmazonProductApi.amazon_link?(params[:link])
     if valid_amazon_link
       asin = AmazonProductApi.asin_from_url(params[:link])
-      item_info = AmazonProductApi.item_search(asin)["ItemAttributes"]
+      result = AmazonProductApi.item_search(asin)
+      name = result["ItemAttributes"]["Title"]
+      link = URI.decode(result["DetailPageURL"])
+
       render json: {
-        valid_amazon_link: valid_amazon_link,
-        item_info: item_info,
-        asin: asin,
-        associate_tag: Rails.configuration.amazon_associate_tag
+        name: name,
+        link: link
       }
     else
       render nothing: true, status: 404

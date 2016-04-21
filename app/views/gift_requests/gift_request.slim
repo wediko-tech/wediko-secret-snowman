@@ -5,7 +5,7 @@
 .row
   .col-xs-12
     h1.form-header = @gift_request.new_record? ? "Create Request" : "Edit Request"
-    .form-page
+    .wishlist-page
       - if @gift_request.errors.any?
         .alert.alert-danger role="alert" 
           span.sr-only Error:
