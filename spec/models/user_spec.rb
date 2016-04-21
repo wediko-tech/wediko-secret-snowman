@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+describe User do
   let(:therapist) { FactoryGirl.create(:therapist_user) }
   let(:donor) { FactoryGirl.create(:donor_user) }
 
@@ -19,6 +20,7 @@ require 'spec_helper'
   end
 
   it 'sends a registration email' do
+    FactoryGirl.create(:donor_user)
     last_email = ActionMailer::Base.deliveries.last
     expect(last_email.body).to include("to login with your password at")
   end

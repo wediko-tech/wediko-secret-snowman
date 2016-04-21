@@ -5,6 +5,6 @@ class ShippingMailer < ApplicationMailer
   def gift_shipped_email(user)
     @user = user
     @url  = login_url
-    mail(to: @user.email, subject: 'Our donor has bought the gift and it is on its way')
+    mail(to: @user.email, subject: Rails.configuration.gift_shipped_email_subject)
   end
 end

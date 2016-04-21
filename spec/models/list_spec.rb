@@ -14,7 +14,7 @@ describe List do
   it 'sends an email on creation' do
     @list_email_test = FactoryGirl.create(:list, therapist: @therapist.role, event: @event)
     last_email = ActionMailer::Base.deliveries.last
-    expect(last_email.subject).to include("Congratulations for creating a wishlist!")
+    expect(last_email.subject).to include(Rails.configuration.wish_list_creation_email_subject)
   end
 
   it 'should be properly associated with a therapist' do

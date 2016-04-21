@@ -12,7 +12,7 @@ RSpec.describe RegistrationMailer do
       expect((mail.to)[0]).to eql(user.email)
     end
     it 'renders correct subject' do
-        expect(mail.subject).to eql('Thank you for registering')
+        expect(mail.subject).to eql(Rails.configuration.registration_mailer_subject)
     end
     it 'renders correct body' do
       expect(mail.body).to include("to login with your password at")

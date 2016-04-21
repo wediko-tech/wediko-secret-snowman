@@ -19,7 +19,7 @@ describe Reservation do
     expect(@reservation).to be_shipped
     #mailer tests here
     last_email = ActionMailer::Base.deliveries.last
-    expect(last_email.subject).to include('You have purchased an item you reserved')
+    expect(last_email.subject).to include(Rails.configuration.item_purchased_email_subject)
   end
 
   it "restricts shipping if required attributes are missing" do
@@ -37,7 +37,7 @@ describe Reservation do
       @shipped_reservation.receive!
       expect(@shipped_reservation.state).to eq('received')
       ast_email = ActionMailer::Base.deliveries.last
-      expect(last_email.subject).to include('Thank you for your generosity!')
+      expect(last_email.subject).to include(Rails.configuration.thank_you_email_subject)
     end
 
     it 'handles cancellation state change correctly' do
@@ -50,5 +50,7 @@ describe Reservation do
       expect(@shipped_reservation.cancel).to be false
     end
   end
+
+  #special mailer tests
 
 end

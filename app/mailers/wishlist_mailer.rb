@@ -3,11 +3,11 @@ class WishlistMailer < ApplicationMailer
   def wish_list_creation_email(therapist)
     @therapist = therapist
     @url  = login_url
-    mail(to: @therapist.email, subject: 'Your wishlist has been created.')
+    mail(to: @therapist.email, subject: Rails.configuration.wish_list_creation_email_subject)
   end
   def item_purchased_email(donor)
     @donor = donor
     @url  = login_url
-    mail(to: @donor.email, subject: 'Your purchase was successful')
+    mail(to: @donor.email, subject: Rails.configuration.item_purchased_email_subject)
   end
 end

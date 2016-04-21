@@ -12,7 +12,7 @@ RSpec.describe ShippingMailer do
       expect((mail.to)[0]).to eql(user.email)
     end
     it 'renders correct subject' do
-        expect(mail.subject).to eql('Our donor has bought the gift and it is on its way')
+        expect(mail.subject).to eql(Rails.configuration.gift_shipped_email_subject)
     end
     it 'renders correct body' do
       expect(mail.body).to include("confirmation that your gift is heading on its")

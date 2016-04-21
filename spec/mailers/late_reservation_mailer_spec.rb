@@ -15,7 +15,7 @@ RSpec.describe LateReservationMailer do
     end
     #Test the subject and make sure it is displaying correctly
     it 'renders correct subject' do
-        expect(mail.subject).to eql('Please check your gift reservations!')
+        expect(mail.subject).to eql(Rails.configuration.late_reservation_mailer_subject)
     end
     #Test an element of the body and make sur it is correct
     it 'renders correct body' do
