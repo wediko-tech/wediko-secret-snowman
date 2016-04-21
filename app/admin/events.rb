@@ -1,4 +1,11 @@
 ActiveAdmin.register Event do
+  scope :all
+  scope :active, default: true
+  scope :inactive
+
+  filter :by_wishlist_title_in, as: :string, label: "WITH WISHLIST TITLE"
+  filter :start_date
+  filter :end_date
 
   index do
     selectable_column
@@ -14,6 +21,16 @@ ActiveAdmin.register Event do
     end
     column :active do |e|
       status_tag(DateTime.current.between?(e.start_date, e.end_date))
+    end
+  end
+
+  csv do
+    column :title
+    column :description
+    column :start_date
+    column :end_date
+    column :active do |e|
+      DateTime.current.between?(e.start_date, e.end_date)
     end
   end
 

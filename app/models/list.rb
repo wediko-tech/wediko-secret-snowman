@@ -10,4 +10,20 @@ class List < ActiveRecord::Base
   scope :owned_by, ->(therapist) { where(therapist_id: therapist.id) }
 
   alias_attribute :name, :title
+
+  ransacker :by_therapist_name,
+    formatter: ->(therapist_name) {
+      records = List.joins(therapist: :user).where("users.name ILIKE ?", "%#{therapist_name}%")
+      records.pluck(:id).presence
+    } do |parent|
+      parent.table[:id]
+  end
+
+  ransacker :by_event_name,
+    formatter: ->(event_name) {
+      records = List.joins(:event).where("events.name ILIKE ?", "%#{event_name}%")
+      records.pluck(:id).presence
+    } do |parent|
+      parent.table[:id]
+  end
 end

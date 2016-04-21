@@ -2,6 +2,7 @@
   .col-xs-12
     .wishlist-header Wediko Gift Exchange
     .wishlist-page
+      = render partial: 'modules/alerts'
       - if @events.any?
         .event-list
           = render partial: "event_block", collection: @events, as: :event

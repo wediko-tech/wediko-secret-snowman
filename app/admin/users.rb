@@ -24,6 +24,13 @@ ActiveAdmin.register User do
     column :created_at
   end
 
+  csv do
+    column :email
+    column :name
+    column :role_type
+    column :created_at
+  end
+
   # Details the appearance of the individual user detail page
   show do
     attributes_table do

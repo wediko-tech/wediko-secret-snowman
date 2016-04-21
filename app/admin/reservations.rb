@@ -33,7 +33,6 @@ ActiveAdmin.register Reservation do
   index do
     selectable_column
     actions
-    column :id
     column :gift_request do |r|
       link_to "#{r.gift_request.recipient}: #{r.gift_request.link}",
         admin_gift_request_path(r.gift_request)
@@ -44,6 +43,23 @@ ActiveAdmin.register Reservation do
     column :status do |r|
       status_tag r.status
     end
+    column :tracking_number do |r|
+      if r.reserved? || r.tracking_number.blank?
+        "[None]"
+      else
+        r.tracking_number
+      end
+    end
+  end
+
+  csv do
+    column :gift_request do |r|
+      "#{r.gift_request.recipient}: #{r.gift_request.link}"
+    end
+    column :donor do |r|
+      r.donor.name
+    end
+    column :status
     column :tracking_number do |r|
       if r.reserved? || r.tracking_number.blank?
         "[None]"

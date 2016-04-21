@@ -1,7 +1,8 @@
-div.wishlist-header = "Requests for #{@event.title}"
+div.wishlist-header = "Catalog for #{@event.title}"
 h4.text-center.form-description.center-block
   = @event.description
 div.wishlist-page
+  = render partial: 'modules/alerts'
   - if @gift_requests.any? || search_filters?
     .filter-box
       h4
@@ -31,14 +32,8 @@ div.wishlist-page
           tr
             th
             th
-            th
-              a href="#"
-                | Request
-                i.fa.fa-sort
-            th
-              a href="#"
-                | Age
-                i.fa.fa-sort
+            th Request
+            th Age
             th Gender
             th Description
         tbody

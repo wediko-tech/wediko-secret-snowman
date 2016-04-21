@@ -6,8 +6,9 @@ class Reservation < ActiveRecord::Base
   scope :received, -> { with_state(:received) }
   scope :reserved, -> { with_state(:reserved) }
   scope :notable, -> do
-    includes(gift_request: {list: :event}).where("reservations.state <> 'received' OR events.end_date > ?", Date.today)
+    joins(gift_request: {list: :event}).where("reservations.state <> 'received' OR events.end_date > ?", Date.today)
   end
+  scope :delinquent, -> { where(delinquent: true) }
 
   state_machine :initial => :reserved do
     state :shipped do
@@ -29,6 +30,10 @@ class Reservation < ActiveRecord::Base
 
     after_transition any => :reserved do |reservation, transition|
       reservation.update_attributes(tracking_number: nil, shipment_method: nil)
+    end
+
+    after_transition any => :received do |reservation, transition|
+      reservation.update_attributes(delinquent: false)
     end
   end
 

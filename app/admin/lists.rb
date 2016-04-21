@@ -4,7 +4,8 @@ ActiveAdmin.register List, as: "Wishlist" do
   # A list of fields by which the user can filter on the index page
   filter :title
   filter :description
-  filter :therapist
+  filter :by_therapist_name_in, as: :string, label: "THERAPIST NAME"
+  filter :by_event_name_in, as: :string, label: "EVENT NAME"
 
   # Each of these scopes appears as a selectable 'tab' on the index page
   scope :all, default: true
@@ -40,6 +41,20 @@ ActiveAdmin.register List, as: "Wishlist" do
     end
     column :therapist do |l|
       link_to l.therapist.name, admin_user_path(l.therapist.user)
+    end
+    column :requests do |l|
+      l.gift_requests.count
+    end
+  end
+
+  csv do
+    column :title
+    column :event do |l|
+      l.event.title
+    end
+    column :description
+    column :therapist do |l|
+      l.therapist.name
     end
     column :requests do |l|
       l.gift_requests.count

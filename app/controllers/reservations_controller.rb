@@ -5,10 +5,12 @@ class ReservationsController < ApplicationController
   before_action :require_owned_reservation, only: [:ship, :cancel, :destroy]
 
   def index
-    @reservations = current_user.role.reservations.notable.decorate
+    @back_route = root_path
+    @reservations = current_user.role.reservations.notable.order(delinquent: :desc).decorate
   end
 
   def mark_shipped
+    @back_route = reservations_path
   end
 
   # this moves the reservation from reserved to shipped

@@ -3,6 +3,7 @@
     .wishlist-header
       | My Reservations
     .wishlist-page
+      = render partial: 'modules/alerts'
       - if @reservations.any?
         .table-responsive
           table#catalog-table.wishlist-table.table.table-hover

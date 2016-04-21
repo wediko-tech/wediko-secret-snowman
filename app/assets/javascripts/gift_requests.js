@@ -48,6 +48,12 @@ $(function() {
                     });
         amazonInfo.append(info);
       }
-    });  
+    });
   }
+
+  var reserveMultipleBtn = $('.catalog-reserve input')
+  reserveMultipleBtn.prop('disabled', true);
+  $('form :checkbox').bind('change', function(){
+    reserveMultipleBtn.prop('disabled', $('input:checkbox:checked').length === 0)
+  });
 });
