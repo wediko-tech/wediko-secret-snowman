@@ -36,7 +36,7 @@ describe Reservation do
     it 'handles state change of shipped to received correctly' do
       @shipped_reservation.receive!
       expect(@shipped_reservation.state).to eq('received')
-      ast_email = ActionMailer::Base.deliveries.last
+      last_email = ActionMailer::Base.deliveries.last
       expect(last_email.subject).to include(Rails.configuration.thank_you_email_subject)
     end
 
@@ -50,7 +50,4 @@ describe Reservation do
       expect(@shipped_reservation.cancel).to be false
     end
   end
-
-  #special mailer tests
-
 end
