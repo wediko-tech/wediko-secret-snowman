@@ -5,6 +5,7 @@
     .wishlist-page
       = render partial: 'modules/alerts'
       - if @reservations.any?
+        = render partial: 'modules/shipping'
         .table-responsive
           table#catalog-table.wishlist-table.table.table-hover
             thead

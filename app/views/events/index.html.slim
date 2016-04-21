@@ -4,6 +4,7 @@
     .wishlist-page
       = render partial: 'modules/alerts'
       - if @events.any?
+        h5.text-center.instructions Welcome to Wediko's gift exchange system. Please click an event below to browse gifts available to purchase.
         .event-list
           = render partial: "event_block", collection: @events, as: :event
       - else

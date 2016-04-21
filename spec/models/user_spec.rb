@@ -21,7 +21,6 @@ describe User do
   end
 
   it 'sends an email' do
-    #byebug
     expect { donor.send_instructions }
       .to change { ActionMailer::Base.deliveries.count }.by(1)
   end
