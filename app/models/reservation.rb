@@ -15,7 +15,12 @@ class Reservation < ActiveRecord::Base
       validates :shipment_method, presence: true
       validates :tracking_number, presence: true
     end
-
+    after_transition any => :shipped do |reservation|
+      reservation.send_purchased_email
+    end
+    after_transition any => :received do |reservation|
+      reservation.thank_email_later
+    end
     event :ship do
       transition :reserved => :shipped
     end
@@ -40,4 +45,15 @@ class Reservation < ActiveRecord::Base
   def status
     self.delinquent ? :delinquent : self.state
   end
+
+  def send_purchased_email
+     WishlistMailer.item_purchased_email(self.donor.user).deliver_now
+  end
+  def send_ship_confirmation_email
+     ShippingMailer.gift_shipped_email.deliver_now
+  end
+  def thank_email_later
+    ThankYouMailer.thank_you_email(self.donor.user).deliver_now
+  end
+
 end

@@ -144,6 +144,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hitimes (1.2.3)
     i18n (0.7.0)
+    ice_cube (0.11.1)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
       has_scope (~> 0.6.0.rc)
@@ -261,6 +262,10 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
+    sidetiq (0.6.3)
+      celluloid (>= 0.14.1)
+      ice_cube (= 0.11.1)
+      sidekiq (>= 3.0.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -342,6 +347,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
+  sidetiq
   sinatra
   slim-rails
   spring

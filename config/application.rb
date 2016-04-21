@@ -18,6 +18,10 @@ module WedikoSecretSnowman
     config.action_mailer.default_url_options = { host: 'wediko.steve-pletcher.com' }
     config.action_mailer.delivery_method = :aws_sdk
 
+    #mailer config vars
+    #univeral sender
+    config.wediko_notification_address = "snowman@wediko.org"
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
