@@ -1,15 +1,18 @@
 nav.navbar.navbar-default.navbar-fixed-top
-  a.navbar-brand href="#{root_path}"
+  a.navbar-brand href="http://www.wediko.org"
   ul.nav.navbar-nav
     li
-      = link_to "Main Site", 'http://www.wediko.org'
+      = link_to "Home", root_path
   .navbar-login
     .button-set.pull-right
       - if current_user
+
+        = link_to "My Profile", edit_user_registration_path, class: "btn btn-success"
         - if current_user.donor?
-          = link_to "My Reservations", reservations_path, class: "btn btn-default"
+          - res_classes = current_user.role.reservations.delinquent.any? ? "btn btn-danger" : "btn btn-success"
+          = link_to "My Reservations", reservations_path, class: res_classes
         - if current_user.therapist?
-          = link_to "My Wishlists", wishlists_path, class: "btn btn-default"
+          = link_to "My Wishlists", wishlists_path, class: "btn btn-success"
         = button_to "Log out", logout_path, form_class: "form-btn", class: "btn btn-danger"
       - else
         = link_to "Log in", login_path, class: "btn btn-success"

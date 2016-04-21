@@ -3,6 +3,7 @@
     .wishlist-header
       | Active Events
     .wishlist-page
+      = render partial: 'modules/alerts'
       - if @events.any?
         .table-responsive
           table#catalog-table.wishlist-table.table.table-hover

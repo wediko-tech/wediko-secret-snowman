@@ -10,6 +10,7 @@
         = @event.description
     = form_tag destroy_multiple_wishlists_path, method: :delete
       .wishlist-page
+        = render partial: 'modules/alerts'
         - if @lists.any?
           .table-responsive
             table#catalog-table.wishlist-table.table.table-hover
@@ -25,9 +26,9 @@
                   th
                     | Description
                   th
-                    | Created At
+                    | Unreserved Requests
                   th
-                    | Updated At
+                    | Requests
               tbody
                 = render partial: 'lists/list_row_template', collection: @lists, as: :list
         - else

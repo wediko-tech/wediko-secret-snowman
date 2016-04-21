@@ -14,7 +14,7 @@ class AmazonProductApi
 
     # adapted from http://stackoverflow.com/questions/1764605/scrape-asin-from-amazon-url-using-javascript
     def asin_from_url(amazon_url)
-      asin_regex = /https?:\/\/www.amazon.com\/(?:[\w-]+\/)?(?:dp|gp\/product)\/(?:\w+\/)?(\w{10})/
+      asin_regex = /https?:\/\/(?:[^\.]+\.)?amazon\.com\/(?:[\w-]+\/)?(?:dp|gp\/product)\/(?:\w+\/)?(\w{10})/
       if match = asin_regex.match(amazon_url)
         # pull out just the ASIN matcher
         match[1]

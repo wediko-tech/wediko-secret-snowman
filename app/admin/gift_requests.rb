@@ -1,15 +1,17 @@
 ActiveAdmin.register GiftRequest do
-  actions :index, :show, :delete
+  actions :index, :show, :destroy
 
   # A list of fields by which the user can filter on the index page
   filter :link
-  filter :list
   filter :recipient
+  filter :by_wishlist_title_in, as: :string, label: "WISHLIST TITLE"
 
   # Each of these scopes appears as a selectable 'tab' on the index page
   scope :all, default: true
   scope :reserved
   scope :unreserved
+  scope :active_event
+  scope :inactive_event
 
   index do
     selectable_column
@@ -32,6 +34,23 @@ ActiveAdmin.register GiftRequest do
         "Unreserved"
       end
     end
+  end
+
+  csv do
+    column :link
+    column :recipient
+    column :description
+    column :list do |gr|
+      gr.list.title
+    end
+    column :reservation do |gr|
+      if gr.reservation.present?
+        gr.reservation.status.capitalize
+      else
+        "Unreserved"
+      end
+    end
+    column :created_at
   end
 
   show do

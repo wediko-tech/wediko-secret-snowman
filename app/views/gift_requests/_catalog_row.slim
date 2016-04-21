@@ -2,8 +2,10 @@ tr.request
   td.request-checkbox
     input type="checkbox"
   td.request-reserve
-    = link_to "Reserve", reserve_gift_request_path(gift_request.id), method: :post
-  td.request-name= gift_request.name
+    = link_to "Reserve", reserve_gift_request_path(gift_request.id), method: :post,
+      data: {confirm: "This commits you to purchasing this gift. Are you sure you want to reserve #{gift_request.name}?"}
+  td.request-name
+    = link_to gift_request.name, gift_request.link, target: "_blank"
   td.request-age= gift_request.age
   td.request-gender= gift_request.gender
   td.request-description= gift_request.description
