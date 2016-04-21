@@ -67,6 +67,7 @@ ActiveAdmin.register Reservation do
         r.tracking_number
       end
     end
+    column :created_at
   end
 
   show do

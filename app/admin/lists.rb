@@ -59,6 +59,7 @@ ActiveAdmin.register List, as: "Wishlist" do
     column :requests do |l|
       l.gift_requests.count
     end
+    column :created_at
   end
 
   show do

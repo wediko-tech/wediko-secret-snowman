@@ -50,6 +50,7 @@ ActiveAdmin.register GiftRequest do
         "Unreserved"
       end
     end
+    column :created_at
   end
 
   show do

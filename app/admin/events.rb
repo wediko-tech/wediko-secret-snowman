@@ -32,6 +32,7 @@ ActiveAdmin.register Event do
     column :active do |e|
       DateTime.current.between?(e.start_date, e.end_date)
     end
+    column :created_at
   end
 
   show do
