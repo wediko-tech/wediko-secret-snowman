@@ -48,6 +48,10 @@ gem 'kaminari'
 # Decorators
 gem 'draper'
 
+# validations - phone number
+gem 'phonelib'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

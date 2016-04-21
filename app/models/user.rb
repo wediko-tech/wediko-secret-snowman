@@ -20,4 +20,14 @@ class User < ActiveRecord::Base
     RegistrationMailer.registration_email(self).deliver_now
   end
 
+
+  validate :validate_donor_fields
+
+  def validate_donor_fields
+    if role_type == 'Donor'
+      unless Phonelib.valid_for_country?(phone_number, 'US') || Phonelib.possible?(phone_number)
+        errors.add(:phone_number, 'must be valid')
+      end
+    end
+  end
 end

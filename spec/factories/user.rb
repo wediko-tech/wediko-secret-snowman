@@ -4,6 +4,7 @@ FactoryGirl.define do
     name "Decker"
     password "buttscarlton"
     password_confirmation "buttscarlton"
+    phone_number '617-111-1111'
 
     factory :therapist_user, class: "User" do
       association :role, factory: :therapist
