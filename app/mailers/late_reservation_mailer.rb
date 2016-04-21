@@ -3,6 +3,6 @@ class LateReservationMailer < ApplicationMailer
     @donor = donor
     @delinquencies = delinquencies
     @url  = login_url
-    mail(to: @donor.email, subject: Rails.configuration.late_reservation_mailer_subject)
+    mail(to: @donor.email, subject: 'Please check your gift reservations!')
   end
 end

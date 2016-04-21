@@ -21,17 +21,6 @@ module WedikoSecretSnowman
     #mailer config vars
     #univeral sender
     config.wediko_notification_address = "snowman@wediko.org"
-    #late_reservation_mailer vars
-    config.late_reservation_mailer_subject = 'Please check your gift reservations!'
-    #registration_mailer vars
-    config.registration_mailer_subject = 'Thank you for registering'
-    #shipping_mailer vars
-    config.gift_shipped_email_subject = 'Our donor has bought the gift and it is on its way'
-    #thank_you_mailer vars
-    config.thank_you_email_subject = 'Thank you for your generosity!'
-    #wishlist_mailer vars
-    config.wish_list_creation_email_subject = 'Your wishlist has been created.'
-    config.item_purchased_email_subject = 'Your purchase was successful'
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
