@@ -5,7 +5,7 @@ class DelinquentFinder
   recurrence { daily }
 
   def perform
-    late_unmarked_reservations = Reservation.joins(gift_request: {list: :event}).includes(donor: :user)
+    late_unmarked_reservations = Reservation.joins(gift_request: {list: :event}).includes(donor: :user).unreceived
                                    .where("events.end_date <= ?", Date.today)
                                    .where(delinquent: false)
     late_users = late_unmarked_reservations.map(&:donor).map(&:user).uniq
