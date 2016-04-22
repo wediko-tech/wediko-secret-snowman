@@ -2,13 +2,10 @@ tr.request
   td.request-cancel
     = link_to "Cancel", reservation_path(reservation.id), method: :delete, data: {confirm: "Are you sure you want to cancel your reservation for #{reservation.gift_request.name}?"}
   td.request-edit
-    - if reservation.delinquent
-      .btn.btn-danger Not Changeable
-    - else
-      - if reservation.can_ship?
-        = link_to "Mark Shipped", mark_shipped_reservation_path(reservation.id)
-      - if reservation.can_cancel?
-        = link_to "Cancel Shipment", cancel_reservation_path(reservation.id), method: :patch
+    - if reservation.can_ship?
+      = link_to "Mark Shipped", mark_shipped_reservation_path(reservation.id)
+    - if reservation.can_cancel? && !reservation.delinquent
+      = link_to "Cancel Shipment", cancel_reservation_path(reservation.id), method: :patch
   td= link_to reservation.gift_request.name, reservation.gift_request.link
   td= reservation.gift_request.description
   td= reservation.polite_status.titleize
