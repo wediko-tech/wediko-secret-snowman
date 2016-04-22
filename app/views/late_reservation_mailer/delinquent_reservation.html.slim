@@ -1,0 +1,7 @@
+h2 Your gifts were due today (#{Date.today.strftime("%B %d, %Y")}).
+p
+  | At least one of the gifts you reserved has not yet been received by Wediko.
+    If you shipped them recently, there's no reason to worry, but if you have yet to ship your gifts, please log in below to mark them as shipped.
+p You'll only receive this email once.
+
+= link_to "Click here to log in.", @url

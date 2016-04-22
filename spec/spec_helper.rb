@@ -75,7 +75,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    ActionMailer::Base.deliveries = []
+    ActionMailer::Base.deliveries.clear
   end
 
   config.around(:each, inline_jobs: true) do |example|
