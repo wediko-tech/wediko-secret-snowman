@@ -11,11 +11,13 @@ FactoryGirl.define do
       shipment_method "carrier pigeon"
     end
 
-    factory :delinquent_reservation do
-      delinquent true
-
+    factory :late_reservation do
       after(:create) do |reservation, evaluator|
         reservation.gift_request.list.event.update_attributes(start_date: 2.weeks.ago, end_date: 2.days.ago)
+      end
+
+      factory :delinquent_reservation do
+        delinquent true
       end
     end
   end
