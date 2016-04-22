@@ -30,6 +30,12 @@ ActiveAdmin.register User do
     column :name
     column :role_type
     column :created_at
+    column :phone_number
+    column :address_line_1
+    column :address_line_2
+    column :address_city
+    column :address_state
+    column :address_zip_code
   end
 
   # Details the appearance of the individual user detail page
@@ -40,6 +46,17 @@ ActiveAdmin.register User do
       row :phone_number
       row :role_type
       row :created_at
+      row :phone_number
+    end
+
+    panel "Address" do
+      attributes_table do
+        row :address_line_1
+        row :address_line_2
+        row :address_city
+        row :address_state
+        row :address_zip_code
+      end
     end
   end
 
