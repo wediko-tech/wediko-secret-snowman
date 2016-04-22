@@ -59,8 +59,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'not_implemented' => 'not_implemented#index'
-
   # http://website.com/async/
   mount Sidekiq::Web => 'async'
 

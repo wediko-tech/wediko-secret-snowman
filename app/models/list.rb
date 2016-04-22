@@ -32,6 +32,6 @@ class List < ActiveRecord::Base
   private
 
   def send_creation_email
-    WishlistMailer.wish_list_creation_email(self.therapist.user).deliver_now
+    WishlistMailer.wish_list_creation_email(self.therapist.user.id).deliver_now
   end
 end

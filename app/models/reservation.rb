@@ -47,13 +47,13 @@ class Reservation < ActiveRecord::Base
   end
 
   def send_purchased_email
-     WishlistMailer.item_purchased_email(self.donor.user).deliver_now
+     WishlistMailer.item_purchased_email(self.donor.user.id, self.id).deliver_now
   end
   def send_ship_confirmation_email
-     ShippingMailer.gift_shipped_email.deliver_now
+     ShippingMailer.gift_shipped_email(self.id).deliver_now
   end
   def thank_email_later
-    ThankYouMailer.thank_you_email(self.donor.user).deliver_now
+    ThankYouMailer.delay_for(2.days).thank_you_email(self.donor.user.id)
   end
 
 end
