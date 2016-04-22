@@ -4,13 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(user)
-    user.administrator? ? admin_dashboard_path :
-    case user.role_type
-    when "Administrator"
-      admin_dashboard_path
-    else
-      root_path
-    end
+    user.administrator? ? admin_events_path : root_path
   end
 
   def admin_access_denied(user)
