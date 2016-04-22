@@ -3,7 +3,7 @@ RSpec.describe ThankYouMailer do
   describe 'thank you' do
     before :each do
       @user = FactoryGirl.create(:donor_user)
-      @mail = ThankYouMailer.thank_you_email(@user)
+      @mail = ThankYouMailer.thank_you_email(@user.id)
     end
 
     it 'renders correct subject' do
@@ -17,7 +17,7 @@ RSpec.describe ThankYouMailer do
     end
 
     it 'renders correct body' do
-      expect( @mail.body).to include("Wediko's secret snowman has always relied on your kindness, ")
+      expect( @mail.body).to include("Wediko's gift exchange")
     end
   end
 end

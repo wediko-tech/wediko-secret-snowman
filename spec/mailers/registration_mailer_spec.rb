@@ -3,7 +3,7 @@ RSpec.describe RegistrationMailer do
   describe 'notified registration' do
     before :each do
       @user = FactoryGirl.create(:donor_user)
-      @mail = RegistrationMailer.registration_email(@user).deliver_now
+      @mail = RegistrationMailer.registration_email(@user.id).deliver_now
     end
 
       # Test the body of the sent email contains what we expect it to
@@ -17,7 +17,7 @@ RSpec.describe RegistrationMailer do
         expect(@mail.subject).to eql('Thank you for registering')
     end
     it 'renders correct body' do
-      expect(@mail.body).to include("to login with your password at")
+      expect(@mail.body).to include("You may log in")
     end
     it 'renders users name properly' do
       expect(@mail.body.encoded).to include(@user.name)

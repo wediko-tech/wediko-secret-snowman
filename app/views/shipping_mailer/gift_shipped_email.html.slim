@@ -1,5 +1,8 @@
-h1 The gift has shipped!
-p We have received confirmation that your gift is heading on its way to one of the youth in our program right now.
+p We have received confirmation that a gift has been shipped to you.
 
-p Thanks for helping and have a great day!
+ul
+  li Gift Name: #{ @reservation.gift_request.name }
+  li Donor Name: #{ @reservation.donor.user.name }
+  li Shipping Method: #{ @reservation.shipment_method }
+  li Tracking Number: #{ @reservation.tracking_number }
 

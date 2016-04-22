@@ -15,7 +15,7 @@ class LateReservationChecker
     delinquent_donors.each do |donor, delinquencies|
       #insert how many gifts they forgot to send
       #If you have time, add recipient and what the gift was
-      LateReservationMailer.forgot_to_buy_gift_email(donor.user, delinquencies).deliver_now
+      LateReservationMailer.forgot_to_buy_gift_email(donor.user.id, delinquencies).deliver_now
     end
   end
 

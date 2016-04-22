@@ -51,6 +51,6 @@ describe User do
 
   it 'sends a registration email' do
     last_email = ActionMailer::Base.deliveries.last
-    expect(last_email.body).to include("to login with your password at")
+    expect(last_email.body).to include("You may log in")
   end
 end

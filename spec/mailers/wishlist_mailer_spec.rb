@@ -3,7 +3,7 @@ RSpec.describe WishlistMailer do
   describe 'wishlist created' do
     before :each do
       @therapist = FactoryGirl.create(:therapist_user)
-      @mail = WishlistMailer.wish_list_creation_email(@therapist)
+      @mail = WishlistMailer.wish_list_creation_email(@therapist.id)
     end
 
     it 'renders correct subject' do
@@ -23,7 +23,8 @@ RSpec.describe WishlistMailer do
   describe 'purchase from wishlist' do
     before :each do
       @user = FactoryGirl.create(:donor_user)
-      @mail = WishlistMailer.item_purchased_email(@user)
+      @reservation = FactoryGirl.create(:reservation, donor: @user.role)
+      @mail = WishlistMailer.item_purchased_email(@user.id, @reservation.id)
     end
 
     it 'renders correct subject' do
@@ -36,7 +37,7 @@ RSpec.describe WishlistMailer do
       expect((@mail.to)[0]).to eql(@user.email)
     end
     it 'renders correct body' do
-      expect(@mail.body).to include('You will shortly be receiving details on when the item will be delivered.')
+      expect(@mail.body).to include("We've logged your purchase")
     end
   end
 end

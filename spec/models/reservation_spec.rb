@@ -33,7 +33,7 @@ describe Reservation do
       @shipped_reservation = FactoryGirl.create(:shipped_reservation)
     end
 
-    it 'handles state change of shipped to received correctly' do
+    it 'handles state change of shipped to received correctly', inline_jobs: true do
       @shipped_reservation.receive!
       expect(@shipped_reservation.state).to eq('received')
       last_email = ActionMailer::Base.deliveries.last

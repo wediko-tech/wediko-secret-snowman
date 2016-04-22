@@ -2,7 +2,8 @@ require "spec_helper"
 RSpec.describe ShippingMailer do
   describe 'shipped' do
     before :each do
-      @mail = ShippingMailer.gift_shipped_email
+      @reservation = FactoryGirl.create(:reservation)
+      @mail = ShippingMailer.gift_shipped_email(@reservation.id)
     end
 
       # Test the body of the sent email contains what we expect it to
@@ -13,10 +14,10 @@ RSpec.describe ShippingMailer do
       expect((@mail.to)[0]).to eql(Rails.configuration.wediko_notification_address)
     end
     it 'renders correct subject' do
-        expect(@mail.subject).to eql('Our donor has bought the gift and it is on its way')
+        expect(@mail.subject).to eql('A gift has been shipped.')
     end
     it 'renders correct body' do
-      expect(@mail.body).to include("confirmation that your gift is heading on its way")
+      expect(@mail.body).to include("confirmation that a gift has been shipped")
     end
   end
 end

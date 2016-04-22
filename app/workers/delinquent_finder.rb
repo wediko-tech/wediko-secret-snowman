@@ -11,6 +11,6 @@ class DelinquentFinder
     late_users = late_unmarked_reservations.map(&:donor).map(&:user).uniq
     late_unmarked_reservations.update_all(delinquent: true)
 
-    late_users.each{|user| LateReservationMailer.delinquent_reservation(user).deliver_now }
+    late_users.each{|user| LateReservationMailer.delinquent_reservation(user.id).deliver_now }
   end
 end

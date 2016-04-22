@@ -5,9 +5,8 @@ RSpec.describe LateReservationMailer do
     before :each do
       @user = FactoryGirl.create(:donor_user)
       @delinquencies = 3
-      @mail = LateReservationMailer.forgot_to_buy_gift_email(@user, @delinquencies).deliver_now
+      @mail = LateReservationMailer.forgot_to_buy_gift_email(@user.id, @delinquencies).deliver_now
     end
-
 
     # Test sender and make sure it comes from the correct address
     it 'renders the sender' do
@@ -23,20 +22,14 @@ RSpec.describe LateReservationMailer do
     end
     #Test an element of the body and make sur it is correct
     it 'renders correct body' do
-      expect(@mail.body).to include("the gift, as the holidays are almost on us! If your")
-    end
-    it 'renders correct body' do
+      expect(@mail.body).to include("The deadline for these gifts")
       @delinquencies = 1
       @mail = LateReservationMailer.forgot_to_buy_gift_email(@user, @delinquencies).deliver_now
       expect(@mail.body).to include("gift")
-    end
-    it 'renders correct body' do
       expect(@mail.body).to include("gifts")
     end
     it 'renders users name properly' do
       expect(@mail.body.encoded).to include("3")
-    end
-    it 'renders users name properly' do
       expect(@mail.body.encoded).to include(@user.name)
     end
   end
