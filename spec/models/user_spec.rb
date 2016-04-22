@@ -16,6 +16,34 @@ describe User do
     expect(@therapist.role.class.name).to eq("Therapist")
   end
 
+  it 'should validate phone number for donor role' do
+    @donor.phone_number = 'something invalid'
+    expect(@donor).not_to be_valid
+  end
+
+  it 'should validate address fields for donor role' do
+    @donor.address_line_1 = nil
+    expect(@donor).not_to be_valid
+  end
+
+  it 'should validate address fields for donor role' do
+    @donor.address_city = nil
+    expect(@donor).not_to be_valid
+  end
+
+  it 'should validate address fields for donor role' do
+    @donor.address_zip_code = nil
+    expect(@donor).not_to be_valid
+  end
+
+  it 'should not need valid phone number or address fields for therapist role' do
+    @therapist.phone_number = nil
+    @therapist.address_line_1 = nil
+    @therapist.address_city = nil
+    @therapist.address_zip_code = nil
+    expect(@therapist).to be_valid
+  end
+
   it 'should have valid associations for donor role' do
     expect(@donor.role_type).to eq("Donor")
     expect(@donor.role.class.name).to eq("Donor")

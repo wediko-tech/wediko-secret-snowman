@@ -7,7 +7,7 @@ FactoryGirl.define do
     phone_number '617-111-1111'
     address_line_1 '123 main'
     address_city 'boston'
-    address_zip_code 02110
+    address_zip_code '02110'
 
     factory :therapist_user, class: "User" do
       association :role, factory: :therapist
