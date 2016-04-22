@@ -281,10 +281,10 @@ Devise::RegistrationsController.class_eval do
   end
 
   def sign_up_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_type)
+    params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation, :role_type)
   end
 
   def account_update_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_type, :current_password)
+    params.require(:user).permit(:name, :email, :phone_number, :password, :password_confirmation, :role_type, :current_password)
   end
 end
