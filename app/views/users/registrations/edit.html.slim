@@ -18,6 +18,22 @@ div.wishlist-page
       = f.telephone_field :phone_number, class: 'form-control'
 
     div.form-group
+      = f.label :address_line_1, "Address Line 1"
+      = f.text_field :address_line_1, class: 'form-control', placeholder: '123 Main St.'
+    div.form-group
+      = f.label :address_line_2, "Address Line 2"
+      = f.text_field :address_line_2, class: 'form-control', placeholder: 'Apt. 1'
+    div.form-group
+      = f.label :address_city, "City"
+      = f.text_field :address_city, class: 'form-control', placeholder: 'Boston'
+    div.form-group
+      = f.label :address_state, "State/Province"
+      = f.text_field :address_state, class: 'form-control', placeholder: 'MA'
+    div.form-group
+      = f.label :address_zip_code, "Zip Code"
+      = f.text_field :address_zip_code, class: 'form-control', placeholder: '02110'
+
+    div.form-group
       = f.label "Role"
       br/
       small This can't be changed after you sign up.

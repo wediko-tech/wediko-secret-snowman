@@ -28,6 +28,15 @@ class User < ActiveRecord::Base
       unless Phonelib.valid_for_country?(phone_number, 'US') || Phonelib.possible?(phone_number)
         errors.add(:phone_number, 'must be valid')
       end
+
+      mandatory_address_fields = %w(address_line_1 address_city address_zip_code)
+
+      mandatory_address_fields.each do |field|
+        if self.send(field).blank?
+          errors.add(field, "can't be blank")
+        end
+      end
+
     end
   end
 end
