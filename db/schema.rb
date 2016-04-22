@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421192814) do
+ActiveRecord::Schema.define(version: 20160422013434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20160421192814) do
 
   add_index "lists", ["events_id"], name: "index_lists_on_events_id", using: :btree
 
+  create_table "mailing_addresses", force: :cascade do |t|
+    t.string  "line_1"
+    t.string  "line_2"
+    t.string  "locality"
+    t.string  "country"
+    t.integer "zip_code"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.integer  "gift_request_id"
     t.integer  "donor_id"
@@ -108,11 +116,20 @@ ActiveRecord::Schema.define(version: 20160421192814) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "phone_number"
+    t.integer  "mailing_address_id"
+    t.integer  "mailing_addresses_id"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.integer  "address_zip_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["mailing_addresses_id"], name: "index_users_on_mailing_addresses_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id"], name: "index_users_on_role_id", using: :btree
 
   add_foreign_key "lists", "events"
+  add_foreign_key "users", "mailing_addresses"
 end
