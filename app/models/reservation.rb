@@ -13,7 +13,6 @@ class Reservation < ActiveRecord::Base
   state_machine :initial => :reserved do
     state :shipped do
       validates :shipment_method, presence: true
-      validates :tracking_number, presence: true
     end
     after_transition any => :shipped do |reservation|
       reservation.send_purchased_email
@@ -26,7 +25,7 @@ class Reservation < ActiveRecord::Base
     end
 
     event :receive do
-      transition :shipped => :received
+      transition [:reserved, :shipped] => :received
     end
 
     event :cancel do
@@ -47,13 +46,14 @@ class Reservation < ActiveRecord::Base
   end
 
   def send_purchased_email
-     WishlistMailer.item_purchased_email(self.donor.user.id, self.id).deliver_now
+    WishlistMailer.item_purchased_email(self.donor.user.id, self.id).deliver_now
   end
+
   def send_ship_confirmation_email
-     ShippingMailer.gift_shipped_email(self.id).deliver_now
+    ShippingMailer.gift_shipped_email(self.id).deliver_now
   end
+
   def thank_email_later
     ThankYouMailer.delay_for(2.days).thank_you_email(self.donor.user.id)
   end
-
 end

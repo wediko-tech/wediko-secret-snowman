@@ -9,7 +9,8 @@ class GiftRequest < ActiveRecord::Base
 
   validates :name, presence: true
   validates :age, presence: true
-  validates :gender, presence: true
+  # gender can be male, female, or unspecified
+  validates :gender, presence: true, inclusion: { in: %w(M F U) }
   validates :recipient, presence: true
 
   ransacker :by_wishlist_title,

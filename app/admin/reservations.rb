@@ -1,5 +1,5 @@
 ActiveAdmin.register Reservation do
-  actions :all, except: [:create, :new]
+  actions :index, :show, :destroy
 
   # Each of these scopes appears as a selectable 'tab' on the index page
   scope :all, default: true
@@ -20,9 +20,21 @@ ActiveAdmin.register Reservation do
         flash = {alert: "Reservation cannot be marked as received. Our records show it is currently '#{reservation.state}'."}
       end
 
-      redirect_to admin_reservation_path(reservation), flash
+      redirect_to admin_reservation_path(reservation), flash: flash
     else
-      redirect_to admin_reservations_path, alert: "Could not find the reservation."
+      redirect_to admin_reservations_path, flash: { alert: "Could not find the reservation." }
+    end
+  end
+
+  batch_action :mark_received do |ids|
+    reservations = Reservation.where(id: ids)
+
+    if reservations.all?(&:can_receive?)
+      reservations.map(&:receive!)
+
+      redirect_to admin_reservations_path, flash: { notice: "Marked reservations as received." }
+    else
+      redirect_to admin_reservations_path, flash: { alert: "Could not mark as received - ensure no reservations are already marked" }
     end
   end
 
@@ -95,6 +107,26 @@ ActiveAdmin.register Reservation do
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
+    f.inputs :name, :link, :delinquent
+
+    f.label "Current State" do
+
+    end
+
+    f.inputs "Associations" do
+      label "Gift Request" do
+        para f.object.gift_request.name
+      end
+
+      label "Donor" do
+        para f.object.donor.user.name
+      end
+    end
+
+    f.inputs "Shipping Info" do
+      f.input :shipment_method, disabled: f.object.can_ship?
+      f.input :tracking_number, disabled: f.object.can_ship?
+    end
     f.actions
   end
 end

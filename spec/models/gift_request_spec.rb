@@ -22,4 +22,16 @@ describe GiftRequest do
     reserved = FactoryGirl.create(:reserved_gift_request)
     expect(GiftRequest.unreserved).to match_array([@gift_request])
   end
+
+  it "allows male, female, unspecified genders" do
+    %w(M F U).each do |gender|
+      expect(FactoryGirl.create(:gift_request, gender: gender)).to be_valid
+    end
+  end
+
+  it "does not allow non-male/female/unspecified genders" do
+    [nil, "Z", "bear"].each do |non_gender|
+      expect(FactoryGirl.build(:gift_request, gender: non_gender)).not_to be_valid
+    end
+  end
 end

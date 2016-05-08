@@ -6,9 +6,18 @@ FactoryGirl.define do
     donor
 
     factory :shipped_reservation do
-      state 'shipped'
       tracking_number "123456a"
       shipment_method "carrier pigeon"
+
+      after(:create) do |reservation, evaluator|
+        reservation.ship!
+      end
+
+      factory :received_reservation do
+        after(:create) do |reservation, evaluator|
+          reservation.receive!
+        end
+      end
     end
 
     factory :late_reservation do

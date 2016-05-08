@@ -6,7 +6,7 @@ FactoryGirl.define do
     sequence(:description) { |n| "Description #{n}" }
     sequence(:link) { |n| "http://fakelink#{n}" }
     sequence(:age, 5)
-    gender "Male"
+    gender "M"
 
 
     factory :reserved_gift_request do
