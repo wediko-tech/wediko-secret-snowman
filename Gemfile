@@ -73,15 +73,19 @@ gem 'slim-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  # [SJP] Run RSpec for tests
-  gem 'rspec-rails'
-  gem 'capybara'
 end
 
 group :test do
   # Use factory girl for mocking out models
   # https://github.com/thoughtbot/factory_girl_rails
   gem 'factory_girl_rails'
+  # [SJP] Run RSpec for tests
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'poltergeist' # for JS-enabled specs
+  gem 'database_cleaner'
+  gem 'vcr'
+  gem 'webmock', '~> 1.19.0'
 end
 
 group :development do

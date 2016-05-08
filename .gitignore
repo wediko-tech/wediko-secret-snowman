@@ -27,3 +27,6 @@ logfile
 # Ignore precompiled assets
 public/assets
 public/assets/*
+
+# Ignore NPM installs
+node_modules/*

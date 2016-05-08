@@ -19,7 +19,7 @@ describe AmazonProductApi do
     end
   end
 
-  describe "#item_search" do
+  describe "#item_search", vcr: {record: :once, match_requests_on: [:amazon_product_api] } do
     it "raises a no item found error for a nonexistent ASIN" do
       expect{ AmazonProductApi.item_search("ferociousbear") }.to raise_error(AmazonNoItemFoundError)
     end

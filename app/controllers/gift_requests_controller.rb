@@ -49,7 +49,7 @@ class GiftRequestsController < ApplicationController
   def catalog
     @back_route = events_path
 
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id]).decorate
     @gift_requests = @event.gift_requests.unreserved.order(created_at: :asc)
     if ["M", "F"].include?(params[:gender])
       @gift_requests = @gift_requests.where(gender: params[:gender])

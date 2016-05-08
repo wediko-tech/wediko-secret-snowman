@@ -5,6 +5,7 @@ div.wishlist-page
   = render partial: 'modules/alerts'
   - if @gift_requests.any? || search_filters?
     = render partial: "modules/shipping"
+    h5.text-center.instructions Gifts must be shipped to Wediko by #{@event.pretty_end_date}.
     .filter-box
       h4
         strong Filters

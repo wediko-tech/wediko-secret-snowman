@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://webservices.amazon.com/onca/xml?AWSAccessKeyId=AKIAINPXCPEI35TF3FPQ&AssociateTag=wdk&Keywords=ferociousbear&Operation=ItemSearch&SearchIndex=All&Service=AWSECommerceService&Signature=LDA%2BQgkwi6B1Ps/Gxjfks7O/1jZG4Hv0mAn1eopH/jk=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-08T14:24:38Z&Version=2013-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Steves-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Sun, 08 May 2016 14:24:39 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" ?><ItemSearchResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01"><OperationRequest><HTTPHeaders><Header
+        Name="UserAgent" Value="Jeff/1.5.1 (Language=Ruby; Steves-MacBook-Pro-3.local)"></Header></HTTPHeaders><RequestId>6be24b35-0f22-420e-976c-4be14f9028fb</RequestId><Arguments><Argument
+        Name="AWSAccessKeyId" Value="AKIAINPXCPEI35TF3FPQ"></Argument><Argument Name="AssociateTag"
+        Value="wdk"></Argument><Argument Name="Keywords" Value="ferociousbear"></Argument><Argument
+        Name="Operation" Value="ItemSearch"></Argument><Argument Name="SearchIndex"
+        Value="All"></Argument><Argument Name="Service" Value="AWSECommerceService"></Argument><Argument
+        Name="SignatureMethod" Value="HmacSHA256"></Argument><Argument Name="SignatureVersion"
+        Value="2"></Argument><Argument Name="Timestamp" Value="2016-05-08T14:24:38Z"></Argument><Argument
+        Name="Version" Value="2013-08-01"></Argument><Argument Name="Signature" Value="LDA+Qgkwi6B1Ps/Gxjfks7O/1jZG4Hv0mAn1eopH/jk="></Argument></Arguments><RequestProcessingTime>0.0389760180000000</RequestProcessingTime></OperationRequest><Items><Request><IsValid>True</IsValid><ItemSearchRequest><Keywords>ferociousbear</Keywords><ResponseGroup>Small</ResponseGroup><SearchIndex>All</SearchIndex></ItemSearchRequest><Errors><Error><Code>AWS.ECommerceService.NoExactMatches</Code><Message>We
+        did not find any matches for your request.</Message></Error></Errors></Request><TotalResults>0</TotalResults><TotalPages>0</TotalPages><MoreSearchResultsUrl>http://www.amazon.com/gp/redirect.html?linkCode=xm2&amp;SubscriptionId=AKIAINPXCPEI35TF3FPQ&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fsearch%3Fkeywords%3Dferociousbear%26url%3Dsearch-alias%253Daws-amazon-aps&amp;tag=wdk&amp;creative=386001&amp;camp=2025</MoreSearchResultsUrl></Items></ItemSearchResponse>
+    http_version: 
+  recorded_at: Sun, 08 May 2016 14:24:39 GMT
+recorded_with: VCR 3.0.1

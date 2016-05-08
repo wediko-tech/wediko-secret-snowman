@@ -22,10 +22,17 @@ describe Reservation do
     expect(last_email.subject).to include('Your purchase was successful')
   end
 
-  it "restricts shipping if required attributes are missing" do
+  it "restricts shipping if shipment method is missing" do
     @reservation.ship
     expect(@reservation).to be_reserved
     expect(@reservation.errors).not_to be_empty
+  end
+
+  it "allows shipping if only tracking number is missing" do
+    @reservation.update_attributes(shipment_method: "well trained squirrel")
+    @reservation.ship
+    expect(@reservation).to be_shipped
+    expect(@reservation.errors).to be_empty
   end
 
   context "shipped" do

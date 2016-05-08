@@ -19,7 +19,7 @@ RSpec.describe 'reservations/index.html.slim', type: :view do
   end
 
   it 'should allow you to cancel shipped reservations but not ship them' do
-    @reservations = [FactoryGirl.create(:shipped_reservation, donor_id: @user.role).decorate]
+    @reservations = [FactoryGirl.create(:shipped_reservation, donor: @user.role).decorate]
 
     render template: 'reservations/index'
     page = Capybara::Node::Simple.new(rendered)

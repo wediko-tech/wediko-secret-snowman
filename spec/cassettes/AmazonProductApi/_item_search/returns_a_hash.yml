@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://webservices.amazon.com/onca/xml?AWSAccessKeyId=AKIAINPXCPEI35TF3FPQ&AssociateTag=wdk&Keywords=B011SLDC6I&Operation=ItemSearch&SearchIndex=All&Service=AWSECommerceService&Signature=HGYaPH2jGHusBMsSRw4ex5imdT8UM7mlfOO876t%2BdfQ=&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2016-05-08T14:24:38Z&Version=2013-08-01
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Jeff/1.5.1 (Language=Ruby; Steves-MacBook-Pro-3.local)
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Sun, 08 May 2016 14:24:38 GMT
+      Server:
+      - Apache-Coyote/1.1
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Vary:
+      - Accept-Encoding,User-Agent
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" ?><ItemSearchResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01"><OperationRequest><HTTPHeaders><Header
+        Name="UserAgent" Value="Jeff/1.5.1 (Language=Ruby; Steves-MacBook-Pro-3.local)"></Header></HTTPHeaders><RequestId>083abe1b-bb1c-4d46-a84b-5dee4ec59dfe</RequestId><Arguments><Argument
+        Name="AWSAccessKeyId" Value="AKIAINPXCPEI35TF3FPQ"></Argument><Argument Name="AssociateTag"
+        Value="wdk"></Argument><Argument Name="Keywords" Value="B011SLDC6I"></Argument><Argument
+        Name="Operation" Value="ItemSearch"></Argument><Argument Name="SearchIndex"
+        Value="All"></Argument><Argument Name="Service" Value="AWSECommerceService"></Argument><Argument
+        Name="SignatureMethod" Value="HmacSHA256"></Argument><Argument Name="SignatureVersion"
+        Value="2"></Argument><Argument Name="Timestamp" Value="2016-05-08T14:24:38Z"></Argument><Argument
+        Name="Version" Value="2013-08-01"></Argument><Argument Name="Signature" Value="HGYaPH2jGHusBMsSRw4ex5imdT8UM7mlfOO876t+dfQ="></Argument></Arguments><RequestProcessingTime>0.0365976950000000</RequestProcessingTime></OperationRequest><Items><Request><IsValid>True</IsValid><ItemSearchRequest><Keywords>B011SLDC6I</Keywords><ResponseGroup>Small</ResponseGroup><SearchIndex>All</SearchIndex></ItemSearchRequest></Request><TotalResults>4</TotalResults><TotalPages>1</TotalPages><MoreSearchResultsUrl>http://www.amazon.com/gp/redirect.html?linkCode=xm2&amp;SubscriptionId=AKIAINPXCPEI35TF3FPQ&amp;location=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fsearch%3Fkeywords%3DB011SLDC6I%26url%3Dsearch-alias%253Daws-amazon-aps&amp;tag=wdk&amp;creative=386001&amp;camp=2025</MoreSearchResultsUrl><Item><ASIN>B011SLDC6I</ASIN><ParentASIN>B019ELIJXA</ParentASIN><DetailPageURL>http://www.amazon.com/Apple-iPod-Touch-Space-Generation/dp/B011SLDC6I%3Fpsc%3D1%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB011SLDC6I</DetailPageURL><ItemLinks><ItemLink><Description>Technical
+        Details</Description><URL>http://www.amazon.com/Apple-iPod-Touch-Space-Generation/dp/tech-data/B011SLDC6I%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>Add
+        To Baby Registry</Description><URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB011SLDC6I%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>Add
+        To Wedding Registry</Description><URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB011SLDC6I%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>Add
+        To Wishlist</Description><URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB011SLDC6I%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>Tell
+        A Friend</Description><URL>http://www.amazon.com/gp/pdp/taf/B011SLDC6I%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>All
+        Customer Reviews</Description><URL>http://www.amazon.com/review/product/B011SLDC6I%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink><ItemLink><Description>All
+        Offers</Description><URL>http://www.amazon.com/gp/offer-listing/B011SLDC6I%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLDC6I</URL></ItemLink></ItemLinks><ItemAttributes><Manufacturer>Apple</Manufacturer><ProductGroup>CE</ProductGroup><Title>Apple
+        iPod Touch 16GB Space Gray (6th Generation)</Title></ItemAttributes></Item><Item><ASIN>B011QIINP8</ASIN><ParentASIN>B019ELIJXA</ParentASIN><DetailPageURL>http://www.amazon.com/Apple-iPod-touch-Space-Generation/dp/B011QIINP8%3Fpsc%3D1%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB011QIINP8</DetailPageURL><ItemLinks><ItemLink><Description>Technical
+        Details</Description><URL>http://www.amazon.com/Apple-iPod-touch-Space-Generation/dp/tech-data/B011QIINP8%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>Add
+        To Baby Registry</Description><URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB011QIINP8%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>Add
+        To Wedding Registry</Description><URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB011QIINP8%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>Add
+        To Wishlist</Description><URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB011QIINP8%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>Tell
+        A Friend</Description><URL>http://www.amazon.com/gp/pdp/taf/B011QIINP8%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>All
+        Customer Reviews</Description><URL>http://www.amazon.com/review/product/B011QIINP8%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink><ItemLink><Description>All
+        Offers</Description><URL>http://www.amazon.com/gp/offer-listing/B011QIINP8%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011QIINP8</URL></ItemLink></ItemLinks><ItemAttributes><Manufacturer>Apple</Manufacturer><ProductGroup>CE</ProductGroup><Title>Apple
+        iPod touch 32GB Space Gray (6th Generation)</Title></ItemAttributes></Item><Item><ASIN>B011SLD1NC</ASIN><ParentASIN>B019ELIJXA</ParentASIN><DetailPageURL>http://www.amazon.com/Apple-iPod-touch-16GB-Generation/dp/B011SLD1NC%3Fpsc%3D1%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB011SLD1NC</DetailPageURL><ItemLinks><ItemLink><Description>Technical
+        Details</Description><URL>http://www.amazon.com/Apple-iPod-touch-16GB-Generation/dp/tech-data/B011SLD1NC%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>Add
+        To Baby Registry</Description><URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB011SLD1NC%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>Add
+        To Wedding Registry</Description><URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB011SLD1NC%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>Add
+        To Wishlist</Description><URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB011SLD1NC%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>Tell
+        A Friend</Description><URL>http://www.amazon.com/gp/pdp/taf/B011SLD1NC%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>All
+        Customer Reviews</Description><URL>http://www.amazon.com/review/product/B011SLD1NC%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink><ItemLink><Description>All
+        Offers</Description><URL>http://www.amazon.com/gp/offer-listing/B011SLD1NC%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD1NC</URL></ItemLink></ItemLinks><ItemAttributes><Manufacturer>Apple</Manufacturer><ProductGroup>CE</ProductGroup><Title>Apple
+        iPod touch 16GB Blue (6th Generation)</Title></ItemAttributes></Item><Item><ASIN>B011SLD80S</ASIN><ParentASIN>B019ELIJXA</ParentASIN><DetailPageURL>http://www.amazon.com/Apple-iPod-touch-Silver-Generation/dp/B011SLD80S%3Fpsc%3D1%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB011SLD80S</DetailPageURL><ItemLinks><ItemLink><Description>Technical
+        Details</Description><URL>http://www.amazon.com/Apple-iPod-touch-Silver-Generation/dp/tech-data/B011SLD80S%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>Add
+        To Baby Registry</Description><URL>http://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB011SLD80S%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>Add
+        To Wedding Registry</Description><URL>http://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB011SLD80S%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>Add
+        To Wishlist</Description><URL>http://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB011SLD80S%26SubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>Tell
+        A Friend</Description><URL>http://www.amazon.com/gp/pdp/taf/B011SLD80S%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>All
+        Customer Reviews</Description><URL>http://www.amazon.com/review/product/B011SLD80S%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink><ItemLink><Description>All
+        Offers</Description><URL>http://www.amazon.com/gp/offer-listing/B011SLD80S%3FSubscriptionId%3DAKIAINPXCPEI35TF3FPQ%26tag%3Dwdk%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB011SLD80S</URL></ItemLink></ItemLinks><ItemAttributes><Manufacturer>Apple</Manufacturer><ProductGroup>CE</ProductGroup><Title>Apple
+        iPod touch 16GB Silver (6th Generation)</Title></ItemAttributes></Item></Items></ItemSearchResponse>
+    http_version: 
+  recorded_at: Sun, 08 May 2016 14:24:38 GMT
+recorded_with: VCR 3.0.1
