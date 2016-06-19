@@ -4,8 +4,11 @@ h4.text-center.form-description.center-block
 div.wishlist-page
   = render partial: 'modules/alerts'
   - if @gift_requests.any? || search_filters?
-    = render partial: "modules/shipping"
-    h5.text-center.instructions Gifts must be shipped to Wediko by #{@event.pretty_end_date}.
+    h4.text-center.instructions
+      strong All gifts should be shipped to:
+      br/
+      strong= @event.address_string
+    h5.text-center.instructions Gifts must be shipped to the above address by #{@event.pretty_end_date}.
     .filter-box
       h4
         strong Filters

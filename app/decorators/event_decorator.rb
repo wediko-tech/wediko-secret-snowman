@@ -15,6 +15,13 @@ class EventDecorator < Draper::Decorator
     pretty_date(object.end_date)
   end
 
+  # avoids an extra line if there is no line 2
+  def address_string
+    address_info = [:address_line_1, :address_line_2, :address_city, :address_state, :address_zip_code]
+
+    address_info.map{|attribute| object.send(attribute).presence }.compact.join(", ")
+  end
+
   private
 
   def pretty_date(date)
