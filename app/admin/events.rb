@@ -29,6 +29,9 @@ ActiveAdmin.register Event do
     column :description
     column :start_date
     column :end_date
+    column :shipping_address do |e|
+      e.decorate.address_string
+    end
     column :active do |e|
       DateTime.current.between?(e.start_date, e.end_date)
     end
@@ -41,6 +44,9 @@ ActiveAdmin.register Event do
       row :description
       row :start_date
       row :end_date
+      row :shipping_address do |e|
+        e.decorate.address_string
+      end
     end
 
     if event.lists.any?
@@ -71,6 +77,14 @@ ActiveAdmin.register Event do
     f.inputs "Dates" do
       f.input :start_date, as: :date_select
       f.input :end_date, as: :date_select
+    end
+
+    f.inputs "Shipping Info" do
+      f.input :address_line_1
+      f.input :address_line_2
+      f.input :address_city
+      f.input :address_state
+      f.input :address_zip_code
     end
 
     f.actions
