@@ -5,7 +5,7 @@ div.wishlist-page
       .alert.alert-danger role="alert"
         span.glyphicon.glyphicon-exclamation-sign aria-hidden="true"
         span.sr-only Error:
-        = render partial: 'modules/error', locals: {errors: @gift_request.errors.full_messages}
+        = render partial: 'modules/error', locals: {errors: resource.errors.full_messages}
     div.form-group
       = f.label :name
       = f.text_field :name, autofocus: true, class: 'form-control'
