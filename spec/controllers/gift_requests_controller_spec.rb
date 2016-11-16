@@ -141,4 +141,19 @@ RSpec.describe GiftRequestsController, type: :controller do
     end
   end
 
+  describe "POST #reserve_multiple" do
+    it "successfully reserves multiple gifts" do
+      login_as_donor
+
+      post :reserve_multiple, gift_request: @gift_requests[0..1].map(&:id)
+
+      expect(response).to redirect_to(catalog_event_path(@gift_requests[0].list.event_id))
+
+      expect(Reservation.all.length).to eq 2
+      expect(@gift_requests[0].reservation).not_to be_nil
+      expect(@gift_requests[0].reservation.state).to eq('reserved')
+      expect(@gift_requests[0].reservation.donor_id).to eq(@user.role.id)
+    end
+  end
+
 end

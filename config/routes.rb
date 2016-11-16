@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     collection do
       delete 'destroy_multiple'
       get 'fetch_amazon_info' => 'gift_requests#fetch_amazon_info'
-      put 'reserve_multiple'
+      post 'reserve_multiple'
     end
 
     member do

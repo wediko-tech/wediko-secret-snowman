@@ -1,7 +1,7 @@
 class GiftRequestsController < ApplicationController
   before_action :authenticate_user!, except: :catalog
-  before_action :require_therapist, except: [:catalog, :reserve]
-  before_action :require_donor, only: :reserve
+  before_action :require_therapist, except: [:catalog, :reserve, :reserve_multiple]
+  before_action :require_donor, only: [:reserve, :reserve_multiple]
   before_action :require_owned_gift_request!, only: [:edit, :update]
   before_action :find_gift_request, only: [:edit, :update]
 
@@ -91,6 +91,18 @@ class GiftRequestsController < ApplicationController
     end
   end
 
+  def reserve_multiple
+    @gift_requests = GiftRequest.where(id: params[:gift_request])
+
+    redirect_to(root_path, alert: "We couldn't find any of the specified requests.") and return if @gift_requests.none?
+
+    reservations = @gift_requests.map{|gr| Reservation.new(gift_request_id: gr.id, donor_id: current_user.role.id) }
+    if reservations.all?(&:save)
+      redirect_to catalog_event_path(id: @gift_requests.first.list.event_id), notice: "Your reservations have been saved."
+    else
+      redirect_to catalog_event_path(id: @gift_requests.first.list.event_id), alert: "There was an error reserving those gifts."
+    end
+  end
 
   private
 
